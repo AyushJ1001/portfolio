@@ -7,11 +7,10 @@ export function Hero() {
         <div className="relative inline-block">
           <div className="relative w-[300px] h-[300px]">
             <Image
-              src="/static/profile.jpg"
+              src="https://utfs.io/f/6bBGFcWk1gIAPAamxrSv9Tch7i2WK6ex4NUmSVzlIufbLZQA"
               alt="Ayush Juvekar"
               fill
               priority
-              unoptimized
               sizes="300px"
               className="rounded-full mx-auto border-4 border-blue-400 object-cover"
             />
