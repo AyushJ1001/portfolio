@@ -76,21 +76,28 @@ export function Projects() {
 
   return (
     <section id="projects" className="py-20">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-8 text-center">Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <div key={index} className="bg-gray-700 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-              <p className="text-gray-300 mb-4">{project.date}</p>
-              <p>{project.description}</p>
-              <p className="my-4 break-words whitespace-normal">
+            <div key={index} className="bg-gray-700 p-4 md:p-6 rounded-lg">
+              <h3 className="text-lg md:text-xl font-semibold mb-2">
+                {project.title}
+              </h3>
+              <p className="text-gray-300 text-sm md:text-base mb-4">
+                {project.date}
+              </p>
+              <p className="text-sm md:text-base">{project.description}</p>
+              <p className="my-4 break-words whitespace-normal text-sm md:text-base">
                 <b>Technologies: </b>
                 <span>{project.technologies.join(", ")}</span>
               </p>
               {project.github && (
-                <Link href={project.github}>
-                  <Github />
+                <Link
+                  href={project.github}
+                  className="inline-block hover:text-blue-400"
+                >
+                  <Github className="w-5 h-5 md:w-6 md:h-6" />
                 </Link>
               )}
             </div>

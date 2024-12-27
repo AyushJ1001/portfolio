@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-hidden">
       <BackgroundAnimation />
-      <div className="relative z-10">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8">
         <Header />
         <Hero />
         <About />

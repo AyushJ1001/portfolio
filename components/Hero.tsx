@@ -2,27 +2,27 @@ import Image from "next/image";
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center relative">
+    <section className="min-h-screen flex items-center justify-center relative px-4">
       <div className="text-center z-10">
         <div className="relative inline-block">
-          <div className="relative w-[300px] h-[300px]">
+          <div className="relative w-[200px] h-[200px] md:w-[300px] md:h-[300px]">
             <Image
               src="https://utfs.io/f/6bBGFcWk1gIAPAamxrSv9Tch7i2WK6ex4NUmSVzlIufbLZQA"
               alt="Ayush Juvekar"
               fill
               priority
-              sizes="300px"
+              sizes="(max-width: 768px) 200px, 300px"
               className="rounded-full mx-auto border-4 border-blue-400 object-cover"
             />
           </div>
         </div>
-        <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        <h1 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
           Ayush Juvekar
         </h1>
-        <h2 className="text-2xl text-blue-400 mb-8">
+        <h2 className="text-xl md:text-2xl text-blue-400 mb-8">
           Computer Science Graduate Student
         </h2>
-        <div className="flex justify-center space-x-4">
+        <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
           <a
             href="mailto:aajuveka@mtu.edu"
             className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full transition-colors transform hover:scale-105"

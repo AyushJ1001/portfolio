@@ -52,15 +52,15 @@ export function Skills() {
 
   return (
     <section id="skills" className="py-20 bg-gray-800">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-8 text-center">
           Technical Skills
         </h2>
-        <div className="flex justify-center mb-8">
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
           {skillCategories.map((category) => (
             <button
               key={category.title}
-              className={`px-4 py-2 rounded-full mr-2 transition-colors ${
+              className={`px-3 py-1 text-sm md:px-4 md:py-2 md:text-base rounded-full transition-colors ${
                 activeCategory === category.title
                   ? "bg-blue-500 text-white"
                   : "bg-gray-700 text-gray-300 hover:bg-gray-600"
@@ -71,9 +71,9 @@ export function Skills() {
             </button>
           ))}
         </div>
-        <div className="bg-gray-700 p-6 rounded-lg">
+        <div className="bg-gray-700 p-4 md:p-6 rounded-lg">
           <h3 className="text-xl font-semibold mb-4">{activeCategory}</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {skillCategories
               .find((category) => category.title === activeCategory)
               ?.skills.map((skill, index) => (
