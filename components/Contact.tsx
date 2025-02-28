@@ -14,7 +14,7 @@ export function Contact() {
           >
             aajuveka@mtu.edu
           </a>
-          <p className="mt-2 text-sm md:text-base">+1 (608) 667 7212</p>
+          <p className="mt-2 text-sm md:text-base">+1 (906) 299 4314</p>
           <div className="mt-6">
             <a
               href="https://www.linkedin.com/in/ayushjuvekar/"
