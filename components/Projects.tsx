@@ -1,5 +1,4 @@
-import { Github } from "lucide-react";
-import Link from "next/link";
+import { Github, ExternalLink, Calendar, Code } from "lucide-react";
 
 type Project = {
   title: string;
@@ -7,15 +6,31 @@ type Project = {
   description: string;
   technologies: string[];
   github?: string;
+  link?: string;
 };
 
 export function Projects() {
   const projects: Project[] = [
     {
+      title: "Particle Vibration Analysis System",
+      date: "2024",
+      description:
+        "Developed a computer vision system using ZED 2 stereo cameras and OpenCV to track particle movement on vibrating plate, while creating visualization tools for trajectory and velocity analysis. Designed a comprehensive 3D data pipeline, and applied statistical methods to correlate motion patterns with vibration frequencies for mechanical engineering research.",
+      technologies: [
+        "Computer Vision",
+        "ZED 2 Stereo Cameras",
+        "OpenCV",
+        "3D Data Pipeline",
+        "Statistical Analysis",
+        "Python",
+      ],
+      github: "https://github.com/AyushJ1001/particle-vibration",
+    },
+    {
       title: "Anomaly Detection in Crowd Surveillance using Edge Computing",
       date: "2023 - 2024",
       description:
-        "The aim is to create an optimised and efficient machine learning system to detect anomalies in real time video surveillance feed by using Edge Computing and Neural Networks.",
+        "The aim is to create an optimized and efficient machine learning system to detect anomalies in real-time video surveillance feed by using Edge Computing and Neural Networks.",
       technologies: [
         "Python",
         "TensorFlow",
@@ -23,14 +38,16 @@ export function Projects() {
         "Matplotlib",
         "Jetson Nano",
       ],
+      github: "https://github.com/AyushJ1001",
     },
     {
       title:
         "Carbon Monoxide Concentration Monitoring System for Automating Air Filters",
       date: "2022 - 2023",
       description:
-        "Emerging Smart Computing and Informatics (ESCI), 2023 International Conference. The aim is to create an optimised and efficient machine learning system to detect anomalies in real time video surveillance feed by using Edge Computing and Neural Networks.",
+        "Emerging Smart Computing and Informatics (ESCI), 2023 International Conference. The aim is to create an optimized and efficient machine learning system to detect anomalies in real time video surveillance feed by using Edge Computing and Neural Networks.",
       technologies: ["NodeJS", "NodeRed", "C++", "Arduino", "Zigbee"],
+      link: "https://ieeexplore.ieee.org/",
     },
     {
       title: "BookApp",
@@ -48,58 +65,90 @@ export function Projects() {
       technologies: [
         "NodeJS",
         "ExpressJS",
-        "EJS",
-        "Bootstrap",
-        "Google Maps API",
         "MongoDB",
-        "Heroku",
+        "JWT",
+        "Mapbox",
+        "Bootstrap",
       ],
-    },
-    {
-      title: "YayCamp",
-      date: "2024",
-      description:
-        "Second iteration of YelpCamp, but with modern tools, including NextJS, TypeScript, TailwindCSS, Clerk (Authentication), T3 Stack",
-      technologies: [
-        "Typescript",
-        "Tailwind",
-        "NextJS",
-        "Clerk",
-        "Prisma",
-        "PostgreSQL",
-        "Vercel",
-        "NeonDB",
-      ],
-      github: "https://github.com/AyushJ1001/yaycamp",
+      github: "https://github.com/AyushJ1001/yelpcamp",
     },
   ];
 
   return (
-    <section id="projects" className="py-20">
+    <section
+      id="projects"
+      className="py-20 bg-gradient-to-b from-gray-900 to-gray-800"
+    >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">Projects</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+          Projects
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => (
-            <div key={index} className="bg-gray-700 p-4 md:p-6 rounded-lg">
-              <h3 className="text-lg md:text-xl font-semibold mb-2">
-                {project.title}
-              </h3>
-              <p className="text-gray-300 text-sm md:text-base mb-4">
-                {project.date}
-              </p>
-              <p className="text-sm md:text-base">{project.description}</p>
-              <p className="my-4 break-words whitespace-normal text-sm md:text-base">
-                <b>Technologies: </b>
-                <span>{project.technologies.join(", ")}</span>
-              </p>
-              {project.github && (
-                <Link
-                  href={project.github}
-                  className="inline-block hover:text-blue-400"
-                >
-                  <Github className="w-5 h-5 md:w-6 md:h-6" />
-                </Link>
-              )}
+            <div
+              key={index}
+              className="bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700/50 shadow-lg group hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/10 hover:-translate-y-1"
+            >
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-semibold text-blue-400">
+                    {project.title}
+                  </h3>
+                  <div className="flex items-center text-gray-400 text-sm">
+                    <Calendar size={14} className="mr-2" />
+                    <span>{project.date}</span>
+                  </div>
+                </div>
+
+                <div className="border-l-2 border-blue-500/30 pl-4 py-1 mb-4">
+                  <div className="flex items-center text-gray-300 text-sm space-x-2">
+                    <Code size={14} className="text-blue-400" />
+                    <span>Project Overview</span>
+                  </div>
+                </div>
+
+                <p className="text-gray-300 mb-6">{project.description}</p>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="bg-gray-700/70 text-blue-300 text-xs px-2 py-1 rounded-md border border-gray-600/50"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex space-x-3 mt-4 pt-4 border-t border-gray-700/50">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-blue-400 transition-colors flex items-center"
+                      aria-label="GitHub repository"
+                    >
+                      <Github size={18} className="mr-1" />
+                      <span className="text-sm">Repository</span>
+                    </a>
+                  )}
+
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-blue-400 transition-colors flex items-center"
+                      aria-label="Live demo"
+                    >
+                      <ExternalLink size={18} className="mr-1" />
+                      <span className="text-sm">View Project</span>
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
           ))}
         </div>
