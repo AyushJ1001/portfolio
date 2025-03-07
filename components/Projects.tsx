@@ -1,11 +1,5 @@
-import {
-  Github,
-  ExternalLink,
-  Calendar,
-  Code,
-  BookOpen,
-  Laptop,
-} from "lucide-react";
+import { ExternalLink, Calendar, BookOpen, Laptop } from "lucide-react";
+import { siGithub } from "simple-icons";
 
 type Project = {
   title: string;
@@ -212,7 +206,14 @@ export function Projects() {
                       } transition-colors flex items-center`}
                       aria-label="GitHub repository"
                     >
-                      <Github size={18} className="mr-1" />
+                      <svg
+                        role="img"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-[18px] h-[18px] mr-1 fill-current"
+                      >
+                        <path d={siGithub.path} />
+                      </svg>
                       <span className="text-sm">Repository</span>
                     </a>
                   )}
