@@ -25,8 +25,8 @@ export function BackgroundAnimation() {
       speedY: number;
 
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * (canvas?.width || 0);
+        this.y = Math.random() * (canvas?.height || 0);
         this.size = Math.random() * 3 + 1;
         this.speedX = Math.random() * 3 - 1.5;
         this.speedY = Math.random() * 3 - 1.5;
@@ -36,13 +36,14 @@ export function BackgroundAnimation() {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        if (this.x > canvas.width) this.x = 0;
-        else if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        else if (this.y < 0) this.y = canvas.height;
+        if (this.x > (canvas?.width || 0)) this.x = 0;
+        else if (this.x < 0) this.x = canvas?.width || 0;
+        if (this.y > (canvas?.height || 0)) this.y = 0;
+        else if (this.y < 0) this.y = canvas?.height || 0;
       }
 
       draw() {
+        if (!ctx) return;
         ctx.fillStyle = "rgba(100, 149, 237, 0.5)";
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -58,7 +59,8 @@ export function BackgroundAnimation() {
     }
 
     function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!ctx) return;
+      ctx.clearRect(0, 0, canvas?.width || 0, canvas?.height || 0);
       for (let i = 0; i < particles.length; i++) {
         particles[i].update();
         particles[i].draw();
