@@ -15,8 +15,17 @@ export function Skills() {
     {
       title: "Languages",
       icon: "💻",
-      skills: ["Python", "JavaScript", "TypeScript", "Java", "C++", "Go", "Rust", "C#"],
-      gridCols: { mobile: 2, tablet: 4, desktop: 4 }
+      skills: [
+        "Python",
+        "JavaScript",
+        "TypeScript",
+        "Java",
+        "C++",
+        "Go",
+        "Rust",
+        "C#",
+      ],
+      gridCols: { mobile: 2, tablet: 4, desktop: 4 },
     },
     {
       title: "Frameworks",
@@ -33,9 +42,9 @@ export function Skills() {
         "Scikit Learn",
         "Tensorflow",
         "OpenCV",
-        "Flask"
+        "Flask",
       ],
-      gridCols: { mobile: 2, tablet: 3, desktop: 4 }
+      gridCols: { mobile: 2, tablet: 3, desktop: 4 },
     },
     {
       title: "Domains",
@@ -48,13 +57,13 @@ export function Skills() {
         "Data Science",
         "Mobile Development",
       ],
-      gridCols: { mobile: 2, tablet: 3, desktop: 3 }
+      gridCols: { mobile: 2, tablet: 3, desktop: 3 },
     },
     {
       title: "Tools",
       icon: "🛠️",
       skills: ["Docker", "Git", "Bash", "Linux", "VS Code", "Vim"],
-      gridCols: { mobile: 2, tablet: 3, desktop: 3 }
+      gridCols: { mobile: 2, tablet: 3, desktop: 3 },
     },
     {
       title: "Office",
@@ -66,9 +75,21 @@ export function Skills() {
         "MS Excel",
         "Latex Overleaf",
       ],
-      gridCols: { mobile: 2, tablet: 3, desktop: 5 }
+      gridCols: { mobile: 2, tablet: 3, desktop: 5 },
     },
   ];
+
+  const getGridClasses = (activeCategory: string) => {
+    const category = skillCategories.find(
+      (cat) => cat.title === activeCategory,
+    );
+    const { mobile, tablet, desktop } = category?.gridCols || {
+      mobile: 2,
+      tablet: 3,
+      desktop: 4,
+    };
+    return `grid-cols-${mobile} sm:grid-cols-${tablet} lg:grid-cols-${desktop}`;
+  };
 
   return (
     <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-gray-800">
@@ -76,7 +97,7 @@ export function Skills() {
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center text-white">
           Technical Skills
         </h2>
-        
+
         {/* Mobile-first tab navigation */}
         <div className="mb-8">
           {/* Mobile: Horizontal scroll tabs */}
@@ -85,6 +106,9 @@ export function Skills() {
               {skillCategories.map((category) => (
                 <button
                   key={category.title}
+                  role="tab"
+                  aria-selected={activeCategory === category.title}
+                  aria-controls="skills-panel"
                   className={`flex items-center gap-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
                     activeCategory === category.title
                       ? "bg-blue-500 text-white shadow-lg"
@@ -122,21 +146,20 @@ export function Skills() {
         <div className="bg-gray-700/50 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-2xl shadow-xl border border-gray-600/30">
           <div className="flex items-center gap-3 mb-6">
             <span className="text-2xl">
-              {skillCategories.find(cat => cat.title === activeCategory)?.icon}
+              {
+                skillCategories.find((cat) => cat.title === activeCategory)
+                  ?.icon
+              }
             </span>
             <h3 className="text-xl sm:text-2xl font-semibold text-white">
               {activeCategory}
             </h3>
           </div>
-          
+
           {/* Optimized responsive grid for better alignment */}
-          <div className={`grid gap-3 sm:gap-4 ${
-            (() => {
-              const category = skillCategories.find(cat => cat.title === activeCategory);
-              const { mobile, tablet, desktop } = category?.gridCols || { mobile: 2, tablet: 3, desktop: 4 };
-              return `grid-cols-${mobile} sm:grid-cols-${tablet} lg:grid-cols-${desktop}`;
-            })()
-          }`}>
+          <div
+            className={`grid gap-3 sm:gap-4 ${getGridClasses(activeCategory)}`}
+          >
             {skillCategories
               .find((category) => category.title === activeCategory)
               ?.skills.map((skill, index) => (
@@ -155,7 +178,11 @@ export function Skills() {
         {/* Skills count indicator */}
         <div className="text-center mt-6">
           <p className="text-gray-400 text-sm">
-            {skillCategories.find(cat => cat.title === activeCategory)?.skills.length} skills in {activeCategory}
+            {
+              skillCategories.find((cat) => cat.title === activeCategory)
+                ?.skills.length
+            }{" "}
+            skills in {activeCategory}
           </p>
         </div>
       </div>
