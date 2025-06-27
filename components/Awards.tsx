@@ -1,3 +1,8 @@
+/**
+ * Displays a responsive grid of awards and honors with icons, titles, and years.
+ *
+ * Renders a visually styled section showcasing a list of awards, each represented by an emoji icon, title, and year, arranged in a responsive grid layout.
+ */
 export function Awards() {
   const awards = [
     {

@@ -1,5 +1,10 @@
 import { Calendar, Building2 } from "lucide-react";
 
+/**
+ * Renders a section displaying a timeline of professional experiences with roles, companies, periods, descriptions, and associated skills.
+ *
+ * The section includes styled timeline entries for each experience, featuring icons, skill badges, and responsive layout.
+ */
 export function Experience() {
   const experiences = [
     {
