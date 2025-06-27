@@ -117,31 +117,31 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 bg-gradient-to-b from-gray-900 to-gray-800"
+      className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-gray-900 to-gray-800"
     >
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
           Projects
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <div
               key={index}
-              className={`bg-gray-800/50 rounded-xl overflow-hidden border ${
+              className={`bg-gray-700/50 backdrop-blur-sm rounded-2xl overflow-hidden border ${
                 project.type === "research"
-                  ? "border-purple-500/50 shadow-lg group hover:border-purple-400/70"
-                  : "border-gray-700/50 shadow-lg group hover:border-blue-500/30"
+                  ? "border-purple-500/50 shadow-xl group hover:border-purple-400/70"
+                  : "border-gray-600/30 shadow-xl group hover:border-blue-500/30"
               } transition-all duration-300 hover:shadow-blue-500/10 hover:-translate-y-1`}
             >
               <div
                 className={`${
                   project.type === "research" ? "bg-purple-900/20" : ""
-                } p-6`}
+                } p-4 sm:p-6`}
               >
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-2">
                   <h3
-                    className={`text-xl font-semibold ${
+                    className={`text-lg sm:text-xl font-semibold leading-tight ${
                       project.type === "research"
                         ? "text-purple-300"
                         : "text-blue-400"
@@ -149,7 +149,7 @@ export function Projects() {
                   >
                     {project.title}
                   </h3>
-                  <div className="flex items-center text-gray-400 text-sm">
+                  <div className="flex items-center text-gray-400 text-sm flex-shrink-0">
                     <Calendar size={14} className="mr-2" />
                     <span>{project.date}</span>
                   </div>
@@ -176,7 +176,7 @@ export function Projects() {
                   </div>
                 </div>
 
-                <p className="text-gray-300 mb-6">{project.description}</p>
+                <p className="text-gray-300 mb-6 text-sm sm:text-base leading-relaxed">{project.description}</p>
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.technologies.map((tech, techIndex) => (
@@ -184,9 +184,9 @@ export function Projects() {
                       key={techIndex}
                       className={`${
                         project.type === "research"
-                          ? "bg-purple-900/30 text-purple-200 border-purple-700/50"
-                          : "bg-gray-700/70 text-blue-300 border-gray-600/50"
-                      } text-xs px-2 py-1 rounded-md border`}
+                          ? "bg-gradient-to-br from-purple-900/40 to-purple-800/40 text-purple-200 border-purple-600/30"
+                          : "bg-gradient-to-br from-gray-600 to-gray-700 text-blue-300 border-gray-500/20"
+                      } text-xs px-3 py-1.5 rounded-lg border hover:border-opacity-50 transition-colors duration-200`}
                     >
                       {tech}
                     </span>
