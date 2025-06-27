@@ -11,6 +11,13 @@ type Project = {
   type: "research" | "personal";
 };
 
+/**
+ * Renders a responsive, styled list of project cards with details such as title, date, description, technologies, and relevant links.
+ *
+ * Projects are visually distinguished by type (research or personal), and each card displays optional GitHub and live demo links if available.
+ *
+ * @returns A React section element containing the projects grid.
+ */
 export function Projects() {
   const projects: Project[] = [
     {

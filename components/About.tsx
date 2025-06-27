@@ -1,3 +1,8 @@
+/**
+ * Renders the About section with information on education, professional interests, and personal approach.
+ *
+ * Displays a visually styled, responsive section containing details about academic background, research and professional interests, and methodology, organized into distinct cards with headings, descriptive text, and bullet lists.
+ */
 export function About() {
   return (
     <section

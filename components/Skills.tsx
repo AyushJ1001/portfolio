@@ -1,6 +1,13 @@
 "use client";
 import { useState } from "react";
 
+/**
+ * Renders a responsive, interactive section displaying categorized technical skills with tab navigation.
+ *
+ * Users can switch between skill categories using tab buttons, view the associated skills in a dynamically sized grid, and see a count of skills per category. The layout and styling adapt for mobile and desktop screens, and each category is represented with an icon and custom grid configuration.
+ *
+ * @returns The rendered skills section as a React element.
+ */
 export function Skills() {
   const [activeCategory, setActiveCategory] = useState("Languages");
 
