@@ -131,12 +131,11 @@ export function Skills() {
           
           {/* Optimized responsive grid for better alignment */}
           <div className={`grid gap-3 sm:gap-4 ${
-            activeCategory === "Languages" ? "grid-cols-2 sm:grid-cols-4 lg:grid-cols-4" :
-            activeCategory === "Frameworks" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" :
-            activeCategory === "Domains" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-3" :
-            activeCategory === "Tools" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-3" :
-            activeCategory === "Office" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5" :
-            "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
+            (() => {
+              const category = skillCategories.find(cat => cat.title === activeCategory);
+              const { mobile, tablet, desktop } = category?.gridCols || { mobile: 2, tablet: 3, desktop: 4 };
+              return `grid-cols-${mobile} sm:grid-cols-${tablet} lg:grid-cols-${desktop}`;
+            })()
           }`}>
             {skillCategories
               .find((category) => category.title === activeCategory)
