@@ -10,7 +10,7 @@ export function Contact() {
           </p>
           <a
             href="mailto:aajuveka@mtu.edu"
-            className="text-blue-400 hover:underline text-sm md:text-base block mb-2"
+            className="text-teal-400 hover:underline text-sm md:text-base block mb-2"
           >
             aajuveka@mtu.edu
           </a>
@@ -20,7 +20,7 @@ export function Contact() {
               href="https://www.linkedin.com/in/ayushjuvekar/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline text-sm md:text-base"
+              className="text-teal-400 hover:underline text-sm md:text-base"
             >
               LinkedIn Profile
             </a>

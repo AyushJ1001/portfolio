@@ -69,7 +69,7 @@ export function Header() {
         <div className="flex justify-between items-center">
           <Link
             href="/"
-            className="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
+            className="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-emerald-600"
           >
             Ayush Juvekar
           </Link>
@@ -80,7 +80,7 @@ export function Header() {
               href="/Ayush Juvekar_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="mr-3 sm:mr-4 text-xs sm:text-sm text-gray-300 hover:text-blue-400 flex items-center transition-colors"
+              className="mr-3 sm:mr-4 text-xs sm:text-sm text-gray-300 hover:text-teal-400 flex items-center transition-colors"
               download
             >
               <Download size={14} className="mr-1" />
@@ -104,7 +104,7 @@ export function Header() {
                 onClick={(e) => handleClick(e, link.id)}
                 className={`px-3 lg:px-4 py-2 rounded-md text-sm transition-colors ${
                   activeSection === link.id
-                    ? "text-blue-400 font-medium"
+                    ? "text-teal-400 font-medium"
                     : "text-gray-300 hover:text-white hover:bg-gray-800/30"
                 }`}
               >
@@ -115,7 +115,7 @@ export function Header() {
               href="/Ayush Juvekar_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 px-3 lg:px-4 py-2 bg-blue-600/80 hover:bg-blue-700 text-white rounded-md transition-colors flex items-center text-sm"
+              className="ml-2 px-3 lg:px-4 py-2 bg-teal-600/80 hover:bg-teal-700 text-white rounded-md transition-colors flex items-center text-sm"
               download
             >
               <Download size={16} className="mr-1" />
@@ -141,8 +141,8 @@ export function Header() {
                   onClick={(e) => handleClick(e, link.id)}
                   className={`px-4 py-3 rounded-lg transition-colors min-h-[44px] flex items-center ${
                     activeSection === link.id
-                      ? "text-blue-400 bg-blue-500/10 font-medium"
-                      : "text-gray-300 hover:bg-gray-800/50 hover:text-white"
+                    ? "text-teal-400 bg-teal-500/10 font-medium"
+                    : "text-gray-300 hover:bg-gray-800/50 hover:text-white"
                   }`}
                 >
                   {link.name}

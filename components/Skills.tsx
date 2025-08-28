@@ -25,7 +25,6 @@ export function Skills() {
         "Rust",
         "C#",
       ],
-      gridCols: { mobile: 2, tablet: 4, desktop: 4 },
     },
     {
       title: "Frameworks",
@@ -44,7 +43,6 @@ export function Skills() {
         "OpenCV",
         "Flask",
       ],
-      gridCols: { mobile: 2, tablet: 3, desktop: 4 },
     },
     {
       title: "Domains",
@@ -57,13 +55,11 @@ export function Skills() {
         "Data Science",
         "Mobile Development",
       ],
-      gridCols: { mobile: 2, tablet: 3, desktop: 3 },
     },
     {
       title: "Tools",
       icon: "🛠️",
       skills: ["Docker", "Git", "Bash", "Linux", "VS Code", "Vim"],
-      gridCols: { mobile: 2, tablet: 3, desktop: 3 },
     },
     {
       title: "Office",
@@ -75,21 +71,8 @@ export function Skills() {
         "MS Excel",
         "Latex Overleaf",
       ],
-      gridCols: { mobile: 2, tablet: 3, desktop: 5 },
     },
   ];
-
-  const getGridClasses = (activeCategory: string) => {
-    const category = skillCategories.find(
-      (cat) => cat.title === activeCategory,
-    );
-    const { mobile, tablet, desktop } = category?.gridCols || {
-      mobile: 2,
-      tablet: 3,
-      desktop: 4,
-    };
-    return `grid-cols-${mobile} sm:grid-cols-${tablet} lg:grid-cols-${desktop}`;
-  };
 
   return (
     <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-gray-800">
@@ -111,7 +94,7 @@ export function Skills() {
                   aria-controls="skills-panel"
                   className={`flex items-center gap-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
                     activeCategory === category.title
-                      ? "bg-blue-500 text-white shadow-lg"
+                      ? "bg-teal-500 text-white shadow-lg"
                       : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                   }`}
                   onClick={() => setActiveCategory(category.title)}
@@ -130,7 +113,7 @@ export function Skills() {
                 key={category.title}
                 className={`flex items-center gap-2 px-4 py-3 lg:px-6 lg:py-3 text-sm lg:text-base font-medium rounded-lg transition-all duration-200 hover:scale-105 ${
                   activeCategory === category.title
-                    ? "bg-blue-500 text-white shadow-lg shadow-blue-500/25"
+                    ? "bg-teal-500 text-white shadow-lg shadow-teal-500/25"
                     : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white"
                 }`}
                 onClick={() => setActiveCategory(category.title)}
@@ -146,31 +129,24 @@ export function Skills() {
         <div className="bg-gray-700/50 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-2xl shadow-xl border border-gray-600/30">
           <div className="flex items-center gap-3 mb-6">
             <span className="text-2xl">
-              {
-                skillCategories.find((cat) => cat.title === activeCategory)
-                  ?.icon
-              }
+              {skillCategories.find((cat) => cat.title === activeCategory)?.icon}
             </span>
             <h3 className="text-xl sm:text-2xl font-semibold text-white">
               {activeCategory}
             </h3>
           </div>
 
-          {/* Optimized responsive grid for better alignment */}
-          <div
-            className={`grid gap-3 sm:gap-4 ${getGridClasses(activeCategory)}`}
-          >
+          {/* Compact skill tags for better mobile readability */}
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             {skillCategories
               .find((category) => category.title === activeCategory)
               ?.skills.map((skill, index) => (
-                <div
+                <span
                   key={index}
-                  className="group bg-gradient-to-br from-gray-600 to-gray-700 p-3 sm:p-4 rounded-xl text-center transform hover:scale-105 transition-all duration-300 ease-out hover:from-gray-500 hover:to-gray-600 hover:shadow-lg hover:shadow-blue-500/10 border border-gray-500/20 hover:border-blue-400/30 min-h-[60px] sm:min-h-[70px] flex items-center justify-center"
+                  className="bg-gray-700 text-gray-100 px-3 py-1.5 rounded-lg text-xs sm:text-sm hover:bg-gray-600 transition-colors"
                 >
-                  <span className="text-xs sm:text-sm lg:text-base font-medium text-gray-100 leading-tight block group-hover:text-white transition-colors duration-200 px-1">
-                    {skill}
-                  </span>
-                </div>
+                  {skill}
+                </span>
               ))}
           </div>
         </div>

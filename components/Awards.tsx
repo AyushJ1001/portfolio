@@ -29,7 +29,7 @@ export function Awards() {
   return (
     <section id="awards" className="py-12 sm:py-16 lg:py-20 bg-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-emerald-600">
           Awards & Honors
         </h2>
         <div className="max-w-4xl mx-auto">
@@ -37,7 +37,7 @@ export function Awards() {
             {awards.map((award, index) => (
               <div
                 key={index}
-                className="group bg-gray-700/50 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-xl border border-gray-600/30 hover:border-blue-500/30 transition-all duration-300 hover:shadow-blue-500/10 hover:-translate-y-1"
+                className="group bg-gray-700/50 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-xl border border-gray-600/30 hover:border-teal-500/30 transition-all duration-300 hover:shadow-teal-500/10 hover:-translate-y-1"
               >
                 <div className="flex items-start gap-3">
                   <span className="text-2xl flex-shrink-0 mt-1">
@@ -47,7 +47,7 @@ export function Awards() {
                     <h3 className="text-sm sm:text-base font-medium text-gray-100 leading-tight mb-2 group-hover:text-white transition-colors duration-200">
                       {award.title}
                     </h3>
-                    <span className="text-blue-400 text-sm font-medium">
+                    <span className="text-teal-400 text-sm font-medium">
                       {award.year}
                     </span>
                   </div>
