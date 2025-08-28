@@ -127,7 +127,7 @@ export function Projects() {
       className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-gray-900 to-gray-800"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-emerald-600">
           Projects
         </h2>
 
@@ -137,21 +137,21 @@ export function Projects() {
               key={index}
               className={`bg-gray-700/50 backdrop-blur-sm rounded-2xl overflow-hidden border ${
                 project.type === "research"
-                  ? "border-purple-500/50 shadow-xl group hover:border-purple-400/70"
-                  : "border-gray-600/30 shadow-xl group hover:border-blue-500/30"
-              } transition-all duration-300 hover:shadow-blue-500/10 hover:-translate-y-1`}
+                  ? "border-emerald-500/50 shadow-xl group hover:border-emerald-400/70"
+                  : "border-gray-600/30 shadow-xl group hover:border-teal-500/30"
+              } transition-all duration-300 hover:shadow-teal-500/10 hover:-translate-y-1`}
             >
               <div
                 className={`${
-                  project.type === "research" ? "bg-purple-900/20" : ""
+                  project.type === "research" ? "bg-emerald-900/20" : ""
                 } p-4 sm:p-6`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-2">
                   <h3
                     className={`text-lg sm:text-xl font-semibold leading-tight ${
                       project.type === "research"
-                        ? "text-purple-300"
-                        : "text-blue-400"
+                        ? "text-emerald-300"
+                        : "text-teal-400"
                     }`}
                   >
                     {project.title}
@@ -165,15 +165,15 @@ export function Projects() {
                 <div
                   className={`border-l-2 ${
                     project.type === "research"
-                      ? "border-purple-500/50"
-                      : "border-blue-500/30"
+                      ? "border-emerald-500/50"
+                      : "border-teal-500/30"
                   } pl-4 py-1 mb-4`}
                 >
                   <div className="flex items-center text-gray-300 text-sm space-x-2">
                     {project.type === "research" ? (
-                      <BookOpen size={14} className="text-purple-400" />
+                      <BookOpen size={14} className="text-emerald-400" />
                     ) : (
-                      <Laptop size={14} className="text-blue-400" />
+                      <Laptop size={14} className="text-teal-400" />
                     )}
                     <span>
                       {project.type === "research"
@@ -191,8 +191,8 @@ export function Projects() {
                       key={techIndex}
                       className={`${
                         project.type === "research"
-                          ? "bg-gradient-to-br from-purple-900/40 to-purple-800/40 text-purple-200 border-purple-600/30"
-                          : "bg-gradient-to-br from-gray-600 to-gray-700 text-blue-300 border-gray-500/20"
+                          ? "bg-gradient-to-br from-emerald-900/40 to-emerald-800/40 text-emerald-200 border-emerald-600/30"
+                          : "bg-gradient-to-br from-gray-600 to-gray-700 text-teal-300 border-gray-500/20"
                       } text-xs px-3 py-1.5 rounded-lg border hover:border-opacity-50 transition-colors duration-200`}
                     >
                       {tech}
@@ -208,8 +208,8 @@ export function Projects() {
                       rel="noopener noreferrer"
                       className={`text-gray-400 ${
                         project.type === "research"
-                          ? "hover:text-purple-400"
-                          : "hover:text-blue-400"
+                          ? "hover:text-emerald-400"
+                          : "hover:text-teal-400"
                       } transition-colors flex items-center`}
                       aria-label="GitHub repository"
                     >
@@ -232,8 +232,8 @@ export function Projects() {
                       rel="noopener noreferrer"
                       className={`text-gray-400 ${
                         project.type === "research"
-                          ? "hover:text-purple-400"
-                          : "hover:text-blue-400"
+                          ? "hover:text-emerald-400"
+                          : "hover:text-teal-400"
                       } transition-colors flex items-center`}
                       aria-label="Live demo"
                     >
