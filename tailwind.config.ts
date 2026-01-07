@@ -1,68 +1,48 @@
 import type { Config } from "tailwindcss";
 
 export default {
-    darkMode: ["class"],
-    content: [
+  darkMode: ["class"],
+  content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-  	extend: {
-  		gridTemplateColumns: {
-  			'2': 'repeat(2, minmax(0, 1fr))',
-  			'3': 'repeat(3, minmax(0, 1fr))',
-  			'4': 'repeat(4, minmax(0, 1fr))',
-  			'5': 'repeat(5, minmax(0, 1fr))',
-  		},
-  		colors: {
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
-  			},
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
-  			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
-  				foreground: 'hsl(var(--accent-foreground))'
-  			},
-  			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
-  			},
-  			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
-  			chart: {
-  				'1': 'hsl(var(--chart-1))',
-  				'2': 'hsl(var(--chart-2))',
-  				'3': 'hsl(var(--chart-3))',
-  				'4': 'hsl(var(--chart-4))',
-  				'5': 'hsl(var(--chart-5))'
-  			}
-  		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		}
-  	}
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-source-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-sora)", "system-ui", "sans-serif"],
+      },
+      colors: {
+        background: "var(--bg-primary)",
+        foreground: "var(--text-primary)",
+        muted: "var(--text-muted)",
+        accent: {
+          DEFAULT: "var(--accent)",
+          light: "var(--accent-light)",
+          muted: "var(--accent-muted)",
+        },
+        surface: {
+          primary: "var(--bg-primary)",
+          secondary: "var(--bg-secondary)",
+          tertiary: "var(--bg-tertiary)",
+          card: "var(--bg-card)",
+        },
+      },
+      borderRadius: {
+        "2xl": "1rem",
+        "3xl": "1.5rem",
+      },
+      boxShadow: {
+        glow: "0 0 40px rgba(245, 158, 11, 0.15)",
+        "glow-sm": "0 0 20px rgba(245, 158, 11, 0.1)",
+        subtle: "0 4px 20px rgba(0, 0, 0, 0.3)",
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(var(--tw-gradient-stops))",
+      },
+    },
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
