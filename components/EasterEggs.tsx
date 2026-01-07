@@ -25,7 +25,7 @@ export function EasterEggs() {
     const onKey = (e: KeyboardEvent) => {
       bufferRef.current.push(e.key);
       if (bufferRef.current.length > KONAMI.length) bufferRef.current.shift();
-      if (KONAMI.every((k, i) => bufferRef.current[i]?.toLowerCase() === k)) {
+      if (KONAMI.every((k, i) => bufferRef.current[i]?.toLowerCase() === k.toLowerCase())) {
         setActive((v) => !v);
         bufferRef.current = [];
       }

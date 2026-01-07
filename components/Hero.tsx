@@ -1,9 +1,12 @@
 "use client";
 
+import { useId } from "react";
 import Image from "next/image";
 import { ArrowDown, Github, Linkedin, Mail, FileText } from "lucide-react";
 
 export function Hero() {
+  const gradientId = useId();
+
   return (
     <section
       id="hero"
@@ -114,13 +117,13 @@ export function Hero() {
                   cy="50"
                   r="48"
                   fill="none"
-                  stroke="url(#gradient)"
+                  stroke={`url(#${gradientId})`}
                   strokeWidth="0.5"
                   strokeDasharray="30 270"
                   strokeLinecap="round"
                 />
                 <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#f59e0b" />
                     <stop offset="100%" stopColor="#f97316" />
                   </linearGradient>

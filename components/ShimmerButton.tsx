@@ -5,11 +5,51 @@ import React, {
   isValidElement,
   cloneElement,
   ReactElement,
+  Children,
+  Ref,
 } from "react";
 import { cn } from "@/lib/utils";
 
 interface ShimmerButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
+}
+
+// Button-specific props that shouldn't be spread onto non-button elements
+const BUTTON_ONLY_PROPS = [
+  "type",
+  "form",
+  "formAction",
+  "formEncType",
+  "formMethod",
+  "formNoValidate",
+  "formTarget",
+  "disabled",
+  "name",
+  "value",
+] as const;
+
+function mergeRefs<T>(...refs: (Ref<T> | undefined)[]): Ref<T> {
+  return (value: T | null) => {
+    refs.forEach((ref) => {
+      if (typeof ref === "function") {
+        ref(value);
+      } else if (ref && typeof ref === "object") {
+        (ref as React.MutableRefObject<T | null>).current = value;
+      }
+    });
+  };
+}
+
+function filterButtonProps(
+  props: Record<string, unknown>,
+  isButton: boolean
+): Record<string, unknown> {
+  if (isButton) return props;
+  const filtered = { ...props };
+  BUTTON_ONLY_PROPS.forEach((key) => {
+    delete filtered[key];
+  });
+  return filtered;
 }
 
 export const ShimmerButton = forwardRef<HTMLButtonElement, ShimmerButtonProps>(
@@ -25,16 +65,28 @@ export const ShimmerButton = forwardRef<HTMLButtonElement, ShimmerButtonProps>(
     );
 
     // Support anchor or custom elements via asChild
-    if (asChild && isValidElement(children)) {
-      const child = children as ReactElement<{
+    if (asChild) {
+      const child = Children.only(children) as ReactElement<{
         className?: string;
-        ref?: React.Ref<any>;
+        ref?: Ref<unknown>;
       }>;
+
+      if (!isValidElement(child)) {
+        throw new Error("ShimmerButton: asChild requires a valid React element");
+      }
+
+      const isButtonElement =
+        typeof child.type === "string" && child.type === "button";
+      const filteredProps = filterButtonProps(
+        props as Record<string, unknown>,
+        isButtonElement
+      );
+
       return cloneElement(child, {
         className: cn(base, child.props.className),
-        ref: child.ref || ref,
-        ...props,
-      });
+        ref: mergeRefs(ref, child.props.ref),
+        ...filteredProps,
+      } as Record<string, unknown>);
     }
 
     return (

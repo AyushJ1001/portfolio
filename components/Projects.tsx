@@ -1,4 +1,4 @@
-import { ExternalLink, Github, FlaskConical, Laptop, ArrowUpRight } from "lucide-react";
+import { Github, FlaskConical, Laptop, ArrowUpRight } from "lucide-react";
 
 type Project = {
   title: string;
@@ -156,7 +156,7 @@ function ProjectCard({
   project: Project;
   variant: "research" | "personal";
 }) {
-  const accentColor = variant === "research" ? "emerald" : "amber";
+  const isResearch = variant === "research";
 
   return (
     <div className="group relative bg-zinc-900/50 border border-zinc-800/50 rounded-2xl p-6 hover:border-zinc-700/50 transition-all duration-300 hover:-translate-y-1">
@@ -164,7 +164,7 @@ function ProjectCard({
       {project.highlight && (
         <div
           className={`absolute -top-3 right-6 px-3 py-1 text-xs font-medium rounded-full ${
-            variant === "research"
+            isResearch
               ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
               : "bg-amber-500/20 text-amber-400 border border-amber-500/30"
           }`}
@@ -177,9 +177,11 @@ function ProjectCard({
       <div className="flex items-start justify-between mb-4">
         <div>
           <h4
-            className={`font-display text-lg font-semibold mb-1 ${
-              variant === "research" ? "text-emerald-400" : "text-zinc-100"
-            } group-hover:text-${accentColor}-400 transition-colors`}
+            className={`font-display text-lg font-semibold mb-1 transition-colors ${
+              isResearch
+                ? "text-emerald-400 group-hover:text-emerald-400"
+                : "text-zinc-100 group-hover:text-amber-400"
+            }`}
           >
             {project.title}
           </h4>
@@ -202,7 +204,9 @@ function ProjectCard({
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className={`p-2 rounded-lg bg-zinc-800/50 text-zinc-400 hover:text-${accentColor}-400 hover:bg-zinc-700/50 transition-colors`}
+              className={`p-2 rounded-lg bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700/50 transition-colors ${
+                isResearch ? "hover:text-emerald-400" : "hover:text-amber-400"
+              }`}
               aria-label="Live demo"
             >
               <ArrowUpRight size={16} />
@@ -222,7 +226,7 @@ function ProjectCard({
           <span
             key={index}
             className={`px-2.5 py-1 text-xs rounded-md ${
-              variant === "research"
+              isResearch
                 ? "bg-emerald-500/10 text-emerald-300 border border-emerald-500/20"
                 : "bg-zinc-800/80 text-zinc-400 border border-zinc-700/50"
             }`}
