@@ -1,5 +1,4 @@
-import { ExternalLink, Calendar, BookOpen, Laptop } from "lucide-react";
-import { siGithub } from "simple-icons";
+import { ExternalLink, Github, FlaskConical, Laptop, ArrowUpRight } from "lucide-react";
 
 type Project = {
   title: string;
@@ -9,244 +8,229 @@ type Project = {
   github?: string;
   link?: string;
   type: "research" | "personal";
+  highlight?: string;
 };
 
-/**
- * Renders a responsive, styled list of project cards with details such as title, date, description, technologies, and relevant links.
- *
- * Projects are visually distinguished by type (research or personal), and each card displays optional GitHub and live demo links if available.
- *
- * @returns A React section element containing the projects grid.
- */
 export function Projects() {
   const projects: Project[] = [
     {
-      title: "Anomaly Detection in Crowd Surveillance using Edge Computing",
-      date: "2023 - 2024",
+      title: "YayCamp",
+      date: "2024",
       description:
-        "The aim is to create an optimized and efficient machine learning system to detect anomalies in real-time video surveillance feed by using Edge Computing and Neural Networks.",
-      technologies: [
-        "Python",
-        "TensorFlow",
-        "OpenCV",
-        "Matplotlib",
-        "Jetson Nano",
-      ],
-      type: "research",
+        "Full-stack camping platform with Next.js 14 SSR and Clerk authentication managing 100+ users. PostgreSQL schema with Prisma ORM and React Leaflet mapping.",
+      technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Clerk"],
+      github: "https://github.com/AyushJ1001/yaycamp",
+      link: "https://yaycamp.ayushjuvekar.com",
+      type: "personal",
+      highlight: "40% faster load time",
     },
     {
-      title:
-        "Carbon Monoxide Concentration Monitoring System for Automating Air Filters",
-      date: "2022 - 2023",
+      title: "MonkeyLang-CS",
+      date: "2024",
       description:
-        "Emerging Smart Computing and Informatics (ESCI), 2023 International Conference. The aim is to create an optimized and efficient machine learning system to detect anomalies in real time video surveillance feed by using Edge Computing and Neural Networks.",
-      technologies: ["NodeJS", "NodeRed", "C++", "Arduino", "Zigbee"],
-      link: "https://ieeexplore.ieee.org/document/10100144",
-      type: "research",
+        "Complete programming language interpreter with lexer, parser, and tree-walking evaluator. Supports functions, closures, and first-class functions with REPL.",
+      technologies: ["C#", ".NET", "Unit Testing"],
+      github: "https://github.com/AyushJ1001/MonkeyLang-CS",
+      type: "personal",
+      highlight: "95%+ test coverage",
     },
     {
-      title: "Particle Vibration Analysis System",
+      title: "Anomaly Detection in Crowd Surveillance",
+      date: "2023-24",
+      description:
+        "CNN achieving 92% accuracy on 10K+ frames, optimized with TensorFlow Lite. Real-time pipeline processing 720p at 25 FPS across 5 edge devices.",
+      technologies: ["Python", "TensorFlow", "OpenCV", "Jetson Nano"],
+      type: "research",
+      highlight: "85% cost reduction",
+    },
+    {
+      title: "Particle Vibration Analysis",
       date: "2025",
       description:
-        "Developed a computer vision system using ZED 2 stereo cameras and OpenCV to track particle movement on vibrating plate, while creating visualization tools for trajectory and velocity analysis. Designed a comprehensive 3D data pipeline, and applied statistical methods to correlate motion patterns with vibration frequencies for mechanical engineering research.",
-      technologies: [
-        "Computer Vision",
-        "ZED 2 Stereo Cameras",
-        "OpenCV",
-        "3D Data Pipeline",
-        "Statistical Analysis",
-        "Python",
-      ],
-      type: "personal",
+        "Computer vision system tracking 50+ particles at 60 FPS with sub-mm precision. Statistical analysis correlating motion patterns with vibration frequencies.",
+      technologies: ["Python", "OpenCV", "ZED Cameras", "3D Pipeline"],
+      type: "research",
+      highlight: "75% faster analysis",
     },
-
+    {
+      title: "Secure Data Analytics (CKKS)",
+      date: "2023",
+      description:
+        "Privacy-preserving pipeline using CKKS homomorphic encryption for healthcare data, achieving 98% accuracy with HIPAA compliance.",
+      technologies: ["Python", "CKKS", "Docker", "NumPy"],
+      type: "research",
+      highlight: "HIPAA compliant",
+    },
+    {
+      title: "IoT Air Quality Monitor",
+      date: "2022-23",
+      description:
+        "CO monitoring system with MQTT protocol and ML predictive alerts. Presented at ESCI 2023 International Conference (IEEE publication).",
+      technologies: ["C++", "Arduino", "MQTT", "Zigbee"],
+      link: "https://ieeexplore.ieee.org/document/10100144",
+      type: "research",
+      highlight: "IEEE Published",
+    },
     {
       title: "Ranking App",
       date: "2024",
       description:
-        "A tournament bracket creator tool that helps users create and manage brackets. Users input items to bracket, and the tool tracks selections and timing - longer decision times indicate closer matchups, which affects scoring. The final results are scaled to a 100-point system, making it easy to compare different items.",
-      technologies: [
-        "Next.js",
-        "Tailwind CSS",
-        "React",
-        "Vercel",
-        "Typescript",
-      ],
+        "Tournament bracket system with decision-time-weighted scoring algorithm and real-time Redis persistence for multi-device sync.",
+      technologies: ["TypeScript", "React", "Next.js", "Redis"],
       github: "https://github.com/AyushJ1001/ranking",
       link: "https://ranking.ayushjuvekar.com",
       type: "personal",
     },
-    {
-      title: "Yaycamp",
-      date: "2024",
-      description:
-        "A platform for discovering and sharing camping experiences. Users can browse camping locations, leave reviews, and connect with fellow outdoor enthusiasts.",
-      technologies: [
-        "Next.js",
-        "Tailwind CSS",
-        "React",
-        "PostgreSQL",
-        "Clerk",
-        "React Leaflet",
-      ],
-      github: "https://github.com/AyushJ1001/yaycamp",
-      link: "https://yaycamp.ayushjuvekar.com",
-      type: "personal",
-    },
-
-    {
-      title: "BookApp",
-      date: "2022",
-      description:
-        "A full stack typescript app for tagging books into a personal library for reading reference. Involves use of ExpressJS, MongoDB and React for UI.",
-      technologies: ["React", "Typescript", "Axios", "MySQL"],
-      github: "https://github.com/AyushJ1001/bookApp/tree/master",
-      type: "personal",
-    },
-    {
-      title: "YelpCamp",
-      date: "2021 - 2022",
-      description:
-        "A full stack web app for organizing camping activities for yourself and your friends. It uses ExpressJS framework along with numerous libraries for geolocation data, authentication, database management and MongoDB as database.",
-      technologies: [
-        "NodeJS",
-        "ExpressJS",
-        "MongoDB",
-        "JWT",
-        "Mapbox",
-        "Bootstrap",
-      ],
-      github: "https://github.com/AyushJ1001/yelpcamp",
-      type: "personal",
-    },
   ];
 
+  const researchProjects = projects.filter((p) => p.type === "research");
+  const personalProjects = projects.filter((p) => p.type === "personal");
+
   return (
-    <section
-      id="projects"
-      className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-gray-900 to-gray-800"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-emerald-600">
-          Projects
-        </h2>
+    <section id="projects" className="section-padding relative">
+      {/* Background */}
+      <div className="absolute inset-0 geo-dots opacity-30" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className={`bg-gray-700/50 backdrop-blur-sm rounded-2xl overflow-hidden border ${
-                project.type === "research"
-                  ? "border-emerald-500/50 shadow-xl group hover:border-emerald-400/70"
-                  : "border-gray-600/30 shadow-xl group hover:border-teal-500/30"
-              } transition-all duration-300 hover:shadow-teal-500/10 hover:-translate-y-1`}
-            >
-              <div
-                className={`${
-                  project.type === "research" ? "bg-emerald-900/20" : ""
-                } p-4 sm:p-6`}
-              >
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-2">
-                  <h3
-                    className={`text-lg sm:text-xl font-semibold leading-tight ${
-                      project.type === "research"
-                        ? "text-emerald-300"
-                        : "text-teal-400"
-                    }`}
-                  >
-                    {project.title}
-                  </h3>
-                  <div className="flex items-center text-gray-400 text-sm flex-shrink-0">
-                    <Calendar size={14} className="mr-2" />
-                    <span>{project.date}</span>
-                  </div>
-                </div>
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <p className="text-amber-500 text-sm font-medium tracking-wider uppercase mb-3">
+            Featured Work
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-100 mb-4">
+            Projects
+          </h2>
+          <p className="text-zinc-500 max-w-2xl mx-auto">
+            A selection of research and personal projects spanning ML, computer vision,
+            and full-stack development.
+          </p>
+        </div>
 
-                <div
-                  className={`border-l-2 ${
-                    project.type === "research"
-                      ? "border-emerald-500/50"
-                      : "border-teal-500/30"
-                  } pl-4 py-1 mb-4`}
-                >
-                  <div className="flex items-center text-gray-300 text-sm space-x-2">
-                    {project.type === "research" ? (
-                      <BookOpen size={14} className="text-emerald-400" />
-                    ) : (
-                      <Laptop size={14} className="text-teal-400" />
-                    )}
-                    <span>
-                      {project.type === "research"
-                        ? "Research Project"
-                        : "Personal Project"}
-                    </span>
-                  </div>
-                </div>
-
-                <p className="text-gray-300 mb-6 text-sm sm:text-base leading-relaxed">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className={`${
-                        project.type === "research"
-                          ? "bg-gradient-to-br from-emerald-900/40 to-emerald-800/40 text-emerald-200 border-emerald-600/30"
-                          : "bg-gradient-to-br from-gray-600 to-gray-700 text-teal-300 border-gray-500/20"
-                      } text-xs px-3 py-1.5 rounded-lg border hover:border-opacity-50 transition-colors duration-200`}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex space-x-3 mt-4 pt-4 border-t border-gray-700/50">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`text-gray-400 ${
-                        project.type === "research"
-                          ? "hover:text-emerald-400"
-                          : "hover:text-teal-400"
-                      } transition-colors flex items-center`}
-                      aria-label="GitHub repository"
-                    >
-                      <svg
-                        role="img"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-[18px] h-[18px] mr-1 fill-current"
-                      >
-                        <path d={siGithub.path} />
-                      </svg>
-                      <span className="text-sm">Repository</span>
-                    </a>
-                  )}
-
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`text-gray-400 ${
-                        project.type === "research"
-                          ? "hover:text-emerald-400"
-                          : "hover:text-teal-400"
-                      } transition-colors flex items-center`}
-                      aria-label="Live demo"
-                    >
-                      <ExternalLink size={18} className="mr-1" />
-                      <span className="text-sm">View Project</span>
-                    </a>
-                  )}
-                </div>
-              </div>
+        {/* Research Projects */}
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="p-2 rounded-lg bg-emerald-500/10">
+              <FlaskConical size={18} className="text-emerald-400" />
             </div>
-          ))}
+            <h3 className="font-display text-xl font-semibold text-zinc-100">
+              Research Projects
+            </h3>
+            <div className="flex-1 h-px bg-zinc-800/50 ml-4" />
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {researchProjects.map((project, index) => (
+              <ProjectCard key={index} project={project} variant="research" />
+            ))}
+          </div>
+        </div>
+
+        {/* Personal Projects */}
+        <div>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="p-2 rounded-lg bg-amber-500/10">
+              <Laptop size={18} className="text-amber-400" />
+            </div>
+            <h3 className="font-display text-xl font-semibold text-zinc-100">
+              Personal Projects
+            </h3>
+            <div className="flex-1 h-px bg-zinc-800/50 ml-4" />
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {personalProjects.map((project, index) => (
+              <ProjectCard key={index} project={project} variant="personal" />
+            ))}
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function ProjectCard({
+  project,
+  variant,
+}: {
+  project: Project;
+  variant: "research" | "personal";
+}) {
+  const accentColor = variant === "research" ? "emerald" : "amber";
+
+  return (
+    <div className="group relative bg-zinc-900/50 border border-zinc-800/50 rounded-2xl p-6 hover:border-zinc-700/50 transition-all duration-300 hover:-translate-y-1">
+      {/* Highlight badge */}
+      {project.highlight && (
+        <div
+          className={`absolute -top-3 right-6 px-3 py-1 text-xs font-medium rounded-full ${
+            variant === "research"
+              ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+              : "bg-amber-500/20 text-amber-400 border border-amber-500/30"
+          }`}
+        >
+          {project.highlight}
+        </div>
+      )}
+
+      {/* Header */}
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h4
+            className={`font-display text-lg font-semibold mb-1 ${
+              variant === "research" ? "text-emerald-400" : "text-zinc-100"
+            } group-hover:text-${accentColor}-400 transition-colors`}
+          >
+            {project.title}
+          </h4>
+          <span className="text-zinc-500 text-sm">{project.date}</span>
+        </div>
+        <div className="flex gap-2">
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg bg-zinc-800/50 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-700/50 transition-colors"
+              aria-label="GitHub"
+            >
+              <Github size={16} />
+            </a>
+          )}
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-2 rounded-lg bg-zinc-800/50 text-zinc-400 hover:text-${accentColor}-400 hover:bg-zinc-700/50 transition-colors`}
+              aria-label="Live demo"
+            >
+              <ArrowUpRight size={16} />
+            </a>
+          )}
+        </div>
+      </div>
+
+      {/* Description */}
+      <p className="text-zinc-400 text-sm leading-relaxed mb-5">
+        {project.description}
+      </p>
+
+      {/* Technologies */}
+      <div className="flex flex-wrap gap-2">
+        {project.technologies.map((tech, index) => (
+          <span
+            key={index}
+            className={`px-2.5 py-1 text-xs rounded-md ${
+              variant === "research"
+                ? "bg-emerald-500/10 text-emerald-300 border border-emerald-500/20"
+                : "bg-zinc-800/80 text-zinc-400 border border-zinc-700/50"
+            }`}
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }

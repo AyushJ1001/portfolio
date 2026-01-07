@@ -1,88 +1,130 @@
-import { Calendar, Building2 } from "lucide-react";
+import { Briefcase, MapPin } from "lucide-react";
 
-/**
- * Renders a section displaying a timeline of professional experiences with roles, companies, periods, descriptions, and associated skills.
- *
- * The section includes styled timeline entries for each experience, featuring icons, skill badges, and responsive layout.
- */
 export function Experience() {
   const experiences = [
     {
       role: "Teaching Assistant",
+      department: "Physics Department",
       company: "Michigan Technological University",
-      period: "2024 - Present",
+      location: "Houghton, MI",
+      period: "Sep 2024 - Present",
       description:
-        "Assisting professors with course material preparation, grading assignments, and conducting lab sessions for undergraduate computer science courses.",
-      skills: ["Teaching", "Course Development", "Student Mentoring"],
+        "Facilitate learning for 60+ students in PH 2100/2200. Developed Python automation reducing admin work 20 hours/semester. Conduct tutorials improving average exam scores 15%.",
+      skills: ["Teaching", "Python", "Course Development", "Mentoring"],
+      current: true,
     },
     {
       role: "Research Assistant",
-      company:
-        "Computer Vision, Blockchain and Distributed Systems Lab (CVBDSL)",
+      department: "CVBDSL Lab",
+      company: "Pune Institute of Computer Technology",
+      location: "Pune, India",
       period: "2023",
       description:
-        'Worked on "Secure Data Analytics Module using Homomorphic Encryption" using Python Language, Pandas, NumPy, and Jupyter Notebook to develop privacy-preserving data analysis techniques.',
-      skills: [
-        "Python",
-        "Pandas",
-        "NumPy",
-        "Jupyter Notebook",
-        "Homomorphic Encryption",
-      ],
+        "Worked on Secure Data Analytics using Homomorphic Encryption (CKKS) for healthcare data, achieving 98% accuracy with HIPAA compliance.",
+      skills: ["Python", "Pandas", "NumPy", "CKKS Encryption", "Docker"],
+      current: false,
     },
   ];
 
   return (
-    <section
-      id="experience"
-      className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-gray-800 to-gray-900"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-emerald-600">
-          Professional Experience
-        </h2>
+    <section id="experience" className="section-padding relative">
+      {/* Background */}
+      <div className="absolute inset-0 bg-zinc-950/50" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
-        <div className="max-w-4xl mx-auto">
-          <div className="relative border-l-2 border-teal-500/50 pl-6 sm:pl-8 ml-2 sm:ml-4 space-y-12 sm:space-y-16">
-            {experiences.map((exp, index) => (
-              <div key={index} className="relative group">
-                {/* Timeline dot */}
-                <div className="absolute -left-[33px] sm:-left-[41px] -top-1 w-5 h-5 sm:w-6 sm:h-6 bg-gray-900 rounded-full border-2 border-teal-500 z-10 shadow-lg shadow-teal-500/20 group-hover:border-emerald-500 transition-colors duration-300"></div>
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <p className="text-amber-500 text-sm font-medium tracking-wider uppercase mb-3">
+            Career Journey
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-100 mb-4">
+            Experience
+          </h2>
+          <p className="text-zinc-500 max-w-2xl mx-auto">
+            Professional experience in teaching and research at academic institutions.
+          </p>
+        </div>
 
-                {/* Content card */}
-                <div className="bg-gray-700/50 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-xl border border-gray-600/30 transform transition-all duration-300 hover:shadow-teal-500/10 hover:-translate-y-1 hover:border-teal-500/30">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 gap-2">
-                    <h3 className="text-lg sm:text-xl font-semibold text-teal-400">
-                      {exp.role}
-                    </h3>
-                    <div className="flex items-center text-gray-400 text-sm">
-                      <Calendar size={14} className="mr-1" />
-                      <span>{exp.period}</span>
+        {/* Timeline */}
+        <div className="max-w-3xl mx-auto">
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-amber-500/50 via-zinc-700 to-transparent md:-translate-x-1/2" />
+
+            {/* Experience items */}
+            <div className="space-y-12">
+              {experiences.map((exp, index) => (
+                <div
+                  key={index}
+                  className={`relative flex flex-col md:flex-row gap-8 ${
+                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  }`}
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-0 md:left-1/2 top-0 w-4 h-4 -translate-x-[7px] md:-translate-x-1/2 rounded-full border-2 border-amber-500 bg-zinc-950 z-10">
+                    {exp.current && (
+                      <span className="absolute inset-0 rounded-full bg-amber-500/50 animate-ping" />
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className={`flex-1 ml-8 md:ml-0 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"}`}>
+                    <div className="bg-zinc-900/50 border border-zinc-800/50 rounded-2xl p-6 hover:border-zinc-700/50 transition-all duration-300">
+                      {/* Header */}
+                      <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <h3 className="font-display text-xl font-semibold text-zinc-100">
+                              {exp.role}
+                            </h3>
+                            {exp.current && (
+                              <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                                Current
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-amber-400 font-medium">{exp.department}</p>
+                        </div>
+                        <span className="text-zinc-500 text-sm font-medium">{exp.period}</span>
+                      </div>
+
+                      {/* Company & Location */}
+                      <div className="flex flex-wrap gap-4 mb-4 text-sm text-zinc-400">
+                        <div className="flex items-center gap-1.5">
+                          <Briefcase size={14} />
+                          {exp.company}
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <MapPin size={14} />
+                          {exp.location}
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-zinc-400 text-sm leading-relaxed mb-5">
+                        {exp.description}
+                      </p>
+
+                      {/* Skills */}
+                      <div className="flex flex-wrap gap-2">
+                        {exp.skills.map((skill, skillIndex) => (
+                          <span
+                            key={skillIndex}
+                            className="px-3 py-1 text-xs font-medium rounded-full bg-zinc-800/80 text-zinc-300 border border-zinc-700/50"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex items-start text-gray-300 mb-4">
-                    <Building2 size={16} className="mr-2 text-gray-400 mt-0.5 flex-shrink-0" />
-                    <span className="font-medium text-sm sm:text-base">{exp.company}</span>
-                  </div>
-
-                  <p className="text-gray-300 mb-4 leading-relaxed text-sm sm:text-base">
-                    {exp.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {exp.skills.map((skill, skillIndex) => (
-                      <span
-                        key={skillIndex}
-                        className="bg-gradient-to-br from-gray-600 to-gray-700 text-teal-300 text-xs px-3 py-1.5 rounded-lg border border-gray-500/20 hover:border-teal-400/30 transition-colors duration-200"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                  {/* Empty space for alternating layout */}
+                  <div className="hidden md:block flex-1" />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

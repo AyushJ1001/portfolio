@@ -1,59 +1,118 @@
-/**
- * Displays a responsive grid of awards and honors with icons, titles, and years.
- *
- * Renders a visually styled section showcasing a list of awards, each represented by an emoji icon, title, and year, arranged in a responsive grid layout.
- */
+import { Trophy, FileText, Award, BookOpen } from "lucide-react";
+
 export function Awards() {
-  const awards = [
+  const achievements = [
     {
-      title: "PICT InC '24 - 2nd place in Concepts-DS",
+      title: "2nd Place - PICT InC '24",
+      subtitle: "Data Structures Competition",
       year: "2024",
-      icon: "🏆",
+      icon: Trophy,
+      color: "amber",
     },
     {
-      title: "Technical Presentation Event in Pulzion",
+      title: "IEEE Publication",
+      subtitle: "ESCI 2023 Conference Presenter",
       year: "2023",
-      icon: "📊",
+      icon: FileText,
+      color: "emerald",
     },
     {
-      title: "Dr. Homi Bhabha Balvaidnyanik Competition - 2nd phase",
-      year: "2017",
-      icon: "🔬",
+      title: "Academic Scholarships",
+      subtitle: "Mathex & MSCE Awards",
+      year: "2021-24",
+      icon: Award,
+      color: "blue",
     },
-    { title: "Sakal Schoolympics (Chess)", year: "2016", icon: "♟️" },
-    { title: "MSCE Scholarship - High School", year: "2015", icon: "🎓" },
-    { title: "Mathex - Middle School & High School", year: "2013", icon: "📐" },
-    { title: "MSCE Scholarship - Middle School", year: "2012", icon: "🎓" },
   ];
 
+  const colorClasses = {
+    amber: {
+      bg: "bg-amber-500/10",
+      text: "text-amber-500",
+      border: "border-amber-500/20",
+    },
+    emerald: {
+      bg: "bg-emerald-500/10",
+      text: "text-emerald-500",
+      border: "border-emerald-500/20",
+    },
+    blue: {
+      bg: "bg-blue-500/10",
+      text: "text-blue-500",
+      border: "border-blue-500/20",
+    },
+  };
+
   return (
-    <section id="awards" className="py-12 sm:py-16 lg:py-20 bg-gray-800">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-emerald-600">
-          Awards & Honors
-        </h2>
+    <section id="awards" className="section-padding relative">
+      {/* Background */}
+      <div className="absolute inset-0 bg-zinc-950/50" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative">
+        {/* Section header */}
+        <div className="text-center mb-12">
+          <p className="text-amber-500 text-sm font-medium tracking-wider uppercase mb-3">
+            Recognition
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-100 mb-4">
+            Awards & Publications
+          </h2>
+        </div>
+
+        {/* Horizontal layout for achievements */}
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-            {awards.map((award, index) => (
-              <div
-                key={index}
-                className="group bg-gray-700/50 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-xl border border-gray-600/30 hover:border-teal-500/30 transition-all duration-300 hover:shadow-teal-500/10 hover:-translate-y-1"
-              >
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl flex-shrink-0 mt-1">
-                    {award.icon}
-                  </span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {achievements.map((item, index) => {
+              const Icon = item.icon;
+              const colors = colorClasses[item.color as keyof typeof colorClasses];
+
+              return (
+                <div
+                  key={index}
+                  className="group flex items-center gap-4 bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-4 hover:border-zinc-700/50 transition-all duration-300"
+                >
+                  <div
+                    className={`p-3 rounded-xl ${colors.bg} ${colors.text} border ${colors.border} group-hover:scale-110 transition-transform`}
+                  >
+                    <Icon size={22} />
+                  </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm sm:text-base font-medium text-gray-100 leading-tight mb-2 group-hover:text-white transition-colors duration-200">
-                      {award.title}
+                    <h3 className="font-display text-sm font-semibold text-zinc-100 mb-0.5 truncate">
+                      {item.title}
                     </h3>
-                    <span className="text-teal-400 text-sm font-medium">
-                      {award.year}
-                    </span>
+                    <p className="text-zinc-500 text-xs truncate">{item.subtitle}</p>
+                    <span className="text-zinc-600 text-xs">{item.year}</span>
                   </div>
                 </div>
+              );
+            })}
+          </div>
+
+          {/* Publication callout */}
+          <div className="mt-8 bg-gradient-to-r from-emerald-500/5 via-zinc-900/50 to-emerald-500/5 border border-zinc-800/50 rounded-xl p-5">
+            <div className="flex items-start gap-4">
+              <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-500 flex-shrink-0">
+                <BookOpen size={20} />
               </div>
-            ))}
+              <div>
+                <h4 className="font-display text-sm font-semibold text-zinc-100 mb-1">
+                  Published Research
+                </h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  A. Juvekar et al., &ldquo;Carbon Monoxide Concentration Monitoring System,&rdquo;{" "}
+                  <span className="text-emerald-400">ESCI 2023</span>,{" "}
+                  <a
+                    href="https://doi.org/10.1109/ESCI56872.2023.10100144"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-zinc-500 hover:text-emerald-400 transition-colors underline underline-offset-2"
+                  >
+                    DOI: 10.1109/ESCI56872.2023.10100144
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,165 +1,134 @@
 "use client";
-import { useState } from "react";
 
-/**
- * Renders a responsive, interactive section displaying categorized technical skills with tab navigation.
- *
- * Users can switch between skill categories using tab buttons, view the associated skills in a dynamically sized grid, and see a count of skills per category. The layout and styling adapt for mobile and desktop screens, and each category is represented with an icon and custom grid configuration.
- *
- * @returns The rendered skills section as a React element.
- */
+import {
+  Code2,
+  Layout,
+  Server,
+  Database,
+  Brain,
+  Cloud,
+  Cpu,
+  Shield,
+} from "lucide-react";
+
+const categories = [
+  {
+    title: "Languages",
+    icon: Code2,
+    skills: ["Python", "JavaScript/TypeScript", "Java", "C++", "Go", "Rust", "C#"],
+  },
+  {
+    title: "Frontend",
+    icon: Layout,
+    skills: ["React", "Next.js", "TailwindCSS", "shadcn/ui"],
+  },
+  {
+    title: "Backend",
+    icon: Server,
+    skills: ["Node.js", "Express.js", "Prisma ORM"],
+  },
+  {
+    title: "Databases",
+    icon: Database,
+    skills: ["PostgreSQL", "MongoDB"],
+  },
+  {
+    title: "ML/AI",
+    icon: Brain,
+    skills: ["TensorFlow", "Scikit-learn", "OpenCV", "NumPy", "Pandas"],
+  },
+  {
+    title: "DevOps",
+    icon: Cloud,
+    skills: ["Docker", "Git", "Vercel", "Linux"],
+  },
+  {
+    title: "IoT",
+    icon: Cpu,
+    skills: ["Arduino", "MQTT", "Zigbee"],
+  },
+  {
+    title: "Auth",
+    icon: Shield,
+    skills: ["Clerk", "JWT"],
+  },
+];
+
 export function Skills() {
-  const [activeCategory, setActiveCategory] = useState("Languages");
-
-  const skillCategories = [
-    {
-      title: "Languages",
-      icon: "💻",
-      skills: [
-        "Python",
-        "JavaScript",
-        "TypeScript",
-        "Java",
-        "C++",
-        "Go",
-        "Rust",
-        "C#",
-      ],
-    },
-    {
-      title: "Frameworks",
-      icon: "🚀",
-      skills: [
-        "NodeJS",
-        "React",
-        "React Native",
-        "TailwindCSS",
-        "NextJS",
-        "Svelte",
-        "Numpy",
-        "Matplotlib",
-        "Scikit Learn",
-        "Tensorflow",
-        "OpenCV",
-        "Flask",
-      ],
-    },
-    {
-      title: "Domains",
-      icon: "🎯",
-      skills: [
-        "Web Development",
-        "Machine Learning",
-        "IoT",
-        "Computer Vision",
-        "Data Science",
-        "Mobile Development",
-      ],
-    },
-    {
-      title: "Tools",
-      icon: "🛠️",
-      skills: ["Docker", "Git", "Bash", "Linux", "VS Code", "Vim"],
-    },
-    {
-      title: "Office",
-      icon: "📊",
-      skills: [
-        "MS Word",
-        "MS Project",
-        "MS PowerPoint",
-        "MS Excel",
-        "Latex Overleaf",
-      ],
-    },
-  ];
-
   return (
-    <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-gray-800">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center text-white">
-          Technical Skills
-        </h2>
+    <section id="skills" className="section-padding relative">
+      {/* Background */}
+      <div className="absolute inset-0 bg-zinc-950/50" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
-        {/* Mobile-first tab navigation */}
-        <div className="mb-8">
-          {/* Mobile: Horizontal scroll tabs */}
-          <div className="sm:hidden">
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-              {skillCategories.map((category) => (
-                <button
-                  key={category.title}
-                  role="tab"
-                  aria-selected={activeCategory === category.title}
-                  aria-controls="skills-panel"
-                  className={`flex items-center gap-2 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
-                    activeCategory === category.title
-                      ? "bg-teal-500 text-white shadow-lg"
-                      : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                  }`}
-                  onClick={() => setActiveCategory(category.title)}
-                >
-                  <span className="text-lg">{category.icon}</span>
-                  <span>{category.title}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Desktop: Centered flex layout */}
-          <div className="hidden sm:flex flex-wrap justify-center gap-3">
-            {skillCategories.map((category) => (
-              <button
-                key={category.title}
-                className={`flex items-center gap-2 px-4 py-3 lg:px-6 lg:py-3 text-sm lg:text-base font-medium rounded-lg transition-all duration-200 hover:scale-105 ${
-                  activeCategory === category.title
-                    ? "bg-teal-500 text-white shadow-lg shadow-teal-500/25"
-                    : "bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white"
-                }`}
-                onClick={() => setActiveCategory(category.title)}
-              >
-                <span className="text-lg">{category.icon}</span>
-                <span>{category.title}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Skills display */}
-        <div className="bg-gray-700/50 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-2xl shadow-xl border border-gray-600/30">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-2xl">
-              {skillCategories.find((cat) => cat.title === activeCategory)?.icon}
-            </span>
-            <h3 className="text-xl sm:text-2xl font-semibold text-white">
-              {activeCategory}
-            </h3>
-          </div>
-
-          {/* Compact skill tags for better mobile readability */}
-          <div className="flex flex-wrap gap-2 sm:gap-3">
-            {skillCategories
-              .find((category) => category.title === activeCategory)
-              ?.skills.map((skill, index) => (
-                <span
-                  key={index}
-                  className="bg-gray-700 text-gray-100 px-3 py-1.5 rounded-lg text-xs sm:text-sm hover:bg-gray-600 transition-colors"
-                >
-                  {skill}
-                </span>
-              ))}
-          </div>
-        </div>
-
-        {/* Skills count indicator */}
-        <div className="text-center mt-6">
-          <p className="text-gray-400 text-sm">
-            {
-              skillCategories.find((cat) => cat.title === activeCategory)
-                ?.skills.length
-            }{" "}
-            skills in {activeCategory}
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <p className="text-amber-500 text-sm font-medium tracking-wider uppercase mb-3">
+            Technical Expertise
           </p>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-100 mb-4">
+            Skills & Technologies
+          </h2>
+          <p className="text-zinc-500 max-w-2xl mx-auto">
+            A comprehensive toolkit spanning full-stack development, machine learning,
+            and systems engineering.
+          </p>
+        </div>
+
+        {/* Skills grid - all categories visible */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {categories.map((category, index) => {
+            const Icon = category.icon;
+            return (
+              <div
+                key={index}
+                className="group bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-5 hover:border-amber-500/30 transition-all duration-300"
+              >
+                {/* Category header */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-amber-500/10 text-amber-500 group-hover:bg-amber-500/20 transition-colors">
+                    <Icon size={18} />
+                  </div>
+                  <h3 className="font-display text-sm font-semibold text-zinc-100">
+                    {category.title}
+                  </h3>
+                </div>
+
+                {/* Skills list */}
+                <div className="flex flex-wrap gap-1.5">
+                  {category.skills.map((skill, skillIndex) => (
+                    <span
+                      key={skillIndex}
+                      className="px-2.5 py-1 bg-zinc-800/60 text-zinc-300 rounded-md text-xs border border-zinc-700/50 hover:border-amber-500/30 hover:text-amber-200 transition-all duration-200"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Quick stats */}
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { label: "Languages", value: "7+" },
+            { label: "Frameworks", value: "10+" },
+            { label: "Projects", value: "15+" },
+            { label: "Years Coding", value: "5+" },
+          ].map((stat, index) => (
+            <div
+              key={index}
+              className="text-center p-5 bg-zinc-900/30 border border-zinc-800/50 rounded-xl"
+            >
+              <div className="font-display text-2xl sm:text-3xl font-bold gradient-text mb-1">
+                {stat.value}
+              </div>
+              <div className="text-zinc-500 text-xs">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
