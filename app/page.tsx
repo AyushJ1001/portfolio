@@ -7,10 +7,13 @@ import { About } from "@/components/About";
 import { Awards } from "@/components/Awards";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { PageProgress } from "@/components/PageProgress";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] relative">
+      <PageProgress />
+
       {/* Noise overlay */}
       <div className="noise-bg fixed inset-0 pointer-events-none z-50" />
 
