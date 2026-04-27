@@ -10,8 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-source-sans)", "system-ui", "sans-serif"],
-        display: ["var(--font-sora)", "system-ui", "sans-serif"],
+        sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
+        display: ["var(--font-playfair)", "Georgia", "serif"],
       },
       colors: {
         background: "var(--bg-primary)",
@@ -34,8 +34,8 @@ export default {
         "3xl": "1.5rem",
       },
       boxShadow: {
-        glow: "0 0 40px rgba(245, 158, 11, 0.15)",
-        "glow-sm": "0 0 20px rgba(245, 158, 11, 0.1)",
+        glow: "0 0 50px rgba(232, 168, 73, 0.12)",
+        "glow-sm": "0 0 24px rgba(232, 168, 73, 0.08)",
         subtle: "0 4px 20px rgba(0, 0, 0, 0.3)",
       },
       backgroundImage: {

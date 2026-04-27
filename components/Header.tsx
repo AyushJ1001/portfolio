@@ -65,32 +65,32 @@ export function Header() {
       initial={{ opacity: 0, y: -24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         scrolled
-          ? "bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/50 py-3"
+          ? "bg-[var(--bg-primary)]/80 backdrop-blur-2xl border-b border-white/[0.04] py-3"
           : "bg-transparent py-5"
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <div className="flex justify-between items-center">
-          {/* Logo */}
+          {/* Logo — serif italic */}
           <motion.div whileHover={{ y: -1 }} transition={springTransition}>
             <Link
-            href="/"
-            className="font-display text-lg font-bold text-zinc-100 hover:text-amber-400 transition-colors"
+              href="/"
+              className="font-display italic text-xl font-bold text-zinc-100 hover:text-[var(--accent)] transition-colors duration-500"
             >
-              AJ<span className="text-amber-500">.</span>
+              AJ<span className="text-[var(--accent)] not-italic">.</span>
             </Link>
           </motion.div>
 
-          {/* Mobile menu button */}
+          {/* Mobile controls */}
           <div className="md:hidden flex items-center gap-3">
             <motion.a
               href="/ayush_juvekar_resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download
-              className="p-2 text-zinc-400 hover:text-amber-400 transition-colors"
+              className="p-2 text-zinc-400 hover:text-[var(--accent)] transition-colors duration-500"
               whileHover={{ y: -1, scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               transition={springTransition}
@@ -99,7 +99,7 @@ export function Header() {
             </motion.a>
             <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-zinc-400 hover:text-zinc-100 transition-colors"
+              className="p-2 text-zinc-400 hover:text-zinc-100 transition-colors duration-500"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               whileTap={{ scale: 0.92 }}
             >
@@ -114,9 +114,9 @@ export function Header() {
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={(e) => handleClick(e, link.id)}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors ${
+                className={`relative px-4 py-2 text-sm tracking-wide transition-colors duration-500 ${
                   activeSection === link.id
-                    ? "text-amber-400"
+                    ? "text-[var(--accent)]"
                     : "text-zinc-400 hover:text-zinc-100"
                 }`}
                 whileHover={{ y: -1 }}
@@ -125,7 +125,7 @@ export function Header() {
                 {activeSection === link.id && (
                   <motion.span
                     layoutId="active-nav-pill"
-                    className="absolute inset-0 rounded-full bg-amber-500/10 border border-amber-500/20"
+                    className="absolute inset-0 rounded-full bg-[var(--accent)]/[0.08] border border-[var(--accent)]/[0.15]"
                     transition={springTransition}
                   />
                 )}
@@ -133,7 +133,7 @@ export function Header() {
                 {activeSection === link.id && (
                   <motion.span
                     layoutId="active-nav-dot"
-                    className="absolute bottom-0 left-1/2 z-10 h-1 w-1 -translate-x-1/2 rounded-full bg-amber-500"
+                    className="absolute bottom-0 left-1/2 z-10 h-1 w-1 -translate-x-1/2 rounded-full bg-[var(--accent)]"
                     transition={springTransition}
                   />
                 )}
@@ -144,12 +144,12 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               download
-              className="ml-4 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-zinc-900 font-semibold text-sm rounded-lg transition-all duration-300 hover:shadow-glow-sm flex items-center gap-2"
+              className="ml-4 px-5 py-2 bg-[var(--accent)] hover:bg-[var(--accent-light)] text-zinc-900 font-semibold text-sm rounded-lg transition-all duration-500 hover:shadow-glow-sm flex items-center gap-2"
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               transition={springTransition}
             >
-              <FileText size={16} />
+              <FileText size={15} />
               Resume
             </motion.a>
           </div>
@@ -169,7 +169,7 @@ export function Header() {
                 variants={staggerContainer(0.05, 0.02)}
                 initial="hidden"
                 animate="show"
-                className="bg-zinc-950/95 backdrop-blur-xl mx-4 mt-2 p-2 rounded-2xl border border-zinc-800/50 shadow-2xl"
+                className="bg-[var(--bg-primary)]/95 backdrop-blur-2xl mx-4 mt-2 p-2 rounded-2xl border border-white/[0.06] shadow-2xl"
               >
                 {navLinks.map((link) => (
                   <motion.a
@@ -177,10 +177,10 @@ export function Header() {
                     variants={fadeUp(16)}
                     href={`#${link.id}`}
                     onClick={(e) => handleClick(e, link.id)}
-                    className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                    className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-500 ${
                       activeSection === link.id
-                        ? "text-amber-400 bg-amber-500/10"
-                        : "text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50"
+                        ? "text-[var(--accent)] bg-[var(--accent)]/[0.08]"
+                        : "text-zinc-400 hover:text-zinc-100 hover:bg-white/[0.04]"
                     }`}
                   >
                     {link.name}

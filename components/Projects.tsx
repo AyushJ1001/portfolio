@@ -2,7 +2,12 @@
 
 import { ArrowUpRight, FlaskConical, Github, Laptop } from "lucide-react";
 import { motion } from "motion/react";
-import { fadeUp, springTransition, staggerContainer, viewport } from "@/lib/motion";
+import {
+  fadeUp,
+  springTransition,
+  staggerContainer,
+  viewport,
+} from "@/lib/motion";
 
 type Project = {
   title: string;
@@ -87,15 +92,16 @@ const projects: Project[] = [
 ];
 
 export function Projects() {
-  const researchProjects = projects.filter((project) => project.type === "research");
-  const personalProjects = projects.filter((project) => project.type === "personal");
+  const researchProjects = projects.filter((p) => p.type === "research");
+  const personalProjects = projects.filter((p) => p.type === "personal");
 
   return (
     <section id="projects" className="section-padding relative">
-      <div className="absolute inset-0 geo-dots opacity-30" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+      <div className="absolute inset-0 geo-dots opacity-25" />
+      <div className="absolute top-0 left-0 right-0 accent-line" />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative">
+        {/* Section header */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -103,34 +109,32 @@ export function Projects() {
           variants={fadeUp(24)}
           className="text-center mb-16"
         >
-          <p className="text-amber-500 text-sm font-medium tracking-wider uppercase mb-3">
-            Featured Work
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-100 mb-4">
-            Projects
-          </h2>
-          <p className="text-zinc-500 max-w-2xl mx-auto">
-            A selection of research and personal projects spanning ML, computer vision,
-            and full-stack development.
+          <span className="section-label">Featured Work</span>
+          <h2 className="section-heading mb-4">Projects</h2>
+          <p className="text-zinc-500 max-w-2xl mx-auto text-lg">
+            A selection of research and personal projects spanning ML, computer
+            vision, and full-stack development.
           </p>
         </motion.div>
 
+        {/* Research Projects */}
         <ProjectGroup
           title="Research Projects"
           icon={FlaskConical}
           iconClasses="bg-emerald-500/10 text-emerald-400"
           projects={researchProjects}
           variant="research"
-          gridClassName="grid md:grid-cols-2 gap-6"
+          gridClassName="grid md:grid-cols-2 gap-5"
         />
 
+        {/* Personal Projects */}
         <ProjectGroup
           title="Personal Projects"
           icon={Laptop}
-          iconClasses="bg-amber-500/10 text-amber-400"
+          iconClasses="bg-[var(--accent)]/10 text-[var(--accent)]"
           projects={personalProjects}
           variant="personal"
-          gridClassName="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          gridClassName="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
           className="mt-16"
         />
       </div>
@@ -164,15 +168,17 @@ function ProjectGroup({
         variants={fadeUp(20)}
         className="flex items-center gap-3 mb-8"
       >
-        <div className={`p-2 rounded-lg ${iconClasses}`}>
+        <div className={`p-2.5 rounded-xl ${iconClasses}`}>
           <Icon size={18} />
         </div>
-        <h3 className="font-display text-xl font-semibold text-zinc-100">{title}</h3>
-        <div className="flex-1 h-px bg-zinc-800/50 ml-4" />
+        <h3 className="font-display text-xl font-semibold text-zinc-100">
+          {title}
+        </h3>
+        <div className="flex-1 h-px bg-gradient-to-r from-white/[0.06] to-transparent ml-4" />
       </motion.div>
 
       <motion.div
-        variants={staggerContainer(0.08)}
+        variants={staggerContainer(0.07)}
         initial="hidden"
         whileInView="show"
         viewport={viewport}
@@ -200,12 +206,17 @@ function ProjectCard({
       variants={fadeUp(24)}
       whileHover={{
         y: -8,
-        boxShadow: "0 18px 40px rgba(0, 0, 0, 0.24)",
-        borderColor: isResearch ? "rgba(16, 185, 129, 0.28)" : "rgba(245, 158, 11, 0.28)",
+        boxShadow: isResearch
+          ? "0 20px 50px rgba(16, 185, 129, 0.06)"
+          : "0 20px 50px rgba(232, 168, 73, 0.06)",
+        borderColor: isResearch
+          ? "rgba(16, 185, 129, 0.22)"
+          : "rgba(232, 168, 73, 0.22)",
       }}
       transition={springTransition}
-      className="group relative bg-zinc-900/50 border border-zinc-800/50 rounded-2xl p-6"
+      className="group relative bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 transition-all duration-500"
     >
+      {/* Highlight badge */}
       {project.highlight && (
         <motion.div
           initial={{ opacity: 0, y: 6 }}
@@ -214,19 +225,22 @@ function ProjectCard({
           transition={{ duration: 0.35, delay: 0.18 }}
           className={`absolute -top-3 right-6 px-3 py-1 text-xs font-medium rounded-full ${
             isResearch
-              ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-              : "bg-amber-500/20 text-amber-400 border border-amber-500/30"
+              ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/25"
+              : "bg-[var(--accent)]/15 text-[var(--accent)] border border-[var(--accent)]/25"
           }`}
         >
           {project.highlight}
         </motion.div>
       )}
 
+      {/* Header */}
       <div className="flex items-start justify-between mb-4 gap-4">
         <div>
           <h4
-            className={`font-display text-lg font-semibold mb-1 transition-colors ${
-              isResearch ? "text-emerald-400" : "text-zinc-100 group-hover:text-amber-400"
+            className={`font-display text-lg font-semibold mb-1 transition-colors duration-500 ${
+              isResearch
+                ? "text-emerald-400"
+                : "text-zinc-100 group-hover:text-[var(--accent)]"
             }`}
           >
             {project.title}
@@ -239,7 +253,7 @@ function ProjectCard({
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-zinc-800/50 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-700/50 transition-colors"
+              className="p-2 rounded-lg bg-white/[0.04] text-zinc-400 hover:text-zinc-100 hover:bg-white/[0.08] transition-all duration-500"
               aria-label={`${project.title} GitHub`}
               whileHover={{ y: -2, scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
@@ -253,8 +267,10 @@ function ProjectCard({
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className={`p-2 rounded-lg bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700/50 transition-colors ${
-                isResearch ? "hover:text-emerald-400" : "hover:text-amber-400"
+              className={`p-2 rounded-lg bg-white/[0.04] text-zinc-400 hover:bg-white/[0.08] transition-all duration-500 ${
+                isResearch
+                  ? "hover:text-emerald-400"
+                  : "hover:text-[var(--accent)]"
               }`}
               aria-label={`${project.title} link`}
               whileHover={{ y: -2, scale: 1.04 }}
@@ -267,25 +283,31 @@ function ProjectCard({
         </div>
       </div>
 
-      <p className="text-zinc-400 text-sm leading-relaxed mb-5">{project.description}</p>
+      {/* Description */}
+      <p className="text-zinc-400 text-sm leading-relaxed mb-5">
+        {project.description}
+      </p>
 
+      {/* Technologies */}
       <div className="flex flex-wrap gap-2">
-        {project.technologies.map((technology) => (
+        {project.technologies.map((tech) => (
           <motion.span
-            key={technology}
-            className={`px-2.5 py-1 text-xs rounded-md ${
+            key={tech}
+            className={`px-2.5 py-1 text-xs rounded-lg ${
               isResearch
-                ? "bg-emerald-500/10 text-emerald-300 border border-emerald-500/20"
-                : "bg-zinc-800/80 text-zinc-400 border border-zinc-700/50"
+                ? "bg-emerald-500/[0.08] text-emerald-300 border border-emerald-500/[0.15]"
+                : "bg-white/[0.04] text-zinc-400 border border-white/[0.06]"
             }`}
             whileHover={{
               y: -2,
               scale: 1.02,
-              borderColor: isResearch ? "rgba(16, 185, 129, 0.3)" : "rgba(245, 158, 11, 0.3)",
+              borderColor: isResearch
+                ? "rgba(16, 185, 129, 0.3)"
+                : "rgba(232, 168, 73, 0.3)",
             }}
             transition={springTransition}
           >
-            {technology}
+            {tech}
           </motion.span>
         ))}
       </div>

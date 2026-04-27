@@ -44,8 +44,8 @@
 
 == Education
 
-*Michigan Technological University*, Houghton, MI #h(1fr) *GPA: 3.88/4.0* \
-_M.S. Computer Science_ #h(1fr) Expected Spring 2026
+*Michigan Technological University*, Houghton, MI #h(1fr) *GPA: 3.9/4.0* \
+_M.S. Computer Science_ #h(1fr) April 2026
 
 *Pune Institute of Computer Technology*, Pune, India #h(1fr) *GPA: 8.14/10* \
 _B.E. Computer Engineering_ #h(1fr) June 2024

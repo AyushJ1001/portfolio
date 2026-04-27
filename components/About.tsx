@@ -2,7 +2,12 @@
 
 import { GraduationCap, Sparkles, Target } from "lucide-react";
 import { motion } from "motion/react";
-import { fadeUp, springTransition, staggerContainer, viewport } from "@/lib/motion";
+import {
+  fadeUp,
+  springTransition,
+  staggerContainer,
+  viewport,
+} from "@/lib/motion";
 
 const focusAreas = [
   {
@@ -26,10 +31,11 @@ const focusAreas = [
 export function About() {
   return (
     <section id="about" className="section-padding relative">
-      <div className="absolute inset-0 geo-grid opacity-30" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+      <div className="absolute inset-0 geo-grid opacity-25" />
+      <div className="absolute top-0 left-0 right-0 accent-line" />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative">
+        {/* Section header */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -37,13 +43,12 @@ export function About() {
           variants={fadeUp(24)}
           className="text-center mb-16"
         >
-          <p className="text-amber-500 text-sm font-medium tracking-wider uppercase mb-3">
-            Background
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-100 mb-4">
-            About Me
+          <span className="section-label">Background</span>
+          <h2 className="section-heading mb-4">
+            About{" "}
+            <span className="font-display italic text-zinc-500">Me</span>
           </h2>
-          <p className="text-zinc-500 max-w-2xl mx-auto">
+          <p className="text-zinc-500 max-w-2xl mx-auto text-lg">
             A passionate engineer dedicated to building intelligent systems and
             solving complex problems.
           </p>
@@ -55,25 +60,26 @@ export function About() {
             initial="hidden"
             whileInView="show"
             viewport={viewport}
-            className="grid lg:grid-cols-2 gap-8"
+            className="grid lg:grid-cols-2 gap-6"
           >
+            {/* Education */}
             <motion.div
               variants={fadeUp(24)}
               whileHover={{
                 y: -6,
-                borderColor: "rgba(245, 158, 11, 0.22)",
-                boxShadow: "0 18px 36px rgba(0, 0, 0, 0.22)",
+                borderColor: "rgba(232, 168, 73, 0.18)",
+                boxShadow: "0 20px 50px rgba(0, 0, 0, 0.2)",
               }}
               transition={springTransition}
-              className="bg-zinc-900/50 border border-zinc-800/50 rounded-2xl p-8"
+              className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-8 transition-all duration-500"
             >
               <div className="flex items-center gap-3 mb-6">
                 <motion.div
-                  className="p-3 rounded-xl bg-amber-500/10"
+                  className="p-3 rounded-xl bg-[var(--accent)]/10"
                   whileHover={{ rotate: -6, scale: 1.06 }}
                   transition={springTransition}
                 >
-                  <GraduationCap size={22} className="text-amber-500" />
+                  <GraduationCap size={22} className="text-[var(--accent)]" />
                 </motion.div>
                 <h3 className="font-display text-xl font-semibold text-zinc-100">
                   Education
@@ -83,13 +89,13 @@ export function About() {
               <div className="space-y-6">
                 <motion.div
                   variants={fadeUp(18)}
-                  className="relative pl-6 border-l-2 border-amber-500/30"
+                  className="relative pl-6 border-l-2 border-[var(--accent)]/30"
                 >
-                  <div className="absolute left-0 top-0 w-2 h-2 -translate-x-[5px] rounded-full bg-amber-500" />
+                  <div className="absolute left-0 top-0 w-2 h-2 -translate-x-[5px] rounded-full bg-[var(--accent)]" />
                   <h4 className="font-semibold text-zinc-100 mb-1">
                     Michigan Technological University
                   </h4>
-                  <p className="text-amber-400 text-sm font-medium mb-1">
+                  <p className="text-[var(--accent)] text-sm font-medium mb-1">
                     M.S. Computer Science
                   </p>
                   <p className="text-zinc-500 text-sm">
@@ -99,7 +105,7 @@ export function About() {
 
                 <motion.div
                   variants={fadeUp(18)}
-                  className="relative pl-6 border-l-2 border-zinc-700/50"
+                  className="relative pl-6 border-l-2 border-zinc-700/40"
                 >
                   <div className="absolute left-0 top-0 w-2 h-2 -translate-x-[5px] rounded-full bg-zinc-600" />
                   <h4 className="font-semibold text-zinc-100 mb-1">
@@ -108,20 +114,23 @@ export function About() {
                   <p className="text-zinc-400 text-sm font-medium mb-1">
                     B.E. Computer Engineering
                   </p>
-                  <p className="text-zinc-500 text-sm">2020 - 2024 | GPA: 8.14/10</p>
+                  <p className="text-zinc-500 text-sm">
+                    2020 - 2024 | GPA: 8.14/10
+                  </p>
                 </motion.div>
               </div>
             </motion.div>
 
+            {/* Focus Areas */}
             <motion.div
               variants={fadeUp(24)}
               whileHover={{
                 y: -6,
-                borderColor: "rgba(16, 185, 129, 0.22)",
-                boxShadow: "0 18px 36px rgba(0, 0, 0, 0.22)",
+                borderColor: "rgba(16, 185, 129, 0.18)",
+                boxShadow: "0 20px 50px rgba(0, 0, 0, 0.2)",
               }}
               transition={springTransition}
-              className="bg-zinc-900/50 border border-zinc-800/50 rounded-2xl p-8"
+              className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-8 transition-all duration-500"
             >
               <div className="flex items-center gap-3 mb-6">
                 <motion.div
@@ -136,16 +145,28 @@ export function About() {
                 </h3>
               </div>
 
-              <motion.div variants={staggerContainer(0.06)} className="space-y-4">
+              <motion.div
+                variants={staggerContainer(0.06)}
+                className="space-y-4"
+              >
                 {focusAreas.map((item) => (
-                  <motion.div key={item.title} variants={fadeUp(16)} className="flex gap-3">
+                  <motion.div
+                    key={item.title}
+                    variants={fadeUp(16)}
+                    className="flex gap-3"
+                  >
                     <motion.div
                       className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0"
-                      animate={{ opacity: [0.55, 1, 0.55] }}
-                      transition={{ duration: 2.4, repeat: Infinity }}
+                      animate={{ opacity: [0.5, 1, 0.5] }}
+                      transition={{
+                        duration: 2.4,
+                        repeat: Infinity,
+                      }}
                     />
                     <div>
-                      <h4 className="text-zinc-200 font-medium text-sm">{item.title}</h4>
+                      <h4 className="text-zinc-200 font-medium text-sm">
+                        {item.title}
+                      </h4>
                       <p className="text-zinc-500 text-sm">{item.desc}</p>
                     </div>
                   </motion.div>
@@ -154,6 +175,7 @@ export function About() {
             </motion.div>
           </motion.div>
 
+          {/* Approach */}
           <motion.div
             initial="hidden"
             whileInView="show"
@@ -161,30 +183,30 @@ export function About() {
             variants={fadeUp(24)}
             whileHover={{
               y: -4,
-              borderColor: "rgba(245, 158, 11, 0.18)",
+              borderColor: "rgba(232, 168, 73, 0.15)",
             }}
             transition={springTransition}
-            className="mt-8 bg-gradient-to-r from-amber-500/5 via-zinc-900/50 to-amber-500/5 border border-zinc-800/50 rounded-2xl p-8"
+            className="mt-6 bg-gradient-to-r from-[var(--accent)]/[0.04] via-white/[0.02] to-[var(--accent)]/[0.04] border border-white/[0.06] rounded-2xl p-8 transition-all duration-500"
           >
             <div className="flex items-center gap-3 mb-4">
               <motion.div
-                className="p-3 rounded-xl bg-amber-500/10"
+                className="p-3 rounded-xl bg-[var(--accent)]/10"
                 whileHover={{ rotate: -4, scale: 1.05 }}
                 transition={springTransition}
               >
-                <Sparkles size={22} className="text-amber-500" />
+                <Sparkles size={22} className="text-[var(--accent)]" />
               </motion.div>
               <h3 className="font-display text-xl font-semibold text-zinc-100">
                 My Approach
               </h3>
             </div>
             <p className="text-zinc-400 leading-relaxed">
-              I combine theoretical knowledge with practical implementation to solve
-              complex problems. My approach involves continuous learning,
-              collaborative development, and a focus on creating solutions that are
-              technically sound and user-centered. I&apos;m dedicated to writing
-              clean, efficient code and deploying robust systems that scale with
-              growing demands.
+              I combine theoretical knowledge with practical implementation to
+              solve complex problems. My approach involves continuous learning,
+              collaborative development, and a focus on creating solutions that
+              are technically sound and user-centered. I&apos;m dedicated to
+              writing clean, efficient code and deploying robust systems that
+              scale with growing demands.
             </p>
           </motion.div>
         </div>

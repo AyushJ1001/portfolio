@@ -10,19 +10,10 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import {
-  fadeUp,
-  revealEase,
-  springTransition,
-  staggerContainer,
-} from "@/lib/motion";
+import { springTransition } from "@/lib/motion";
 
 const socialLinks = [
-  {
-    href: "mailto:aajuveka@mtu.edu",
-    label: "Email",
-    icon: Mail,
-  },
+  { href: "mailto:aajuveka@mtu.edu", label: "Email", icon: Mail },
   {
     href: "https://www.linkedin.com/in/ayushjuvekar/",
     label: "LinkedIn",
@@ -37,132 +28,223 @@ const socialLinks = [
   },
 ];
 
+function AnimatedText({
+  text,
+  delay = 0,
+}: {
+  text: string;
+  delay?: number;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <span>{text}</span>;
+  }
+
+  return (
+    <span aria-label={text}>
+      {text.split("").map((char, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 55, rotateX: -50 }}
+          animate={{ opacity: 1, y: 0, rotateX: 0 }}
+          transition={{
+            duration: 0.75,
+            delay: delay + i * 0.04,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="inline-block"
+          style={{ transformOrigin: "bottom center" }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
+
 export function Hero() {
   const gradientId = useId();
   const sectionRef = useRef<HTMLElement | null>(null);
   const shouldReduceMotion = useReducedMotion();
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
 
-  const ambientY = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : 90]);
-  const photoYRaw = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : -42]);
-  const photoY = useSpring(photoYRaw, {
-    stiffness: 140,
-    damping: 22,
-    mass: 0.4,
-  });
-  const photoRotate = useTransform(
+  const ambientY = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, shouldReduceMotion ? 0 : -4]
+    [0, shouldReduceMotion ? 0 : 100]
   );
+  const photoYRaw = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, shouldReduceMotion ? 0 : -50]
+  );
+  const photoY = useSpring(photoYRaw, {
+    stiffness: 120,
+    damping: 24,
+    mass: 0.5,
+  });
   const photoScale = useTransform(
     scrollYProgress,
     [0, 1],
-    [1, shouldReduceMotion ? 1 : 1.04]
+    [1, shouldReduceMotion ? 1 : 1.05]
   );
 
   return (
     <section
       id="hero"
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center relative px-4 pt-20 sm:pt-0 overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative px-4 pt-24 sm:pt-0 overflow-hidden"
     >
-      <motion.div className="absolute inset-0 geo-grid opacity-50" style={{ y: ambientY }} />
-
+      {/* Background effects */}
       <motion.div
-        className="absolute top-1/4 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-amber-500/5 blur-[120px] pointer-events-none"
-        animate={
-          shouldReduceMotion
-            ? { opacity: 0.6 }
-            : {
-                opacity: [0.45, 0.7, 0.45],
-                scale: [1, 1.06, 1],
-              }
-        }
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute inset-0 geo-grid opacity-40"
+        style={{ y: ambientY }}
       />
       <motion.div
-        className="absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-orange-500/5 blur-[100px] pointer-events-none"
+        className="absolute top-1/3 left-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[150px] pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(232,168,73,0.06) 0%, transparent 70%)" }}
         animate={
           shouldReduceMotion
-            ? { opacity: 0.5 }
-            : {
-                opacity: [0.35, 0.55, 0.35],
-                x: [0, 16, 0],
-              }
+            ? {}
+            : { opacity: [0.5, 0.8, 0.5], scale: [1, 1.08, 1] }
         }
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 right-1/4 h-[400px] w-[400px] rounded-full blur-[120px] pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(224,122,58,0.04) 0%, transparent 70%)" }}
+        animate={
+          shouldReduceMotion
+            ? {}
+            : { opacity: [0.3, 0.5, 0.3], x: [0, 20, 0] }
+        }
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative z-10 max-w-5xl w-full mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <motion.div
-            variants={staggerContainer(0.1, 0.1)}
-            initial="hidden"
-            animate="show"
-            className="order-2 lg:order-1 text-center lg:text-left"
-          >
+      <div className="relative z-10 max-w-6xl w-full mx-auto">
+        <div className="grid lg:grid-cols-[1fr,auto] gap-12 lg:gap-20 items-center">
+          {/* Text content */}
+          <div className="order-2 lg:order-1 text-center lg:text-left">
+            {/* Status badge */}
             <motion.div
-              variants={fadeUp(18)}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/80 border border-zinc-800 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] mb-10"
             >
               <motion.span
                 className="w-2 h-2 rounded-full bg-emerald-500"
                 animate={
                   shouldReduceMotion
-                    ? { opacity: 1 }
-                    : { opacity: [0.55, 1, 0.55], scale: [1, 1.25, 1] }
+                    ? {}
+                    : { opacity: [0.5, 1, 0.5], scale: [1, 1.3, 1] }
                 }
-                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 2.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               />
-              <span className="text-sm text-zinc-400">Open to opportunities</span>
+              <span className="text-sm text-zinc-400 font-light tracking-wide">
+                Open to opportunities
+              </span>
             </motion.div>
 
-            <motion.h1
-              variants={fadeUp(24)}
-              className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 tracking-tight"
-            >
-              <span className="text-zinc-100">Ayush</span>{" "}
-              <motion.span
-                className="gradient-text inline-block"
-                animate={
-                  shouldReduceMotion
-                    ? { opacity: 1 }
-                    : { y: [0, -3, 0], filter: ["brightness(1)", "brightness(1.15)", "brightness(1)"] }
-                }
-                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                Juvekar
-              </motion.span>
-            </motion.h1>
+            {/* Name — massive serif typography */}
+            <div className="mb-6 overflow-hidden perspective-[1000px]">
+              <h1 className="font-display font-bold tracking-tight leading-[0.92]">
+                <span className="block text-5xl sm:text-7xl lg:text-8xl xl:text-[7rem] text-zinc-100">
+                  <AnimatedText text="Ayush" delay={0.3} />
+                </span>
+                <span className="block text-5xl sm:text-7xl lg:text-8xl xl:text-[7rem] text-[var(--accent)]">
+                  <AnimatedText text="Juvekar" delay={0.55} />
+                  <motion.span
+                    initial={
+                      shouldReduceMotion ? {} : { opacity: 0, scale: 0 }
+                    }
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.9,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="inline-block text-[var(--accent)]"
+                  >
+                    .
+                  </motion.span>
+                </span>
+              </h1>
+            </div>
 
+            {/* Expanding line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{
+                duration: 1,
+                delay: 0.95,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="h-px w-28 lg:w-44 bg-gradient-to-r from-[var(--accent)] to-transparent origin-left mb-8 mx-auto lg:mx-0"
+            />
+
+            {/* Subtitle */}
             <motion.p
-              variants={fadeUp(20)}
-              className="text-xl sm:text-2xl text-zinc-400 mb-6 font-light"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 1.05,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="text-xl sm:text-2xl text-zinc-400 mb-6 font-light tracking-wide"
             >
-              Software Engineer & ML Researcher
+              Software Engineer{" "}
+              <span className="text-zinc-600 font-display italic">&</span> ML
+              Researcher
             </motion.p>
 
+            {/* Bio */}
             <motion.p
-              variants={fadeUp(20)}
-              className="text-zinc-500 text-base sm:text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 1.15,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="text-zinc-500 text-base sm:text-lg leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0"
             >
-              Graduate student at Michigan Tech building intelligent systems at the
-              intersection of <span className="text-zinc-300">machine learning</span>,{" "}
+              Graduate student at Michigan Tech building intelligent systems at
+              the intersection of{" "}
+              <span className="text-zinc-300">machine learning</span>,{" "}
               <span className="text-zinc-300">computer vision</span>, and{" "}
               <span className="text-zinc-300">full-stack development</span>.
             </motion.p>
 
+            {/* CTAs */}
             <motion.div
-              variants={fadeUp(18)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 1.25,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10"
             >
               <motion.a
                 href="#projects"
-                className="group px-6 py-3 bg-amber-500 hover:bg-amber-400 text-zinc-900 font-semibold rounded-xl transition-all duration-300 hover:shadow-glow"
+                className="group px-7 py-3.5 bg-[var(--accent)] hover:bg-[var(--accent-light)] text-zinc-900 font-semibold rounded-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(232,168,73,0.2)]"
                 whileHover={{ y: -3, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={springTransition}
@@ -174,7 +256,7 @@ export function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 download
-                className="group px-6 py-3 bg-zinc-800/80 hover:bg-zinc-700 text-zinc-200 font-medium rounded-xl border border-zinc-700/50 hover:border-zinc-600 transition-all duration-300 flex items-center gap-2"
+                className="group px-7 py-3.5 bg-white/[0.04] hover:bg-white/[0.08] text-zinc-200 font-medium rounded-xl border border-white/[0.08] hover:border-white/[0.15] transition-all duration-500 flex items-center gap-2.5"
                 whileHover={{ y: -3, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={springTransition}
@@ -184,9 +266,16 @@ export function Hero() {
               </motion.a>
             </motion.div>
 
+            {/* Social links */}
             <motion.div
-              variants={fadeUp(16)}
-              className="flex gap-4 justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: 1.35,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="flex gap-3 justify-center lg:justify-start"
             >
               {socialLinks.map(({ href, label, icon: Icon, external }) => (
                 <motion.a
@@ -194,12 +283,12 @@ export function Hero() {
                   href={href}
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
-                  className="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800 text-zinc-400 hover:text-amber-400 hover:border-amber-500/30 transition-all duration-300"
+                  className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] text-zinc-400 hover:text-[var(--accent)] hover:border-[var(--accent)]/25 transition-all duration-500"
                   aria-label={label}
                   whileHover={{
                     y: -4,
-                    scale: 1.04,
-                    boxShadow: "0 10px 30px rgba(245, 158, 11, 0.12)",
+                    scale: 1.05,
+                    boxShadow: "0 12px 30px rgba(232, 168, 73, 0.1)",
                   }}
                   whileTap={{ scale: 0.96 }}
                   transition={springTransition}
@@ -208,40 +297,67 @@ export function Hero() {
                 </motion.a>
               ))}
             </motion.div>
-          </motion.div>
+          </div>
 
+          {/* Photo */}
           <motion.div
-            initial={{ opacity: 0, x: 36, y: 18 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.25, ease: revealEase }}
-            className="order-1 lg:order-2 flex justify-center"
-            style={{
-              y: photoY,
-              rotate: photoRotate,
-              scale: photoScale,
+            initial={{ opacity: 0, x: 40, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{
+              duration: 1,
+              delay: 0.4,
+              ease: [0.22, 1, 0.36, 1],
             }}
+            className="order-1 lg:order-2 flex justify-center"
+            style={{ y: photoY, scale: photoScale }}
           >
             <motion.div
               className="relative"
-              whileHover={shouldReduceMotion ? undefined : { scale: 1.02 }}
+              whileHover={
+                shouldReduceMotion ? undefined : { scale: 1.02 }
+              }
               transition={springTransition}
             >
+              {/* Orbital rings */}
               <motion.div
-                className="absolute -inset-4 rounded-full border border-zinc-800/50"
-                animate={shouldReduceMotion ? undefined : { scale: [1, 1.02, 1] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -inset-6 rounded-full border border-white/[0.04]"
+                animate={
+                  shouldReduceMotion
+                    ? undefined
+                    : { scale: [1, 1.03, 1] }
+                }
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               />
               <motion.div
-                className="absolute -inset-8 rounded-full border border-zinc-800/30"
-                animate={shouldReduceMotion ? undefined : { scale: [1, 1.04, 1] }}
-                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -inset-12 rounded-full border border-white/[0.02]"
+                animate={
+                  shouldReduceMotion
+                    ? undefined
+                    : { scale: [1, 1.05, 1] }
+                }
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               />
 
+              {/* Rotating gradient ring */}
               <motion.svg
                 className="absolute -inset-6 h-[calc(100%+48px)] w-[calc(100%+48px)]"
                 viewBox="0 0 100 100"
-                animate={shouldReduceMotion ? undefined : { rotate: 360 }}
-                transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+                animate={
+                  shouldReduceMotion ? undefined : { rotate: 360 }
+                }
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
               >
                 <circle
                   cx="50"
@@ -249,65 +365,84 @@ export function Hero() {
                   r="48"
                   fill="none"
                   stroke={`url(#${gradientId})`}
-                  strokeWidth="0.5"
-                  strokeDasharray="30 270"
+                  strokeWidth="0.4"
+                  strokeDasharray="25 275"
                   strokeLinecap="round"
                 />
                 <defs>
-                  <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#f59e0b" />
-                    <stop offset="100%" stopColor="#f97316" />
+                  <linearGradient
+                    id={gradientId}
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="0%"
+                  >
+                    <stop offset="0%" stopColor="#e8a849" />
+                    <stop offset="100%" stopColor="#e07a3a" />
                   </linearGradient>
                 </defs>
               </motion.svg>
 
-              <div className="relative w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] lg:w-[320px] lg:h-[320px]">
+              {/* Photo */}
+              <div className="relative w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] lg:w-[320px] lg:h-[320px]">
                 <motion.div
-                  className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 blur-2xl"
+                  className="absolute inset-0 rounded-full blur-3xl"
+                  style={{ background: "radial-gradient(circle, rgba(232,168,73,0.15) 0%, rgba(224,122,58,0.1) 50%, transparent 70%)" }}
                   animate={
                     shouldReduceMotion
                       ? undefined
                       : {
-                          scale: [1, 1.08, 1],
-                          opacity: [0.4, 0.7, 0.4],
+                          scale: [1, 1.1, 1],
+                          opacity: [0.3, 0.55, 0.3],
                         }
                   }
-                  transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 />
-                <motion.div
-                  className="relative h-full w-full rounded-full"
-                  whileHover={shouldReduceMotion ? undefined : { rotate: 1.5 }}
-                  transition={springTransition}
-                >
-                  <Image
-                    src="https://utfs.io/f/6bBGFcWk1gIAPAamxrSv9Tch7i2WK6ex4NUmSVzlIufbLZQA"
-                    alt="Ayush Juvekar"
-                    fill
-                    priority
-                    sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 320px"
-                    className="rounded-full object-cover border-2 border-zinc-800 p-1 bg-zinc-900"
-                  />
-                </motion.div>
+                <Image
+                  src="https://utfs.io/f/6bBGFcWk1gIAPAamxrSv9Tch7i2WK6ex4NUmSVzlIufbLZQA"
+                  alt="Ayush Juvekar"
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 200px, (max-width: 1024px) 260px, 320px"
+                  className="rounded-full object-cover border border-white/[0.08] p-1 bg-[var(--bg-secondary)]"
+                />
               </div>
             </motion.div>
           </motion.div>
         </div>
       </div>
 
+      {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.6, ease: revealEase }}
+        transition={{
+          delay: 1.6,
+          duration: 0.6,
+          ease: [0.22, 1, 0.36, 1],
+        }}
       >
         <motion.a
           href="#skills"
-          className="flex flex-col items-center gap-2 text-zinc-500 hover:text-amber-400 transition-colors"
-          animate={shouldReduceMotion ? undefined : { y: [0, 5, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2 text-zinc-500 hover:text-[var(--accent)] transition-colors duration-500"
+          animate={
+            shouldReduceMotion ? undefined : { y: [0, 6, 0] }
+          }
+          transition={{
+            duration: 2.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         >
-          <span className="text-xs uppercase tracking-widest">Scroll</span>
-          <ArrowDown size={16} />
+          <span className="text-[10px] uppercase tracking-[0.3em] font-light">
+            Scroll
+          </span>
+          <ArrowDown size={14} />
         </motion.a>
       </motion.div>
     </section>

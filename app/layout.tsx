@@ -1,21 +1,21 @@
 import { Metadata } from "next";
 import "./globals.css";
-import { Sora, Source_Sans_3 } from "next/font/google";
+import { Playfair_Display, Outfit } from "next/font/google";
 
-const sora = Sora({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-sora",
+  variable: "--font-playfair",
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-source-sans",
+  variable: "--font-outfit",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Ayush Juvekar - Software Engineer",
+  title: "Ayush Juvekar — Software Engineer & ML Researcher",
   description:
     "Computer Science Graduate Student | Full Stack Developer | Machine Learning Engineer",
   icons: {
@@ -29,7 +29,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`scroll-smooth ${sora.variable} ${sourceSans.variable}`}>
+    <html
+      lang="en"
+      className={`scroll-smooth ${playfair.variable} ${outfit.variable}`}
+    >
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

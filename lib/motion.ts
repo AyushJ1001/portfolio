@@ -4,13 +4,13 @@ export const revealEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export const viewport = {
   once: true,
-  amount: 0.18,
+  amount: 0.15,
 };
 
 export const springTransition: Transition = {
   type: "spring",
   stiffness: 140,
-  damping: 20,
+  damping: 22,
 };
 
 export const staggerContainer = (
@@ -69,3 +69,33 @@ export const scaleIn: Variants = {
     },
   },
 };
+
+export const slideFromLeft = (distance = 40): Variants => ({
+  hidden: {
+    opacity: 0,
+    x: -distance,
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: revealEase,
+    },
+  },
+});
+
+export const slideFromRight = (distance = 40): Variants => ({
+  hidden: {
+    opacity: 0,
+    x: distance,
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: revealEase,
+    },
+  },
+});
