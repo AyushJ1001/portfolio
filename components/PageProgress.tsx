@@ -14,7 +14,7 @@ export function PageProgress() {
   return (
     <motion.div
       aria-hidden
-      className="fixed inset-x-0 top-0 z-[60] h-px origin-left bg-gradient-to-r from-amber-300 via-amber-500 to-orange-500 shadow-[0_0_18px_rgba(245,158,11,0.45)]"
+      className="fixed inset-x-0 top-0 z-[60] h-[2px] origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent-light)] to-orange-400 shadow-[0_0_20px_rgba(232,168,73,0.4)]"
       style={{ scaleX }}
     />
   );

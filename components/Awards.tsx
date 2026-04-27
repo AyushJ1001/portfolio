@@ -2,7 +2,12 @@
 
 import { Award, BookOpen, FileText, Trophy } from "lucide-react";
 import { motion } from "motion/react";
-import { fadeUp, springTransition, staggerContainer, viewport } from "@/lib/motion";
+import {
+  fadeUp,
+  springTransition,
+  staggerContainer,
+  viewport,
+} from "@/lib/motion";
 
 const achievements = [
   {
@@ -10,52 +15,53 @@ const achievements = [
     subtitle: "Data Structures Competition",
     year: "2024",
     icon: Trophy,
-    color: "amber",
+    color: "amber" as const,
   },
   {
     title: "IEEE Publication",
     subtitle: "ESCI 2023 Conference Presenter",
     year: "2023",
     icon: FileText,
-    color: "emerald",
+    color: "emerald" as const,
   },
   {
     title: "Academic Scholarships",
     subtitle: "Mathex & MSCE Awards",
     year: "2021-24",
     icon: Award,
-    color: "blue",
+    color: "blue" as const,
   },
 ];
 
 const colorClasses = {
   amber: {
-    bg: "bg-amber-500/10",
-    text: "text-amber-500",
-    border: "border-amber-500/20",
-    glow: "rgba(245, 158, 11, 0.18)",
+    bg: "bg-[var(--accent)]/10",
+    text: "text-[var(--accent)]",
+    border: "border-[var(--accent)]/20",
+    glow: "rgba(232, 168, 73, 0.15)",
   },
   emerald: {
     bg: "bg-emerald-500/10",
-    text: "text-emerald-500",
+    text: "text-emerald-400",
     border: "border-emerald-500/20",
-    glow: "rgba(16, 185, 129, 0.18)",
+    glow: "rgba(16, 185, 129, 0.15)",
   },
   blue: {
     bg: "bg-blue-500/10",
-    text: "text-blue-500",
+    text: "text-blue-400",
     border: "border-blue-500/20",
-    glow: "rgba(59, 130, 246, 0.18)",
+    glow: "rgba(59, 130, 246, 0.15)",
   },
 };
 
 export function Awards() {
   return (
     <section id="awards" className="section-padding relative">
-      <div className="absolute inset-0 bg-zinc-950/50" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+      <div className="absolute inset-0 bg-[var(--bg-secondary)]/40" />
+      <div className="absolute top-0 left-0 right-0 accent-line" />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative">
+        {/* Section header */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -63,15 +69,16 @@ export function Awards() {
           variants={fadeUp(24)}
           className="text-center mb-12"
         >
-          <p className="text-amber-500 text-sm font-medium tracking-wider uppercase mb-3">
-            Recognition
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-100 mb-4">
-            Awards & Publications
+          <span className="section-label">Recognition</span>
+          <h2 className="section-heading mb-4">
+            Awards{" "}
+            <span className="font-display italic text-zinc-500">&</span>{" "}
+            Publications
           </h2>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
+          {/* Achievement cards */}
           <motion.div
             variants={staggerContainer(0.08)}
             initial="hidden"
@@ -81,7 +88,7 @@ export function Awards() {
           >
             {achievements.map((item) => {
               const Icon = item.icon;
-              const colors = colorClasses[item.color as keyof typeof colorClasses];
+              const colors = colorClasses[item.color];
 
               return (
                 <motion.div
@@ -90,10 +97,10 @@ export function Awards() {
                   whileHover={{
                     y: -6,
                     borderColor: colors.glow,
-                    boxShadow: `0 18px 38px ${colors.glow}`,
+                    boxShadow: `0 20px 50px ${colors.glow}`,
                   }}
                   transition={springTransition}
-                  className="group flex items-center gap-4 bg-zinc-900/50 border border-zinc-800/50 rounded-xl p-4"
+                  className="group flex items-center gap-4 bg-white/[0.02] border border-white/[0.06] rounded-xl p-5 transition-all duration-500"
                 >
                   <motion.div
                     className={`p-3 rounded-xl ${colors.bg} ${colors.text} border ${colors.border}`}
@@ -106,7 +113,9 @@ export function Awards() {
                     <h3 className="font-display text-sm font-semibold text-zinc-100 mb-0.5 truncate">
                       {item.title}
                     </h3>
-                    <p className="text-zinc-500 text-xs truncate">{item.subtitle}</p>
+                    <p className="text-zinc-500 text-xs truncate">
+                      {item.subtitle}
+                    </p>
                     <span className="text-zinc-600 text-xs">{item.year}</span>
                   </div>
                 </motion.div>
@@ -114,6 +123,7 @@ export function Awards() {
             })}
           </motion.div>
 
+          {/* Published research */}
           <motion.div
             initial="hidden"
             whileInView="show"
@@ -121,14 +131,14 @@ export function Awards() {
             variants={fadeUp(22)}
             whileHover={{
               y: -4,
-              borderColor: "rgba(16, 185, 129, 0.2)",
+              borderColor: "rgba(16, 185, 129, 0.18)",
             }}
             transition={springTransition}
-            className="mt-8 bg-gradient-to-r from-emerald-500/5 via-zinc-900/50 to-emerald-500/5 border border-zinc-800/50 rounded-xl p-5"
+            className="mt-8 bg-gradient-to-r from-emerald-500/[0.04] via-white/[0.02] to-emerald-500/[0.04] border border-white/[0.06] rounded-xl p-6 transition-all duration-500"
           >
             <div className="flex items-start gap-4">
               <motion.div
-                className="p-2 rounded-lg bg-emerald-500/10 text-emerald-500 flex-shrink-0"
+                className="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400 flex-shrink-0"
                 whileHover={{ rotate: -5, scale: 1.06 }}
                 transition={springTransition}
               >
@@ -139,13 +149,14 @@ export function Awards() {
                   Published Research
                 </h4>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  A. Juvekar et al., &ldquo;Carbon Monoxide Concentration Monitoring
-                  System,&rdquo; <span className="text-emerald-400">ESCI 2023</span>,{" "}
+                  A. Juvekar et al., &ldquo;Carbon Monoxide Concentration
+                  Monitoring System,&rdquo;{" "}
+                  <span className="text-emerald-400">ESCI 2023</span>,{" "}
                   <a
                     href="https://doi.org/10.1109/ESCI56872.2023.10100144"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-zinc-500 hover:text-emerald-400 transition-colors underline underline-offset-2"
+                    className="text-zinc-500 hover:text-emerald-400 transition-colors duration-500 underline underline-offset-2"
                   >
                     DOI: 10.1109/ESCI56872.2023.10100144
                   </a>
