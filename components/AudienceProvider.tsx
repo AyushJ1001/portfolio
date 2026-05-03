@@ -8,8 +8,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-
-type Audience = "usa" | "india";
+import type { Audience } from "@/lib/audience";
 
 const AudienceContext = createContext<Audience>("usa");
 
@@ -34,32 +33,24 @@ function inferAudienceFromLanguage() {
   return "usa";
 }
 
-export function AudienceProvider({ children }: { children: ReactNode }) {
-  const [audience, setAudience] = useState<Audience>(inferAudienceFromLanguage);
+export function AudienceProvider({
+  children,
+  initialAudience,
+  enableClientLanguageFallback = false,
+}: {
+  children: ReactNode;
+  initialAudience: Audience;
+  enableClientLanguageFallback?: boolean;
+}) {
+  const [audience, setAudience] = useState<Audience>(initialAudience);
 
   useEffect(() => {
-    let cancelled = false;
-
-    fetch("/visitor", { cache: "no-store" })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Unable to detect visitor region");
-        }
-        return response.json() as Promise<{ audience?: Audience }>;
-      })
-      .then((data) => {
-        if (!cancelled && data.audience) {
-          setAudience(data.audience);
-        }
-      })
-      .catch(() => {
-        // Keep the local language fallback when server-side country headers are unavailable.
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+    setAudience(
+      enableClientLanguageFallback
+        ? inferAudienceFromLanguage()
+        : initialAudience
+    );
+  }, [enableClientLanguageFallback, initialAudience]);
 
   const value = useMemo(() => audience, [audience]);
 

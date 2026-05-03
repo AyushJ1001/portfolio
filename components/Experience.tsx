@@ -45,7 +45,7 @@ const indiaOnlyExperiences = [
     description:
       "Own development of a course commerce platform with Next.js 15, React 19, Clerk, Razorpay payments, dynamic pricing, BOGO campaigns, enrollment confirmations, Google Sheets admin tracking, and PostHog analytics.",
     skills: ["Next.js", "React", "Clerk", "Razorpay", "PostHog"],
-    current: false,
+    current: true,
   },
 ];
 
