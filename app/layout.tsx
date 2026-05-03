@@ -17,7 +17,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Ayush Juvekar — Software Engineer & ML Researcher",
   description:
-    "Computer Science Graduate Student | Full Stack Developer | Machine Learning Engineer",
+    "Computer Science Master's Graduate | Full Stack Developer | Machine Learning Engineer",
   icons: {
     icon: "/favicon.svg",
   },

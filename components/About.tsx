@@ -99,7 +99,7 @@ export function About() {
                     M.S. Computer Science
                   </p>
                   <p className="text-zinc-500 text-sm">
-                    2024 - 2026 (Expected) | GPA: 3.88/4.0
+                    Graduated Apr 24, 2026 | CGPA: 3.9/4.0
                   </p>
                 </motion.div>
 

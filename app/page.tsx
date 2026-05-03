@@ -9,6 +9,11 @@ import { Awards } from "@/components/Awards";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { PageProgress } from "@/components/PageProgress";
+import { AudienceProvider } from "@/components/AudienceProvider";
+import { detectAudienceFromHeaders } from "@/lib/audience";
+import { headers } from "next/headers";
+
+export const dynamic = "force-dynamic";
 
 const techStack = [
   "Python",
@@ -43,28 +48,36 @@ const toolsStack = [
   "MQTT",
 ];
 
-export default function Home() {
+export default async function Home() {
+  const requestHeaders = await headers();
+  const { audience, source } = detectAudienceFromHeaders(requestHeaders);
+
   return (
-    <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] relative">
-      <PageProgress />
-      <div className="noise-bg fixed inset-0 pointer-events-none z-50" />
+    <AudienceProvider
+      initialAudience={audience}
+      enableClientLanguageFallback={source === "default"}
+    >
+      <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] relative">
+        <PageProgress />
+        <div className="noise-bg fixed inset-0 pointer-events-none z-50" />
 
-      <Header />
-      <Hero />
+        <Header />
+        <Hero />
 
-      {/* Tech marquee */}
-      <div className="py-10 sm:py-14 border-y border-white/[0.04] space-y-3 relative overflow-hidden">
-        <Marquee items={techStack} duration={40} />
-        <Marquee items={toolsStack} duration={45} reverse />
-      </div>
+        {/* Tech marquee */}
+        <div className="py-10 sm:py-14 border-y border-white/[0.04] space-y-3 relative overflow-hidden">
+          <Marquee items={techStack} duration={40} />
+          <Marquee items={toolsStack} duration={45} reverse />
+        </div>
 
-      <Skills />
-      <Projects />
-      <Experience />
-      <About />
-      <Awards />
-      <Contact />
-      <Footer />
-    </main>
+        <Experience />
+        <Projects />
+        <Skills />
+        <About />
+        <Awards />
+        <Contact />
+        <Footer />
+      </main>
+    </AudienceProvider>
   );
 }
