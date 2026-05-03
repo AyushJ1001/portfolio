@@ -15,23 +15,7 @@ import {
   staggerContainer,
   viewport,
 } from "@/lib/motion";
-
-const contactCards = [
-  {
-    label: "Email",
-    value: "aajuveka@mtu.edu",
-    href: "mailto:aajuveka@mtu.edu",
-    icon: Mail,
-    accent: "amber" as const,
-  },
-  {
-    label: "Phone",
-    value: "+1 (906) 299-4314",
-    href: "tel:+19062994314",
-    icon: Phone,
-    accent: "emerald" as const,
-  },
-];
+import { useAudience } from "@/components/AudienceProvider";
 
 const socialLinks = [
   {
@@ -64,6 +48,30 @@ const accentStyles = {
 };
 
 export function Contact() {
+  const audience = useAudience();
+  const phone =
+    audience === "india"
+      ? { value: "+91 8888385669", href: "tel:+918888385669" }
+      : { value: "+1 (906) 299-4314", href: "tel:+19062994314" };
+  const location =
+    audience === "india" ? "Pune, Maharashtra, India" : "Bixby, Oklahoma, USA";
+  const contactCards = [
+    {
+      label: "Email",
+      value: "ayushjuvekar@gmail.com",
+      href: "mailto:ayushjuvekar@gmail.com",
+      icon: Mail,
+      accent: "amber" as const,
+    },
+    {
+      label: "Phone",
+      value: phone.value,
+      href: phone.href,
+      icon: Phone,
+      accent: "emerald" as const,
+    },
+  ];
+
   return (
     <section id="contact" className="section-padding relative">
       <div className="absolute inset-0 geo-dots opacity-15" />
@@ -203,7 +211,7 @@ export function Contact() {
           >
             <div className="inline-flex items-center gap-2 text-zinc-500 text-sm">
               <MapPin size={16} />
-              <span>Houghton, Michigan, USA</span>
+              <span>{location}</span>
             </div>
           </motion.div>
         </div>

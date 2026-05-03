@@ -9,6 +9,7 @@ import { Awards } from "@/components/Awards";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { PageProgress } from "@/components/PageProgress";
+import { AudienceProvider } from "@/components/AudienceProvider";
 
 const techStack = [
   "Python",
@@ -45,26 +46,28 @@ const toolsStack = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] relative">
-      <PageProgress />
-      <div className="noise-bg fixed inset-0 pointer-events-none z-50" />
+    <AudienceProvider>
+      <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] relative">
+        <PageProgress />
+        <div className="noise-bg fixed inset-0 pointer-events-none z-50" />
 
-      <Header />
-      <Hero />
+        <Header />
+        <Hero />
 
-      {/* Tech marquee */}
-      <div className="py-10 sm:py-14 border-y border-white/[0.04] space-y-3 relative overflow-hidden">
-        <Marquee items={techStack} duration={40} />
-        <Marquee items={toolsStack} duration={45} reverse />
-      </div>
+        {/* Tech marquee */}
+        <div className="py-10 sm:py-14 border-y border-white/[0.04] space-y-3 relative overflow-hidden">
+          <Marquee items={techStack} duration={40} />
+          <Marquee items={toolsStack} duration={45} reverse />
+        </div>
 
-      <Skills />
-      <Projects />
-      <Experience />
-      <About />
-      <Awards />
-      <Contact />
-      <Footer />
-    </main>
+        <Skills />
+        <Projects />
+        <Experience />
+        <About />
+        <Awards />
+        <Contact />
+        <Footer />
+      </main>
+    </AudienceProvider>
   );
 }

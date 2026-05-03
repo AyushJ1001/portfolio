@@ -8,18 +8,19 @@ import {
   staggerContainer,
   viewport,
 } from "@/lib/motion";
+import { useAudience } from "@/components/AudienceProvider";
 
-const experiences = [
+const baseExperiences = [
   {
     role: "Teaching Assistant",
     department: "Physics Department",
     company: "Michigan Technological University",
     location: "Houghton, MI",
-    period: "Sep 2024 - Present",
+    period: "Sep 2024 - Apr 24, 2026",
     description:
-      "Facilitate learning for 60+ students in PH 2100/2200. Developed Python automation reducing admin work 20 hours/semester. Conduct tutorials improving average exam scores 15%.",
+      "Facilitated learning for 60+ students in PH 2100/2200. Developed Python automation reducing admin work 20 hours/semester. Conducted tutorials improving average exam scores 15%.",
     skills: ["Teaching", "Python", "Course Development", "Mentoring"],
-    current: true,
+    current: false,
   },
   {
     role: "Research Assistant",
@@ -34,7 +35,27 @@ const experiences = [
   },
 ];
 
+const indiaOnlyExperiences = [
+  {
+    role: "Freelance Sole Developer",
+    department: "The Mind Point",
+    company: "Mental Health Education Platform",
+    location: "Pune, India",
+    period: "Aug 2025 - Present",
+    description:
+      "Own development of a course commerce platform with Next.js 15, React 19, Clerk, Razorpay payments, dynamic pricing, BOGO campaigns, enrollment confirmations, Google Sheets admin tracking, and PostHog analytics.",
+    skills: ["Next.js", "React", "Clerk", "Razorpay", "PostHog"],
+    current: false,
+  },
+];
+
 export function Experience() {
+  const audience = useAudience();
+  const experiences =
+    audience === "india"
+      ? [...indiaOnlyExperiences, ...baseExperiences]
+      : baseExperiences;
+
   return (
     <section id="experience" className="section-padding relative">
       <div className="absolute inset-0 bg-[var(--bg-secondary)]/40" />
@@ -52,8 +73,8 @@ export function Experience() {
           <span className="section-label">Career Journey</span>
           <h2 className="section-heading mb-4">Experience</h2>
           <p className="text-zinc-500 max-w-2xl mx-auto text-lg">
-            Professional experience in teaching and research at academic
-            institutions.
+            Professional experience across software development, teaching, and
+            research.
           </p>
         </motion.div>
 

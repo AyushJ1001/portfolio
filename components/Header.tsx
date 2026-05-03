@@ -86,10 +86,10 @@ export function Header() {
           {/* Mobile controls */}
           <div className="md:hidden flex items-center gap-3">
             <motion.a
-              href="/ayush_juvekar_resume.pdf"
+              href="/resume"
               target="_blank"
               rel="noopener noreferrer"
-              download
+              download="ayush_juvekar_resume.pdf"
               className="p-2 text-zinc-400 hover:text-[var(--accent)] transition-colors duration-500"
               whileHover={{ y: -1, scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
@@ -140,10 +140,10 @@ export function Header() {
               </motion.a>
             ))}
             <motion.a
-              href="/ayush_juvekar_resume.pdf"
+              href="/resume"
               target="_blank"
               rel="noopener noreferrer"
-              download
+              download="ayush_juvekar_resume.pdf"
               className="ml-4 px-5 py-2 bg-[var(--accent)] hover:bg-[var(--accent-light)] text-zinc-900 font-semibold text-sm rounded-lg transition-all duration-500 hover:shadow-glow-sm flex items-center gap-2"
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ scale: 0.97 }}

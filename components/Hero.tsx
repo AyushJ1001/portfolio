@@ -11,9 +11,10 @@ import {
   useTransform,
 } from "motion/react";
 import { springTransition } from "@/lib/motion";
+import { useAudience } from "@/components/AudienceProvider";
 
 const socialLinks = [
-  { href: "mailto:aajuveka@mtu.edu", label: "Email", icon: Mail },
+  { href: "mailto:ayushjuvekar@gmail.com", label: "Email", icon: Mail },
   {
     href: "https://www.linkedin.com/in/ayushjuvekar/",
     label: "LinkedIn",
@@ -64,9 +65,12 @@ function AnimatedText({
 }
 
 export function Hero() {
+  const audience = useAudience();
   const gradientId = useId();
   const sectionRef = useRef<HTMLElement | null>(null);
   const shouldReduceMotion = useReducedMotion();
+  const locationCopy =
+    audience === "india" ? "based in Pune" : "based in the Tulsa area";
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -224,8 +228,8 @@ export function Hero() {
               }}
               className="text-zinc-500 text-base sm:text-lg leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0"
             >
-              Graduate student at Michigan Tech building intelligent systems at
-              the intersection of{" "}
+              Computer Science master&apos;s graduate {locationCopy}, building
+              intelligent systems at the intersection of{" "}
               <span className="text-zinc-300">machine learning</span>,{" "}
               <span className="text-zinc-300">computer vision</span>, and{" "}
               <span className="text-zinc-300">full-stack development</span>.
@@ -252,10 +256,10 @@ export function Hero() {
                 View Projects
               </motion.a>
               <motion.a
-                href="/ayush_juvekar_resume.pdf"
+                href="/resume"
                 target="_blank"
                 rel="noopener noreferrer"
-                download
+                download="ayush_juvekar_resume.pdf"
                 className="group px-7 py-3.5 bg-white/[0.04] hover:bg-white/[0.08] text-zinc-200 font-medium rounded-xl border border-white/[0.08] hover:border-white/[0.15] transition-all duration-500 flex items-center gap-2.5"
                 whileHover={{ y: -3, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

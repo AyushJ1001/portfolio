@@ -37,15 +37,15 @@
 #align(center)[
   = AYUSH JUVEKAR
   #contact_link[
-    *Email:* aajuveka\@mtu.edu | *Phone:* +1 (906) 299-4314 | *LinkedIn:* linkedin.com/in/ayushjuvekar \
-    *GitHub:* github.com/AyushJ1001 | *Portfolio:* ayushjuvekar.com
+    *Email:* ayushjuvekar\@gmail.com | *Phone:* +1 (906) 299-4314 | *Address:* 8116 E 151st St S, Bixby, OK \
+    *LinkedIn:* linkedin.com/in/ayushjuvekar | *GitHub:* github.com/AyushJ1001 | *Portfolio:* ayushjuvekar.com
   ]
 ]
 
 == Education
 
-*Michigan Technological University*, Houghton, MI #h(1fr) *GPA: 3.9/4.0* \
-_M.S. Computer Science_ #h(1fr) April 2026
+*Michigan Technological University*, Houghton, MI #h(1fr) *CGPA: 3.9/4.0* \
+_M.S. Computer Science_ #h(1fr) Graduated April 24, 2026
 
 *Pune Institute of Computer Technology*, Pune, India #h(1fr) *GPA: 8.14/10* \
 _B.E. Computer Engineering_ #h(1fr) June 2024
@@ -85,7 +85,7 @@ _B.E. Computer Engineering_ #h(1fr) June 2024
 
 == Experience
 
-*Teaching Assistant - Physics Department* | Michigan Technological University #h(1fr) Sep 2024 - Present
+*Teaching Assistant - Physics Department* | Michigan Technological University #h(1fr) Sep 2024 - Apr 24, 2026
 - Facilitate learning for 60+ students in PH 2100/2200; developed Python automation reducing admin work 20 hours/semester
 - Conduct tutorials improving average exam scores 15%; collaborate with faculty on course materials and assessments
 
