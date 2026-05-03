@@ -60,9 +60,9 @@ export default function Home() {
           <Marquee items={toolsStack} duration={45} reverse />
         </div>
 
-        <Skills />
-        <Projects />
         <Experience />
+        <Projects />
+        <Skills />
         <About />
         <Awards />
         <Contact />

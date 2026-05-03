@@ -53,9 +53,9 @@ export function Header() {
 
   const navLinks = [
     { name: "Home", id: "hero" },
-    { name: "Skills", id: "skills" },
-    { name: "Projects", id: "projects" },
     { name: "Experience", id: "experience" },
+    { name: "Projects", id: "projects" },
+    { name: "Skills", id: "skills" },
     { name: "About", id: "about" },
     { name: "Contact", id: "contact" },
   ];

@@ -50,9 +50,11 @@ _M.S. Computer Science_ #h(1fr) Graduated April 24, 2026
 *Pune Institute of Computer Technology*, Pune, India #h(1fr) *GPA: 8.14/10* \
 _B.E. Computer Engineering_ #h(1fr) June 2024
 
-== Technical Skills
+== Experience
 
-*Languages:* Python, JavaScript/TypeScript, Java, C++, Go, Rust, C\# | *Frontend:* React, Next.js, TailwindCSS, shadcn/ui | *Backend:* Node.js, Express.js, Prisma ORM | *Databases:* PostgreSQL, MongoDB | *ML/AI:* TensorFlow, Scikit-learn, OpenCV, NumPy, Pandas | *DevOps:* Docker, Git, Vercel, Linux | *IoT:* Arduino, MQTT, Zigbee | *Auth:* Clerk, JWT
+*Teaching Assistant - Physics Department* | Michigan Technological University #h(1fr) Sep 2024 - Apr 24, 2026
+- Facilitate learning for 60+ students in PH 2100/2200; developed Python automation reducing admin work 20 hours/semester
+- Conduct tutorials improving average exam scores 15%; collaborate with faculty on course materials and assessments
 
 == Projects
 
@@ -83,11 +85,9 @@ _B.E. Computer Engineering_ #h(1fr) June 2024
 *Ranking App - Tournament Bracket System* | _TypeScript, React, Redis_ | ranking.ayushjuvekar.com
 - Created bracket app with decision-time-weighted scoring algorithm; implemented real-time Redis persistence for multi-device sync
 
-== Experience
+== Technical Skills
 
-*Teaching Assistant - Physics Department* | Michigan Technological University #h(1fr) Sep 2024 - Apr 24, 2026
-- Facilitate learning for 60+ students in PH 2100/2200; developed Python automation reducing admin work 20 hours/semester
-- Conduct tutorials improving average exam scores 15%; collaborate with faculty on course materials and assessments
+*Languages:* Python, JavaScript/TypeScript, Java, C++, Go, Rust, C\# | *Frontend:* React, Next.js, TailwindCSS, shadcn/ui | *Backend:* Node.js, Express.js, Prisma ORM | *Databases:* PostgreSQL, MongoDB | *ML/AI:* TensorFlow, Scikit-learn, OpenCV, NumPy, Pandas | *DevOps:* Docker, Git, Vercel, Linux | *IoT:* Arduino, MQTT, Zigbee | *Auth:* Clerk, JWT
 
 == Publications
 
