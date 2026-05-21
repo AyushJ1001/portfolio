@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:resumes": "for country in usa india; do for role in backend-engineer frontend-engineer full-stack-engineer ml-data-scientist computer-vision-edge-ai iot-embedded-engineer; do typst compile resumes/$country-$role.typ public/ayush_juvekar_resume_${country}_$(echo $role | tr '-' '_').pdf; done; done && typst compile ayush_juvekar_resume_usa.typ public/ayush_juvekar_resume_usa.pdf && typst compile ayush_juvekar_resume_india.typ public/ayush_juvekar_resume_india.pdf"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

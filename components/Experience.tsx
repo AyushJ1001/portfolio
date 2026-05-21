@@ -8,7 +8,6 @@ import {
   staggerContainer,
   viewport,
 } from "@/lib/motion";
-import { useAudience } from "@/components/AudienceProvider";
 
 const baseExperiences = [
   {
@@ -18,24 +17,24 @@ const baseExperiences = [
     location: "Houghton, MI",
     period: "Sep 2024 - Apr 24, 2026",
     description:
-      "Facilitated learning for 60+ students in PH 2100/2200. Developed Python automation reducing admin work 20 hours/semester. Conducted tutorials improving average exam scores 15%.",
-    skills: ["Teaching", "Python", "Course Development", "Mentoring"],
+      "Supervised and graded physics labs for 100+ students across four semesters, guiding experiments, explaining concepts, and providing clear feedback across five lab sections per semester.",
+    skills: ["Teaching", "Lab Supervision", "Grading", "Mentoring"],
     current: false,
   },
   {
-    role: "Research Assistant",
+    role: "Technical Intern",
     department: "CVBDSL Lab",
     company: "Pune Institute of Computer Technology",
     location: "Pune, India",
-    period: "2023",
+    period: "Feb 2023 - May 2023",
     description:
-      "Worked on Secure Data Analytics using Homomorphic Encryption (CKKS) for healthcare data, achieving 98% accuracy with HIPAA compliance.",
-    skills: ["Python", "Pandas", "NumPy", "CKKS Encryption", "Docker"],
+      "Analyzed RSA and related encryption approaches in Python/Jupyter during a four-month academic internship, comparing implementation tradeoffs for computational cost and efficiency.",
+    skills: ["Python", "Pandas", "NumPy", "Jupyter", "RSA"],
     current: false,
   },
 ];
 
-const indiaOnlyExperiences = [
+const productExperiences = [
   {
     role: "Freelance Sole Developer",
     department: "The Mind Point",
@@ -43,18 +42,14 @@ const indiaOnlyExperiences = [
     location: "Pune, India",
     period: "Aug 2025 - Present",
     description:
-      "Own development of a course commerce platform with Next.js 15, React 19, Clerk, Razorpay payments, dynamic pricing, BOGO campaigns, enrollment confirmations, Google Sheets admin tracking, and PostHog analytics.",
-    skills: ["Next.js", "React", "Clerk", "Razorpay", "PostHog"],
+      "Built a production course-commerce platform from scratch for a mental health education business, supporting paid enrollments with Razorpay, Clerk-authenticated accounts, Resend confirmations, Google Sheets admin tracking, PostHog analytics, and Vercel deployment.",
+    skills: ["Next.js", "React", "Clerk", "Razorpay", "PostHog", "Resend"],
     current: true,
   },
 ];
 
 export function Experience() {
-  const audience = useAudience();
-  const experiences =
-    audience === "india"
-      ? [...indiaOnlyExperiences, ...baseExperiences]
-      : baseExperiences;
+  const experiences = [...productExperiences, ...baseExperiences];
 
   return (
     <section id="experience" className="section-padding relative">
