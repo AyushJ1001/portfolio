@@ -92,3 +92,22 @@ is the result (self-contained, no build; also the live Artifact):
 - **Responsive + reduced-motion** — no mobile clipping; transitions and the hold-fill gated.
 
 Rounds 1–2 (`VariantA/B/C.tsx`, `confluence.round2.html`) are kept for history.
+
+---
+
+## Round 4 — portrait origin, streams-reach-center, light mode
+
+Owner feedback on round 3: streams didn't reach the circle centers; wanted the illustrated
+self-portrait (from `public/photo.png`) as the origin, turning toward the cursor; and asked
+how it works in light mode. `rivers.round4.html`:
+
+- **Streams reach center** — the node was a flex column, so its transform-center sat at the
+  label, not the ring; re-anchored each node on its ring centre and added a solid faint
+  "riverbed" line under the animated flow so every stream visibly runs core→confluence.
+- **Illustrated portrait origin** — `public/photo.png` (already a cartoon illustration) is
+  background-keyed to transparent (ImageMagick), embedded as a WebP data-URI, circular-masked,
+  and **tilts in 3D toward the cursor** (perspective + rotateX/Y, eased) — reduced-motion disables it.
+- **Light mode** — a real inversion, not a flip: dark = light gathering in a warm room (screen
+  blend); light = ink/pigment pooling on warm paper (multiply blend), with its own token set,
+  darker AA-passing world hues, and a sun/moon toggle. Respects `prefers-color-scheme`.
+- Type still Young Serif + Bricolage (embedded); all text AA in both themes; no mobile clipping.
