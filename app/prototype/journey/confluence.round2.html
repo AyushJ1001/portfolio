@@ -1,0 +1,360 @@
+<style>
+:root{
+  --bg:#050506; --bg2:#0c0c0e; --text:#f5f5f5; --text2:#a0a0a8; --muted:#5f5f6b;
+  --accent:#e8a849; --accent-light:#f0c060; --border:rgba(255,255,255,.07);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+  font-family:"Outfit",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;overflow:hidden;height:100%}
+.display{font-family:"Playfair Display",Georgia,"Times New Roman",serif}
+body::before{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;opacity:.022;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+button{font-family:inherit;cursor:pointer;background:none;border:none;color:inherit}
+
+/* ── intro ── */
+#intro{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:150;font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--muted);background:rgba(0,0,0,.5);border:1px solid var(--border);
+  border-radius:999px;padding:6px 16px;backdrop-filter:blur(8px);white-space:nowrap}
+#intro b{color:var(--accent-light)}
+
+/* ── stage / variants ── */
+.variant{position:fixed;inset:0;display:none;overflow:hidden}
+.variant.on{display:block}
+.origin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;text-align:center;pointer-events:none}
+.origin .disc{margin:0 auto;width:104px;height:104px;border-radius:999px;display:grid;place-items:center;
+  border:1px solid rgba(232,168,73,.4);box-shadow:0 0 70px rgba(232,168,73,.22);animation:pulse 4.5s ease-in-out infinite}
+.origin .disc span{font-size:19px;color:var(--accent-light)}
+.origin .hint{margin-top:22px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);transition:opacity .4s}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.92}50%{transform:scale(1.05);opacity:1}}
+.souce-glow{position:absolute;left:50%;top:50%;width:64vmin;height:64vmin;transform:translate(-50%,-50%);border-radius:999px;
+  background:radial-gradient(circle,rgba(232,168,73,.10),transparent 68%);pointer-events:none;z-index:1}
+
+/* ── a current node (shared) ── */
+.node{position:relative;display:flex;flex-direction:column;align-items:center;user-select:none;touch-action:none}
+.node .ring{display:block}
+.node .core{position:absolute;top:0;left:50%;width:13px;height:13px;border-radius:999px;transform:translate(-50%,-50%)}
+.node.locked{cursor:not-allowed}
+.node:not(.locked){cursor:pointer}
+.lbl{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);width:12rem;text-align:center;
+  opacity:0;transition:opacity .35s;pointer-events:none}
+.lbl .nm{font-size:18px;line-height:1.1}
+.lbl .ws{margin-top:3px;font-size:11px;line-height:1.35;color:var(--text2)}
+.lbl .tg{margin-top:5px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.focus .lbl,.node:hover .lbl{opacity:1}
+
+/* dim non-focused currents while one is engaged */
+.focusing .dimmable{opacity:.3;transition:opacity .4s}
+.focusing .dimmable.focus{opacity:1}
+
+/* ── Orbit ── */
+#orbit .orbit-ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:999px;border:1px solid rgba(255,255,255,.045)}
+#orbit .arm{position:absolute;left:50%;top:50%;width:0;height:0;z-index:5;animation:spin var(--dur) linear infinite}
+#orbit .arm.rev{animation-name:spin-rev}
+#orbit .node-pos{position:absolute;left:0;top:0;transform:translate(-50%,-50%) translateY(calc(-1 * var(--r)))}
+#orbit .node-inner{animation:spin-rev var(--dur) linear infinite}
+#orbit .arm.rev .node-inner{animation-name:spin}
+#orbit .arm.caught,#orbit .arm.caught .node-inner{animation-play-state:paused}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spin-rev{to{transform:rotate(-360deg)}}
+
+/* ── Rivers ── */
+#rivers .streams{position:absolute;inset:0;z-index:2;width:100%;height:100%;pointer-events:none}
+#rivers .stream{stroke-dasharray:1.4 4;animation:flow 3.4s linear infinite}
+#rivers .stream.flowing{animation-duration:.7s}
+@keyframes flow{to{stroke-dashoffset:-10.8}}
+#rivers .river-node{position:absolute;z-index:5;transform:translate(-50%,-50%)}
+
+/* ── Iris ── */
+#iris .iris-wrap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(82vmin,600px);height:min(82vmin,600px);z-index:3}
+#iris svg{width:100%;height:100%;overflow:visible}
+#iris .seg-hit{cursor:pointer;fill:none;stroke:transparent;stroke-width:30}
+#iris .seg-hit.locked{cursor:not-allowed}
+#iris .seg-track{fill:none;stroke-width:9;stroke-linecap:round;opacity:.28;transition:opacity .35s}
+#iris .seg-prog{fill:none;stroke-width:10;stroke-linecap:round}
+#iris .arc.focus .seg-track{opacity:.7}
+#iris .iris-lbl{position:absolute;transform:translate(-50%,-50%);width:11rem;text-align:center;opacity:0;transition:opacity .35s;pointer-events:none}
+#iris .iris-lbl.show{opacity:1}
+#iris .iris-lbl .nm{font-size:18px}
+#iris .iris-lbl .ws{margin-top:3px;font-size:11px;line-height:1.35;color:var(--text2)}
+#iris .iris-lbl .tg{margin-top:5px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+
+/* ── arrival takeover (shared) ── */
+#arrival{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:0 24px;opacity:0;pointer-events:none;transition:opacity .55s}
+#arrival.show{opacity:1;pointer-events:auto}
+#arrival .pre{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+#arrival h2{margin:12px 0 0;font-size:3.6rem;font-weight:600}
+#arrival .arr{margin:20px auto 0;max-width:24rem;color:var(--text2);line-height:1.6}
+#arrival .back{margin-top:38px;font-size:14px;color:var(--muted)}
+#arrival .back:hover{color:var(--text);text-decoration:underline;text-underline-offset:4px}
+#arrival .inner{opacity:0;transform:scale(.96)}
+#arrival.show .inner{opacity:1;transform:none;transition:opacity .5s .12s,transform .5s .12s}
+
+/* ── switcher ── */
+#switcher{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:200;text-align:center}
+#switcher .bar{display:flex;align-items:center;gap:4px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.8);
+  backdrop-filter:blur(10px);border-radius:999px;padding:6px;box-shadow:0 8px 40px rgba(0,0,0,.6)}
+#switcher .arrow{width:32px;height:32px;display:grid;place-items:center;border-radius:999px;font-size:18px;color:#fff}
+#switcher .arrow:hover{background:rgba(255,255,255,.1)}
+#switcher .label{min-width:20rem;padding:0 8px;font-size:14px;user-select:none}
+#switcher .label b{color:var(--accent-light)}
+#switcher .label .sep{color:rgba(255,255,255,.25);margin:0 8px}
+#switcher .label .n{color:rgba(255,255,255,.82)}
+#switcher .hint{margin-top:6px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+
+@media (prefers-reduced-motion: reduce){
+  #orbit .arm,#orbit .node-inner{animation:none!important}
+  #rivers .stream{animation:none!important}
+  .origin .disc{animation:none!important}
+}
+</style>
+
+<div id="intro">The Confluence · one origin, many currents · <b>hold a current to enter</b></div>
+
+<div id="orbit" class="variant"></div>
+<div id="rivers" class="variant"></div>
+<div id="iris" class="variant"></div>
+
+<div id="arrival"><div class="inner">
+  <p class="pre">you followed the current to</p>
+  <h2 id="arr-name" class="display"></h2>
+  <p class="arr" id="arr-text"></p>
+  <button class="back" id="arr-back">← return to the confluence</button>
+</div></div>
+
+<div id="switcher">
+  <div class="bar">
+    <button class="arrow" id="prev" aria-label="Previous">‹</button>
+    <div class="label"><b id="sw-key">1</b><span class="sep">·</span><span class="n" id="sw-name">Orbit</span></div>
+    <button class="arrow" id="next" aria-label="Next">›</button>
+  </div>
+  <div class="hint">prototype · ← → to switch · placeholder content</div>
+</div>
+
+<script>
+/* ══ data ══ */
+var WORLDS=[
+ {key:"engineering",name:"Engineering",whisper:"Systems that hold when it matters.",arrival:"Roles, the work, the résumé — the employable shape of the craft.",tag:"live",hue:"#e8a849"},
+ {key:"freelance",name:"Freelance",whisper:"Bring a problem. Leave with a thing that works.",arrival:"Commissions, scope, the Fiverr bridge — the borderless workshop.",tag:"live",hue:"#4fb0c6"},
+ {key:"music",name:"Music",whisper:"A sound that isn't finished — and neither is he.",arrival:"A channel just seeded. Thin on purpose. Watch it fill in.",tag:"seed",hue:"#b98cd6"},
+ {key:"more",name:"…and more",whisper:"Something is being stitched. Not ready to be seen.",arrival:"An empty berth, deliberately. Embroidery and whatever follows.",tag:"future",hue:"#7a7a86"}
+];
+var TAG={live:"open",seed:"just seeded",future:"not yet"};
+var VARIANTS=[
+ {key:"orbit",n:1,name:"Orbit — currents circle the source"},
+ {key:"rivers",n:2,name:"Rivers — streams flow to the confluence"},
+ {key:"iris",n:3,name:"Iris — the source opens toward you"}
+];
+var HOLD=1200;
+
+function safe(l,fn){try{fn()}catch(e){if(window.console)console.error("[confluence] "+l,e);}}
+function reduced(){try{return window.matchMedia("(prefers-reduced-motion: reduce)").matches}catch(e){return false}}
+
+/* ══ shared: arrival ══ */
+var arrivalEl=document.getElementById("arrival");
+function enter(w){
+  document.getElementById("arr-name").textContent=w.name;
+  document.getElementById("arr-name").style.color=w.hue;
+  document.getElementById("arr-text").textContent=w.arrival;
+  arrivalEl.style.background="radial-gradient(circle at 50% 42%, "+w.hue+"1f, var(--bg) 68%)";
+  arrivalEl.classList.add("show");
+}
+document.getElementById("arr-back").addEventListener("click",function(){arrivalEl.classList.remove("show")});
+
+/* ══ shared: hold controller (the ring-fill) ══ */
+function makeHold(render,onDone,locked){
+  var raf=null,st=null;
+  function frame(t){ if(st===null)st=t; var p=Math.min((t-st)/HOLD,1); render(p);
+    if(p>=1){ clear(); onDone(); return; } raf=requestAnimationFrame(frame); }
+  function clear(){ if(raf)cancelAnimationFrame(raf); raf=null; st=null; }
+  return {
+    begin:function(){ if(locked){render(0);return;} clear(); raf=requestAnimationFrame(frame); },
+    reset:function(){ clear(); render(0); }
+  };
+}
+
+/* ring svg helper: returns {html, wire(el)} where wire returns setter */
+function ringMarkup(hue,locked,size){
+  size=size||70; var r=(size-14)/2, len=2*Math.PI*r, c=size/2;
+  return '<svg class="ring" width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'">'
+    +'<circle cx="'+c+'" cy="'+c+'" r="'+r+'" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="2"/>'
+    +'<circle class="prog" cx="'+c+'" cy="'+c+'" r="'+r+'" fill="none" stroke="'+hue+'" stroke-width="2.5" '
+    +'stroke-linecap="round" stroke-dasharray="'+len+'" stroke-dashoffset="'+len+'" opacity="'+(locked?.16:.95)+'" '
+    +'transform="rotate(-90 '+c+' '+c+')"/></svg>';
+}
+function ringSetter(nodeEl,size){ size=size||70; var r=(size-14)/2, len=2*Math.PI*r;
+  var prog=nodeEl.querySelector(".prog");
+  return function(p){ if(prog)prog.setAttribute("stroke-dashoffset", len*(1-p)); };
+}
+
+/* build a standard node (Orbit + Rivers share this) */
+function buildNode(w){
+  var node=document.createElement("div");
+  node.className="node dimmable"+(w.tag==="future"?" locked":"");
+  node.innerHTML=ringMarkup(w.hue,w.tag==="future")
+    +'<span class="core" style="background:'+w.hue+';box-shadow:0 0 18px '+w.hue+'"></span>'
+    +'<div class="lbl"><p class="nm display" style="color:'+w.hue+'">'+w.name+'</p>'
+    +'<p class="ws">'+w.whisper+'</p>'
+    +'<p class="tg">'+(w.tag==="future"?"not yet":"hold · "+TAG[w.tag])+'</p></div>';
+  return node;
+}
+
+/* ══ Variant 1 — Orbit ══ */
+safe("orbit",function(){
+  var root=document.getElementById("orbit");
+  root.innerHTML='<div class="souce-glow"></div><div class="origin"><div class="disc"><span class="display">Ayush</span></div>'
+    +'<p class="hint">the currents circle · catch one</p></div>';
+  var RAD=["18vmin","25vmin","32vmin","40vmin"];
+  var DUR=[30,42,54,72];
+  WORLDS.forEach(function(w,i){
+    var ring=document.createElement("div");
+    ring.className="orbit-ring";
+    ring.style.width="calc(2 * "+RAD[i]+")"; ring.style.height="calc(2 * "+RAD[i]+")";
+    root.appendChild(ring);
+
+    var arm=document.createElement("div");
+    arm.className="arm"+(i%2? " rev":"");
+    arm.style.setProperty("--dur",DUR[i]+"s");
+    arm.style.setProperty("--r",RAD[i]);
+    /* stagger the starting angle so the four don't stack at 12 o'clock on load.
+       equal |delay| on arm + inner keeps the node upright at every moment. */
+    var delay=-(DUR[i]*(i/4))+"s";
+    arm.style.animationDelay=delay;
+    if(reduced()){ arm.style.animation="none"; arm.style.transform="rotate("+(i*90+30)+"deg)"; }
+
+    var pos=document.createElement("div"); pos.className="node-pos";
+    var inner=document.createElement("div"); inner.className="node-inner";
+    inner.style.animationDelay=delay;
+    if(reduced()){ inner.style.animation="none"; inner.style.transform="rotate("+(-(i*90+30))+"deg)"; }
+    var node=buildNode(w);
+    inner.appendChild(node); pos.appendChild(inner); arm.appendChild(pos); root.appendChild(arm);
+
+    var set=ringSetter(node);
+    var hold=makeHold(set,function(){ arm.classList.remove("caught"); enter(w); }, w.tag==="future");
+    function down(e){ e.preventDefault(); root.classList.add("focusing"); node.classList.add("focus");
+      if(w.tag!=="future") arm.classList.add("caught"); hold.begin(); }
+    function up(){ arm.classList.remove("caught"); hold.reset(); }
+    node.addEventListener("pointerdown",down);
+    node.addEventListener("pointerup",up);
+    node.addEventListener("pointerleave",function(){ up(); root.classList.remove("focusing"); node.classList.remove("focus"); });
+    node.addEventListener("pointerenter",function(){ root.classList.add("focusing"); node.classList.add("focus"); });
+  });
+});
+
+/* ══ Variant 2 — Rivers ══ */
+safe("rivers",function(){
+  var root=document.getElementById("rivers");
+  var SLOTS=[{x:24,y:27},{x:76,y:29},{x:27,y:74},{x:73,y:72}];
+  root.innerHTML='<div class="souce-glow"></div>'
+    +'<svg class="streams" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>'
+    +'<div class="origin"><div class="disc"><span class="display">Ayush</span></div>'
+    +'<p class="hint">streams run inward · draw one in</p></div>';
+  var svg=root.querySelector(".streams");
+  var lines=[];
+  WORLDS.forEach(function(w,i){
+    var s=SLOTS[i];
+    var ln=document.createElementNS("http://www.w3.org/2000/svg","line");
+    ln.setAttribute("x1",s.x); ln.setAttribute("y1",s.y);
+    ln.setAttribute("x2",50); ln.setAttribute("y2",50);
+    ln.setAttribute("stroke",w.tag==="future"?"rgba(255,255,255,.10)":"rgba(255,255,255,.18)");
+    ln.setAttribute("stroke-width","0.5"); ln.setAttribute("class","stream");
+    ln.style.animationDelay=(-i*0.6)+"s";
+    ln.dataset.hue=w.hue;
+    svg.appendChild(ln); lines.push(ln);
+  });
+  WORLDS.forEach(function(w,i){
+    var s=SLOTS[i], ln=lines[i];
+    var holder=document.createElement("div");
+    holder.className="river-node"; holder.style.left=s.x+"%"; holder.style.top=s.y+"%";
+    var node=buildNode(w);
+    holder.appendChild(node); root.appendChild(holder);
+
+    var set=ringSetter(node);
+    var hold=makeHold(set,function(){ cool(); enter(w); }, w.tag==="future");
+    function warm(){ if(w.tag==="future")return; ln.classList.add("flowing");
+      ln.setAttribute("stroke",w.hue); ln.setAttribute("stroke-width","0.9"); }
+    function cool(){ ln.classList.remove("flowing");
+      ln.setAttribute("stroke","rgba(255,255,255,.18)"); ln.setAttribute("stroke-width","0.5"); }
+    function down(e){ e.preventDefault(); root.classList.add("focusing"); node.classList.add("focus"); warm(); hold.begin(); }
+    function up(){ cool(); hold.reset(); }
+    node.addEventListener("pointerdown",down);
+    node.addEventListener("pointerup",up);
+    node.addEventListener("pointerleave",function(){ up(); root.classList.remove("focusing"); node.classList.remove("focus"); });
+    node.addEventListener("pointerenter",function(){ root.classList.add("focusing"); node.classList.add("focus"); });
+  });
+});
+
+/* ══ Variant 3 — Iris ══ */
+safe("iris",function(){
+  var root=document.getElementById("iris");
+  root.innerHTML='<div class="souce-glow"></div><div class="iris-wrap"></div>'
+    +'<div class="origin"><div class="disc" style="width:88px;height:88px"><span class="display">Ayush</span></div>'
+    +'<p class="hint">the aperture waits · hold to open it</p></div>';
+  var wrap=root.querySelector(".iris-wrap");
+  var VB=200, C=100, R=72, SPAN=74; // deg per arc
+  function polar(deg){ var a=(deg-90)*Math.PI/180; return [C+R*Math.cos(a), C+R*Math.sin(a)]; }
+  function arc(a0,a1){ var s=polar(a1), e=polar(a0); var large=(a1-a0)<=180?0:1;
+    return "M"+s[0].toFixed(2)+" "+s[1].toFixed(2)+" A"+R+" "+R+" 0 "+large+" 0 "+e[0].toFixed(2)+" "+e[1].toFixed(2); }
+  var arcLen=2*Math.PI*R*(SPAN/360);
+  var svgNS="http://www.w3.org/2000/svg";
+  var svg=document.createElementNS(svgNS,"svg"); svg.setAttribute("viewBox","0 0 "+VB+" "+VB);
+  wrap.appendChild(svg);
+
+  WORLDS.forEach(function(w,i){
+    var base=i*90, a0=base+(90-SPAN)/2, a1=base+90-(90-SPAN)/2, mid=(a0+a1)/2;
+    var d=arc(a0,a1);
+    var g=document.createElementNS(svgNS,"g"); g.setAttribute("class","arc dimmable");
+    var track=document.createElementNS(svgNS,"path"); track.setAttribute("d",d);
+    track.setAttribute("class","seg-track"); track.setAttribute("stroke",w.hue);
+    var prog=document.createElementNS(svgNS,"path"); prog.setAttribute("d",d);
+    prog.setAttribute("class","seg-prog"); prog.setAttribute("stroke",w.hue);
+    prog.setAttribute("stroke-dasharray",arcLen); prog.setAttribute("stroke-dashoffset",arcLen);
+    prog.setAttribute("opacity",w.tag==="future"?.15:.95);
+    var hit=document.createElementNS(svgNS,"path"); hit.setAttribute("d",d);
+    hit.setAttribute("class","seg-hit"+(w.tag==="future"?" locked":""));
+    g.appendChild(track); g.appendChild(prog); g.appendChild(hit); svg.appendChild(g);
+
+    // label positioned outward at mid angle
+    var lp=polar(mid); var lr=1.34; // push outward
+    var lx=C+(lp[0]-C)*lr, ly=C+(lp[1]-C)*lr;
+    var lbl=document.createElement("div"); lbl.className="iris-lbl";
+    lbl.style.left=(lx/VB*100)+"%"; lbl.style.top=(ly/VB*100)+"%";
+    lbl.innerHTML='<p class="nm display" style="color:'+w.hue+'">'+w.name+'</p>'
+      +'<p class="ws">'+w.whisper+'</p><p class="tg">'+(w.tag==="future"?"not yet":"hold · "+TAG[w.tag])+'</p>';
+    wrap.appendChild(lbl);
+
+    function set(p){ prog.setAttribute("stroke-dashoffset", arcLen*(1-p)); }
+    var hold=makeHold(set,function(){ enter(w); }, w.tag==="future");
+    function foc(on){ g.classList.toggle("focus",on); lbl.classList.toggle("show",on);
+      svg.parentNode.parentNode.classList.toggle("focusing",on); }
+    hit.addEventListener("pointerdown",function(e){ e.preventDefault(); foc(true); hold.begin(); });
+    hit.addEventListener("pointerup",function(){ hold.reset(); });
+    hit.addEventListener("pointerenter",function(){ foc(true); });
+    hit.addEventListener("pointerleave",function(){ hold.reset(); foc(false); });
+  });
+});
+
+/* ══ switcher / routing ══ */
+safe("switcher",function(){
+  var cur="orbit";
+  function show(key){
+    var v=VARIANTS.filter(function(x){return x.key===key})[0]||VARIANTS[0]; cur=v.key;
+    ["orbit","rivers","iris"].forEach(function(k){ document.getElementById(k).classList.toggle("on",k===cur); });
+    document.getElementById("sw-key").textContent=v.n;
+    document.getElementById("sw-name").textContent=v.name;
+    arrivalEl.classList.remove("show");
+  }
+  function go(d){ var i=VARIANTS.map(function(v){return v.key}).indexOf(cur);
+    show(VARIANTS[(i+d+VARIANTS.length)%VARIANTS.length].key); }
+  document.getElementById("prev").addEventListener("click",function(){go(-1)});
+  document.getElementById("next").addEventListener("click",function(){go(1)});
+  document.addEventListener("keydown",function(e){
+    var el=document.activeElement;
+    if(el&&(el.tagName==="INPUT"||el.tagName==="TEXTAREA"||el.isContentEditable))return;
+    if(e.key==="ArrowLeft")go(-1); if(e.key==="ArrowRight")go(1);
+  });
+  show(cur);
+});
+</script>

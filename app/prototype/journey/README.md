@@ -45,3 +45,23 @@ survives on a warm cache. Replaced with an equivalent
 `border-color: rgba(232,168,73,0.3)` so the prototype (and the site) build
 cleanly. Pre-existing bug, unrelated to #16 — flagged here so it isn't mistaken
 for prototype scope.
+
+---
+
+## Round 2 — narrowing to The Confluence (owner reaction)
+
+Owner reacted to round 1: **B (The Confluence) won**; A and C were cut (their explicit
+provocation/dialogue text read as too crude). The **hold-to-commit ring-fill** is the
+loved mechanic. Locked base going forward: **origin at centre · currents around it ·
+hold-to-commit ring-fill · return-to-re-enter · spatial/gestural, no prose** (hover
+reveals one short whisper).
+
+`confluence.round2.html` is a self-contained (no-build) capture of three *ways of forming
+a confluence* on that base — open it directly in a browser, or see the live Artifact:
+
+1. **Orbit** — currents circle the source in slow motion; holding catches a passing current.
+2. **Rivers** — particle streams flow inward to the confluence; holding draws a stream in.
+3. **Iris** — currents are arcs of a ring; holding dilates the source's aperture toward one.
+
+Switch with the bottom bar or ← / →. Round-1 `VariantA/B/C.tsx` are kept for history but
+superseded by this round.
