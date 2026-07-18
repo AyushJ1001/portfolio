@@ -65,3 +65,30 @@ a confluence* on that base — open it directly in a browser, or see the live Ar
 
 Switch with the bottom bar or ← / →. Round-1 `VariantA/B/C.tsx` are kept for history but
 superseded by this round.
+
+---
+
+## Round 3 — Rivers, redesigned after an /impeccable critique
+
+A dual-agent impeccable critique (design review + deterministic detector) scored the
+round-2 confluence **23/40** and confirmed the owner's read ("generic/sloppy"): the palette
+was a categorical-chart rainbow, the glow was flat centered haze (not lighting), the type
+was the Playfair/Georgia reflex (and never even loaded), and the hold-to-enter was
+keyboard-inaccessible. Full snapshot in `.impeccable/critique/`.
+
+Owner picked: **refine the concept in place · develop Rivers · full scope**. `rivers.round3.html`
+is the result (self-contained, no build; also the live Artifact):
+
+- **Palette** — four worlds recast as one OKLCH family (equalized L/C, shared warm undertone:
+  ember/verdigris/plum/ash); brand accent (`#efc98b` candle-light) decoupled from every world;
+  warm near-black neutrals; all colors pass WCAG AA.
+- **Lighting** — the flat radial replaced by a layered, screen-blended bloom (hot core + falloff
+  + scatter); streams carry a directional gradient (dim at the world, bright at the confluence);
+  focusing a current **floods the whole room with its hue** and tints the origin.
+- **Type** — Young Serif (organic display) + Bricolage Grotesque (UI), both embedded as data-URI
+  `@font-face` so they actually render; no Playfair/Georgia.
+- **Accessibility** — currents are real `<button>`s: Tab to focus, Enter/Space to enter, visible
+  focus rings, persistent world names (no hover-to-discover), `aria-label`s.
+- **Responsive + reduced-motion** — no mobile clipping; transitions and the hold-fill gated.
+
+Rounds 1–2 (`VariantA/B/C.tsx`, `confluence.round2.html`) are kept for history.
