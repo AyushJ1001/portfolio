@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { detectAudienceFromHeaders } from "@/lib/audience";
 
 export const dynamic = "force-dynamic";
 
@@ -29,8 +28,7 @@ function getResumeRole(request: NextRequest): ResumeRole {
 }
 
 export async function GET(request: NextRequest) {
-  const { audience } = detectAudienceFromHeaders(request.headers);
-  const country = audience === "india" ? "india" : "usa";
+  const country = "india";
   const role = getResumeRole(request);
   const roleFileName = ROLE_RESUMES[role];
   const resumeFile = `ayush_juvekar_resume_${country}_${roleFileName}.pdf`;
