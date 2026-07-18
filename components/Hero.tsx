@@ -11,7 +11,6 @@ import {
   useTransform,
 } from "motion/react";
 import { springTransition } from "@/lib/motion";
-import { useAudience } from "@/components/AudienceProvider";
 
 const socialLinks = [
   { href: "mailto:ayushjuvekar@gmail.com", label: "Email", icon: Mail },
@@ -65,12 +64,10 @@ function AnimatedText({
 }
 
 export function Hero() {
-  const audience = useAudience();
   const gradientId = useId();
   const sectionRef = useRef<HTMLElement | null>(null);
   const shouldReduceMotion = useReducedMotion();
-  const locationCopy =
-    audience === "india" ? "based in Pune" : "based in the Tulsa area";
+  const locationCopy = "based in Pune, India";
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,

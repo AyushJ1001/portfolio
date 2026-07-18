@@ -15,7 +15,6 @@ import {
   staggerContainer,
   viewport,
 } from "@/lib/motion";
-import { useAudience } from "@/components/AudienceProvider";
 
 const socialLinks = [
   {
@@ -48,13 +47,8 @@ const accentStyles = {
 };
 
 export function Contact() {
-  const audience = useAudience();
-  const phone =
-    audience === "india"
-      ? { value: "+91 8888385669", href: "tel:+918888385669" }
-      : { value: "+1 (906) 299-4314", href: "tel:+19062994314" };
-  const location =
-    audience === "india" ? "Pune, Maharashtra, India" : "Bixby, Oklahoma, USA";
+  const phone = { value: "+91 8888385669", href: "tel:+918888385669" };
+  const location = "Pune, Maharashtra, India";
   const contactCards = [
     {
       label: "Email",
