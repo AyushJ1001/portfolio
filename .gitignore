@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# impeccable live mode — local recovery journals (config.json stays tracked)
+.impeccable/live/sessions/
