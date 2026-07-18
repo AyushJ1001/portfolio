@@ -208,7 +208,8 @@ html {
     @apply transition-all duration-300;
   }
   .tag:hover {
-    @apply border-[var(--accent)]/30 text-[var(--accent-light)];
+    border-color: rgba(232, 168, 73, 0.3);
+    @apply text-[var(--accent-light)];
   }
   .tag-accent {
     @apply bg-[var(--accent)]/10 text-[var(--accent)] border-[var(--accent)]/20;
