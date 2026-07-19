@@ -4,21 +4,17 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Check, Github, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import {
-  cta,
-  fit,
-  fiverr,
   freelanceInterior,
-  promise,
-  proof,
-  tiers,
-  trust,
   type ClientProof,
   type PricingTier,
 } from "@/lib/freelance";
 import { fadeUp, staggerContainer, viewport } from "@/lib/motion";
 import styles from "./Freelance.module.css";
 
-const interior = freelanceInterior();
+// Render straight from the single tested interior surface, so what ships is
+// exactly what the honesty invariants in lib/freelance.test.ts guard.
+const { backHref, promise, fit, proof, tiers, trust, cta, fiverr } =
+  freelanceInterior();
 
 /**
  * The Freelance world interior — a borderless workshop reached by holding the
@@ -37,7 +33,7 @@ export function Freelance() {
       <div className={styles.bloom} aria-hidden />
 
       <div className={styles.inner}>
-        <Link href={interior.backHref} className={styles.back}>
+        <Link href={backHref} className={styles.back}>
           <ArrowLeft size={15} aria-hidden />
           Back to the confluence
         </Link>
