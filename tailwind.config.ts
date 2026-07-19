@@ -10,8 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
-        display: ["var(--font-playfair)", "Georgia", "serif"],
+        sans: ["var(--font-bricolage)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["var(--font-young-serif)", "Georgia", "serif"],
       },
       colors: {
         background: "var(--bg-primary)",
@@ -21,6 +21,12 @@ export default {
           DEFAULT: "var(--accent)",
           light: "var(--accent-light)",
           muted: "var(--accent-muted)",
+        },
+        world: {
+          eng: "var(--eng)",
+          free: "var(--free)",
+          music: "var(--music)",
+          more: "var(--more)",
         },
         surface: {
           primary: "var(--bg-primary)",
