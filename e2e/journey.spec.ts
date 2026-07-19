@@ -12,10 +12,10 @@ import { test, expect, type Page } from "@playwright/test";
 
 /** The four currents the confluence must render, with their honest reality chips. */
 const CURRENTS = [
-  { name: "Engineering", chip: "OPEN", path: "/engineering" },
-  { name: "Freelance", chip: "OPEN", path: "/freelance" },
-  { name: "Music", chip: "JUST SEEDED", path: "/music" },
-  { name: "More", chip: "NOT YET", path: null },
+  { name: "Engineering", chip: "OPEN" },
+  { name: "Freelance", chip: "OPEN" },
+  { name: "Music", chip: "JUST SEEDED" },
+  { name: "More", chip: "NOT YET" },
 ] as const;
 
 /** Press-and-hold a current with the pointer until the ring commits (or times out). */
