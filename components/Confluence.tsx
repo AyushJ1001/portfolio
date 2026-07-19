@@ -17,6 +17,7 @@ import {
   confluenceCurrents,
   holdDurationFor,
   type Current,
+  type HoldModality,
 } from "@/lib/confluence";
 import { HOLD_DURATIONS, createHold, type Clock, type HoldController } from "@/lib/hold";
 import styles from "./Confluence.module.css";
@@ -87,7 +88,7 @@ export function Confluence() {
   }, [currents, router]);
 
   const begin = useCallback(
-    (id: Current["id"], modality: "pointer" | "keyboard") => {
+    (id: Current["id"], modality: HoldModality) => {
       holdsRef.current[id]?.begin(
         holdDurationFor(modality, reducedRef.current),
       );
