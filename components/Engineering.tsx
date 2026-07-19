@@ -158,26 +158,14 @@ function ShippedCard({ build }: { build: ShippedBuild }) {
         <h3 className={`${styles.cardName} font-display`}>{build.name}</h3>
         <div className={styles.cardLinks}>
           {build.source && (
-            <a
-              href={build.source}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.iconLink}
-              aria-label={`${build.name} source on GitHub`}
-            >
+            <IconLink href={build.source} label={`${build.name} source on GitHub`}>
               <Github size={15} aria-hidden />
-            </a>
+            </IconLink>
           )}
           {build.href && (
-            <a
-              href={build.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.iconLink}
-              aria-label={`Open ${build.name}`}
-            >
+            <IconLink href={build.href} label={`Open ${build.name}`}>
               <ArrowUpRight size={15} aria-hidden />
-            </a>
+            </IconLink>
           )}
         </div>
       </div>
@@ -194,15 +182,9 @@ function ResearchCard({ build }: { build: ResearchBuild }) {
       <div className={styles.cardHead}>
         <h3 className={`${styles.cardName} font-display`}>{build.name}</h3>
         {build.link ? (
-          <a
-            href={build.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.iconLink}
-            aria-label={`${build.name} publication`}
-          >
+          <IconLink href={build.link} label={`${build.name} publication`}>
             <ArrowUpRight size={15} aria-hidden />
-          </a>
+          </IconLink>
         ) : (
           <span className={styles.year}>{build.year}</span>
         )}
@@ -211,6 +193,29 @@ function ResearchCard({ build }: { build: ResearchBuild }) {
       {build.metric && <p className={styles.metric}>{build.metric}</p>}
       <Stack items={build.stack} />
     </motion.article>
+  );
+}
+
+/** An external-opening icon link, styled as a square affordance in a card head. */
+function IconLink({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styles.iconLink}
+      aria-label={label}
+    >
+      {children}
+    </a>
   );
 }
 
