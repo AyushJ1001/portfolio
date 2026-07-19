@@ -2,25 +2,141 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Theme foundation (issue #26) ──────────────────────────────────────────
+   Graduated from the approved prototype (rivers.round4). Two themes drive the
+   whole hub: warm dark-amber (the default identity) and full ink-on-paper light.
+
+   Selection order:
+     1. `:root[data-theme]` — a manual toggle pins the session (highest priority).
+     2. OS `prefers-color-scheme` — the default when no manual choice is made.
+     3. Bare `:root` — warm dark-amber, so an absent OS preference still lands
+        on the brand default.
+
+   Per-world hues are OKLCH (perceptually even lightness across worlds), the
+   blend mode flips by theme (screen in the dark room · multiply on paper), and
+   the bloom + grain tokens carry the layered-light look. Legacy `--*-primary`
+   aliases below keep existing components theme-aware for free. */
+
+/* Warm dark-amber — the default identity. */
+:root,
+:root[data-theme="dark"] {
+  --bg: #0f0a06;
+  --bg2: #1c1611;
+  --ink: #f2eee7;
+  --text2: #c8bdb2;
+  --muted: #a29081;
+
+  --accent: oklch(85.5% 0.09 79.3);
+  --accent-light: oklch(90% 0.07 82);
+
+  /* per-world hues (OKLCH family palette) */
+  --eng: oklch(71.6% 0.1 62.6);
+  --free: oklch(70.5% 0.078 178.3);
+  --music: oklch(70% 0.09 352.1);
+  --more: oklch(58.6% 0.024 60.5);
+
+  --border: rgba(242, 238, 231, 0.08);
+  --border-hover: rgba(242, 238, 231, 0.16);
+
+  /* theme-flipped blend + grain */
+  --blend: screen;
+  --grain-op: 0.03;
+
+  /* layered light — bloom + floor */
+  --bloom1: rgba(255, 244, 224, 0.55);
+  --bloom2: rgba(239, 201, 139, 0.22);
+  --bloom3: rgba(180, 120, 60, 0.12);
+  --floor: radial-gradient(120% 80% at 50% 120%, rgba(70, 42, 20, 0.5), transparent 60%);
+}
+
+/* Ink-on-paper light — the OS default when the system prefers light. */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #efe7d8;
+    --bg2: #e4dac7;
+    --ink: #2b2119;
+    --text2: #5c4f42;
+    --muted: #726556;
+
+    --accent: oklch(48.4% 0.096 73.5);
+    --accent-light: oklch(55% 0.1 70);
+
+    --eng: oklch(49.7% 0.1 57.8);
+    --free: oklch(47.8% 0.07 179.3);
+    --music: oklch(51% 0.118 351.2);
+    --more: oklch(48.4% 0.028 67.1);
+
+    --border: rgba(43, 33, 25, 0.14);
+    --border-hover: rgba(43, 33, 25, 0.26);
+
+    --blend: multiply;
+    --grain-op: 0.05;
+
+    --bloom1: rgba(120, 80, 35, 0.2);
+    --bloom2: rgba(150, 105, 55, 0.13);
+    --bloom3: rgba(120, 85, 45, 0.08);
+    --floor: radial-gradient(120% 80% at 50% 120%, rgba(150, 105, 55, 0.2), transparent 60%);
+  }
+}
+
+/* Manual toggle: light pinned for the session, overriding the OS default. */
+:root[data-theme="light"] {
+  --bg: #efe7d8;
+  --bg2: #e4dac7;
+  --ink: #2b2119;
+  --text2: #5c4f42;
+  --muted: #726556;
+
+  --accent: oklch(48.4% 0.096 73.5);
+  --accent-light: oklch(55% 0.1 70);
+
+  --eng: oklch(49.7% 0.1 57.8);
+  --free: oklch(47.8% 0.07 179.3);
+  --music: oklch(51% 0.118 351.2);
+  --more: oklch(48.4% 0.028 67.1);
+
+  --border: rgba(43, 33, 25, 0.14);
+  --border-hover: rgba(43, 33, 25, 0.26);
+
+  --blend: multiply;
+  --grain-op: 0.05;
+
+  --bloom1: rgba(120, 80, 35, 0.2);
+  --bloom2: rgba(150, 105, 55, 0.13);
+  --bloom3: rgba(120, 85, 45, 0.08);
+  --floor: radial-gradient(120% 80% at 50% 120%, rgba(150, 105, 55, 0.2), transparent 60%);
+}
+
+/* Legacy aliases — keep existing components theme-aware without a rewrite. */
 :root {
-  --bg-primary: #050506;
-  --bg-secondary: #0c0c0e;
-  --bg-tertiary: #141416;
-  --bg-card: #1a1a1d;
-  --bg-card-hover: #222225;
+  --bg-primary: var(--bg);
+  --bg-secondary: var(--bg2);
+  --bg-tertiary: var(--bg2);
+  --bg-card: color-mix(in oklab, var(--ink) 5%, var(--bg));
+  --bg-card-hover: color-mix(in oklab, var(--ink) 9%, var(--bg));
 
-  --text-primary: #f5f5f5;
-  --text-secondary: #a0a0a8;
-  --text-muted: #636370;
+  --text-primary: var(--ink);
+  --text-secondary: var(--text2);
+  --text-muted: var(--muted);
 
-  --accent: #e8a849;
-  --accent-light: #f0c060;
-  --accent-muted: rgba(232, 168, 73, 0.12);
+  --accent-muted: color-mix(in oklab, var(--accent) 14%, transparent);
 
-  --border: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(255, 255, 255, 0.12);
+  --grain-opacity: var(--grain-op);
+}
 
-  --grain-opacity: 0.022;
+html {
+  color-scheme: light dark;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* Smooth the theme flip. */
+body {
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 /* ── Base ───────────────────────────────────────── */
@@ -44,6 +160,7 @@ html {
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   opacity: var(--grain-opacity);
+  mix-blend-mode: var(--blend);
   pointer-events: none;
   z-index: 100;
 }
@@ -56,16 +173,16 @@ html {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.07);
+  background: color-mix(in oklab, var(--ink) 12%, transparent);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: color-mix(in oklab, var(--ink) 22%, transparent);
 }
 
 /* ── Selection & focus ──────────────────────────── */
 ::selection {
-  background: rgba(232, 168, 73, 0.22);
+  background: color-mix(in oklab, var(--accent) 22%, transparent);
   color: var(--text-primary);
 }
 *:focus-visible {
@@ -156,9 +273,9 @@ html {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(
       135deg,
-      #e8a849 0%,
-      #e07a3a 50%,
-      #e8a849 100%
+      var(--accent) 0%,
+      var(--eng) 50%,
+      var(--accent) 100%
     );
     background-size: 200% auto;
   }
@@ -169,10 +286,10 @@ html {
 
   /* Glow effects */
   .glow-accent {
-    box-shadow: 0 0 50px rgba(232, 168, 73, 0.12);
+    box-shadow: 0 0 50px color-mix(in oklab, var(--accent) 12%, transparent);
   }
   .glow-accent-sm {
-    box-shadow: 0 0 24px rgba(232, 168, 73, 0.08);
+    box-shadow: 0 0 24px color-mix(in oklab, var(--accent) 8%, transparent);
   }
 
   /* Card */
@@ -198,7 +315,7 @@ html {
   /* Accent line */
   .accent-line {
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(232, 168, 73, 0.25), transparent);
+    background: linear-gradient(to right, transparent, color-mix(in oklab, var(--accent) 25%, transparent), transparent);
   }
 
   /* Tags */
@@ -208,10 +325,13 @@ html {
     @apply transition-all duration-300;
   }
   .tag:hover {
-    @apply border-[var(--accent)]/30 text-[var(--accent-light)];
+    border-color: color-mix(in oklab, var(--accent) 30%, transparent);
+    color: var(--accent-light);
   }
   .tag-accent {
-    @apply bg-[var(--accent)]/10 text-[var(--accent)] border-[var(--accent)]/20;
+    background: color-mix(in oklab, var(--accent) 10%, transparent);
+    color: var(--accent);
+    border-color: color-mix(in oklab, var(--accent) 20%, transparent);
   }
 }
 

@@ -1,16 +1,19 @@
 import { Metadata } from "next";
 import "./globals.css";
-import { Playfair_Display, Outfit } from "next/font/google";
+import { Young_Serif, Bricolage_Grotesque } from "next/font/google";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { THEME_ATTR, THEME_STORAGE_KEY } from "@/lib/theme";
 
-const playfair = Playfair_Display({
+const youngSerif = Young_Serif({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: "400",
+  variable: "--font-young-serif",
   display: "swap",
 });
 
-const outfit = Outfit({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-bricolage",
   display: "swap",
 });
 
@@ -23,6 +26,11 @@ export const metadata: Metadata = {
   },
 };
 
+// Applies a manually-pinned theme before first paint so the OS-default page
+// never flashes the wrong mode. Absent a stored choice, CSS `prefers-color-scheme`
+// (dark-amber default) takes over — no attribute is set.
+const themeInit = `(function(){try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");if(t==="light"||t==="dark"){document.documentElement.setAttribute("${THEME_ATTR}",t);}}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: {
@@ -31,9 +39,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${playfair.variable} ${outfit.variable}`}
+      className={`scroll-smooth ${youngSerif.variable} ${bricolage.variable}`}
     >
-      <body className="font-sans antialiased">{children}</body>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+      </head>
+      <body className="font-sans antialiased">
+        <ThemeToggle />
+        {children}
+      </body>
     </html>
   );
 }
