@@ -4,8 +4,8 @@ import { join } from "node:path";
 
 export const dynamic = "force-dynamic";
 
-// The single generalist résumé — Engineering's terminal artifact, reused as-is
-// by Freelance. Any `?role=` or geo hint is ignored; this one PDF is served.
+// A single generalist résumé is served for every request; any `?role=` or
+// other query parameter is ignored.
 const RESUME_FILE = "ayush_juvekar_resume_india_full_stack_engineer.pdf";
 const DOWNLOAD_NAME = "ayush_juvekar_resume.pdf";
 
