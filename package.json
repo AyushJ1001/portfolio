@@ -11,7 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "build:resumes": "typst compile resumes/india-full-stack-engineer.typ public/ayush_juvekar_resume_india_full_stack_engineer.pdf",
-    "sandcastle": "npx tsx ./sandcastle/main.mts"
+    "sandcastle": "npx tsx ./.sandcastle/main.mts"
   },
   "dependencies": {
     "@ai-hero/sandcastle": "^0.12.0",
