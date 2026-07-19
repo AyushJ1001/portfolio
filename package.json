@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:resumes": "for country in usa india; do for role in backend-engineer frontend-engineer full-stack-engineer ml-data-scientist computer-vision-edge-ai iot-embedded-engineer; do typst compile resumes/$country-$role.typ public/ayush_juvekar_resume_${country}_$(echo $role | tr '-' '_').pdf; done; done && typst compile ayush_juvekar_resume_usa.typ public/ayush_juvekar_resume_usa.pdf && typst compile ayush_juvekar_resume_india.typ public/ayush_juvekar_resume_india.pdf"
+    "build:resumes": "for country in usa india; do for role in backend-engineer frontend-engineer full-stack-engineer ml-data-scientist computer-vision-edge-ai iot-embedded-engineer; do typst compile resumes/$country-$role.typ public/ayush_juvekar_resume_${country}_$(echo $role | tr '-' '_').pdf; done; done && typst compile ayush_juvekar_resume_usa.typ public/ayush_juvekar_resume_usa.pdf && typst compile ayush_juvekar_resume_india.typ public/ayush_juvekar_resume_india.pdf",
+    "sandcastle": "npx tsx ./sandcastle/main.mts"
   },
   "dependencies": {
+    "@ai-hero/sandcastle": "^0.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.469.0",
@@ -19,7 +21,8 @@
     "react-dom": "^19.0.0",
     "simple-icons": "^14.9.0",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
