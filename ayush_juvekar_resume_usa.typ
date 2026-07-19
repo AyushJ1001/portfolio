@@ -1,3 +1,0 @@
-#import "resumes/resume.typ": render_resume
-
-#render_resume(country: "usa", role: "full-stack-engineer")
