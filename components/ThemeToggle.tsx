@@ -10,6 +10,15 @@ import {
   type Theme,
 } from "@/lib/theme";
 
+const ICON_SIZE = "h-[18px] w-[18px]";
+
+/** The toggle's glyph: a placeholder before mount, then the target theme's icon. */
+function ThemeIcon({ theme }: { theme: Theme | null }) {
+  if (theme === null) return <span className={`block ${ICON_SIZE}`} aria-hidden />;
+  if (theme === "dark") return <Sun className={ICON_SIZE} aria-hidden />;
+  return <Moon className={ICON_SIZE} aria-hidden />;
+}
+
 /**
  * Manual light/dark toggle. The OS `prefers-color-scheme` is the default; a
  * click pins the opposite theme for the session via `:root[data-theme]` and
@@ -54,13 +63,7 @@ export function ThemeToggle() {
       title={isDark ? "Switch to light theme" : "Switch to dark theme"}
       className="fixed bottom-4 right-4 z-[60] grid h-10 w-10 place-items-center rounded-full border border-[var(--border)] bg-[var(--bg-secondary)]/80 text-[var(--text-muted)] backdrop-blur transition-colors duration-300 hover:border-[var(--border-hover)] hover:text-[var(--text-primary)] focus-visible:text-[var(--text-primary)]"
     >
-      {theme === null ? (
-        <span className="block h-[18px] w-[18px]" aria-hidden />
-      ) : isDark ? (
-        <Sun className="h-[18px] w-[18px]" aria-hidden />
-      ) : (
-        <Moon className="h-[18px] w-[18px]" aria-hidden />
-      )}
+      <ThemeIcon theme={theme} />
     </button>
   );
 }
