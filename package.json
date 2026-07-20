@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "build:resumes": "typst compile resumes/india-full-stack-engineer.typ public/ayush_juvekar_resume_india_full_stack_engineer.pdf",
     "sandcastle": "npx tsx ./.sandcastle/main.mts"
   },
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.61.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -1,0 +1,260 @@
+/* The Confluence at `/` — graduated from the approved prototype (rivers.round4).
+   An origin portrait at center, four currents at the corners, and marching-ants
+   river-flow running from each node inward to the single source. Theme tokens
+   (--bg / --ink / --eng… / --blend / --bloom*) come from globals.css; the
+   confluence-only tones below derive from those with color-mix so both themes
+   are covered without duplicating the token block. */
+
+.confluence {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  --cf-bed: color-mix(in oklab, var(--ink) 15%, transparent);
+  --cf-disc-bd: color-mix(in oklab, var(--accent) 40%, transparent);
+  --cf-disc-gl: color-mix(in oklab, var(--accent) 16%, transparent);
+  --cf-disc-in: color-mix(in oklab, var(--accent) 6%, transparent);
+}
+
+/* ── Room + layered light ─────────────────────────────────────────────── */
+.room {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.floor {
+  position: absolute;
+  inset: 0;
+  background: var(--floor);
+}
+.bloom {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  mix-blend-mode: var(--blend);
+}
+.b1 {
+  width: 16vmin;
+  height: 16vmin;
+  background: radial-gradient(circle, var(--bloom1), transparent 66%);
+}
+.b2 {
+  width: 38vmin;
+  height: 38vmin;
+  background: radial-gradient(circle, var(--bloom2), transparent 68%);
+}
+.b3 {
+  width: 80vmin;
+  height: 80vmin;
+  background: radial-gradient(circle, var(--bloom3), transparent 70%);
+}
+
+/* ── Streams: faint riverbed + animated marching-ants flow ────────────── */
+.streams {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.bed {
+  fill: none;
+  stroke: var(--cf-bed);
+  stroke-width: 0.32;
+  stroke-linecap: round;
+}
+.stream {
+  fill: none;
+  stroke-width: 0.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1.2 3.1;
+  mix-blend-mode: var(--blend);
+  opacity: 0.85;
+  animation: cf-flow 4s linear infinite;
+  transition: stroke-width 0.4s ease, opacity 0.4s ease;
+}
+.stream.lit {
+  stroke-width: 1.05;
+  opacity: 1;
+  animation-duration: 1s;
+}
+@keyframes cf-flow {
+  to {
+    stroke-dashoffset: -8.6;
+  }
+}
+
+/* ── Origin: the portrait every current flows to ─────────────────────── */
+.origin {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  text-align: center;
+  pointer-events: none;
+}
+.disc {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid var(--cf-disc-bd);
+  box-shadow: 0 0 62px var(--cf-disc-gl), inset 0 0 24px var(--cf-disc-in);
+  background: radial-gradient(circle at 50% 40%, var(--cf-disc-in), transparent 72%);
+  overflow: hidden;
+}
+.portraitImg {
+  object-fit: cover;
+  object-position: 50% 16%;
+  -webkit-mask-image: radial-gradient(circle at 50% 42%, #000 62%, transparent 82%);
+  mask-image: radial-gradient(circle at 50% 42%, #000 62%, transparent 82%);
+}
+.sub {
+  margin-top: 22px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+/* ── Currents (nodes) ─────────────────────────────────────────────────── */
+.node {
+  position: absolute;
+  z-index: 5;
+  width: 76px;
+  height: 76px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.45s ease;
+}
+.node.locked {
+  cursor: not-allowed;
+}
+.node.dim {
+  opacity: 0.32;
+}
+.node.active {
+  z-index: 7;
+}
+.ringwrap {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+}
+.ring {
+  position: absolute;
+  inset: 0;
+}
+.core {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--hue);
+  box-shadow: 0 0 9px var(--hue);
+  transition: transform 0.35s ease;
+}
+.node:hover .core,
+.node:focus-visible .core {
+  transform: scale(1.14);
+}
+.node:focus-visible {
+  outline: none;
+}
+.node:focus-visible .ringwrap::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  opacity: 0.85;
+}
+.lbl {
+  position: absolute;
+  top: calc(100% + 9px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14rem;
+  text-align: center;
+  pointer-events: none;
+}
+.name {
+  display: block;
+  font-size: 16px;
+  line-height: 1.1;
+  color: var(--hue);
+}
+.chip {
+  display: block;
+  margin-top: 5px;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.ws {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -4px);
+  margin-top: 8px;
+  width: 14rem;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--text2);
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.node:hover .ws,
+.node:focus-visible .ws {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ── Chrome ───────────────────────────────────────────────────────────── */
+.intro {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  max-width: calc(100vw - 96px);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.5;
+  padding: 0 8px;
+}
+.intro b {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+@media (max-width: 560px) {
+  .node,
+  .ringwrap {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* Reduced motion: still the marching ants; the hold fast-path is handled in JS. */
+@media (prefers-reduced-motion: reduce) {
+  .stream {
+    animation: none;
+  }
+}
