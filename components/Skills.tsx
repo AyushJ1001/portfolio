@@ -28,7 +28,6 @@ const categories = [
       "Java",
       "C++",
       "Go",
-      "Rust",
       "C#",
     ],
     span: 2,
@@ -66,7 +65,7 @@ const categories = [
   {
     title: "Databases",
     icon: Database,
-    skills: ["PostgreSQL", "MongoDB"],
+    skills: ["PostgreSQL", "Redis", "MongoDB"],
     span: 1,
     tint: "",
     iconBg: "bg-cyan-500/10 text-cyan-400",

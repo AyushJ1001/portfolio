@@ -24,7 +24,6 @@ const techStack = [
   "C++",
   "Java",
   "Go",
-  "Rust",
   "MongoDB",
 ];
 
