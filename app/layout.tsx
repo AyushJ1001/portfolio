@@ -18,9 +18,9 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "Ayush Juvekar — Software Engineer & ML Researcher",
+  title: "Ayush Juvekar — Software Engineer & Researcher",
   description:
-    "Computer Science Master's Graduate | Full Stack Developer | Machine Learning Engineer",
+    "Computer Science Master's Graduate | Full-Stack Engineer | Applied ML & Computer Vision",
   icons: {
     icon: "/favicon.svg",
   },

@@ -20,7 +20,7 @@ const focusAreas = [
   },
   {
     title: "Edge Computing",
-    desc: "Optimizing systems for real-time processing",
+    desc: "Running optimized models on edge devices like Jetson Nano",
   },
   {
     title: "IoT Solutions",
@@ -205,8 +205,8 @@ export function About() {
               solve complex problems. My approach involves continuous learning,
               collaborative development, and a focus on creating solutions that
               are technically sound and user-centered. I&apos;m dedicated to
-              writing clean, efficient code and deploying robust systems that
-              scale with growing demands.
+              writing clean, efficient code and shipping products that real
+              people use.
             </p>
           </motion.div>
         </div>
