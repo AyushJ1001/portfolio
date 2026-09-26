@@ -100,13 +100,6 @@ const categories = [
   },
 ];
 
-const stats = [
-  { label: "Languages", value: "7+" },
-  { label: "Frameworks", value: "10+" },
-  { label: "Projects", value: "15+" },
-  { label: "Years Coding", value: "5+" },
-];
-
 export function Skills() {
   return (
     <section id="skills" className="section-padding relative">
@@ -195,35 +188,6 @@ export function Skills() {
           })}
         </motion.div>
 
-        {/* Stats row */}
-        <motion.div
-          variants={staggerContainer(0.06, 0.1)}
-          initial="hidden"
-          whileInView="show"
-          viewport={viewport}
-          className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4"
-        >
-          {stats.map((stat) => (
-            <motion.div
-              key={stat.label}
-              variants={fadeUp(20)}
-              whileHover={{
-                y: -4,
-                scale: 1.01,
-                borderColor: "rgba(232, 168, 73, 0.2)",
-              }}
-              transition={springTransition}
-              className="text-center p-5 bg-white/[0.02] border border-white/[0.06] rounded-xl"
-            >
-              <div className="font-display text-3xl sm:text-4xl font-bold gradient-text mb-1">
-                {stat.value}
-              </div>
-              <div className="text-zinc-500 text-xs tracking-wide">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

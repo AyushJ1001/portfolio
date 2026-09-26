@@ -102,13 +102,13 @@
     date: "Aug 2026 - Present",
   )
   let fee_desk = "Building Coherence Fee Desk, a Next.js platform replacing the academy's spreadsheet-based admissions, fee collection, and reporting."
-  let events = "Separately build and run the software for Coherence-backed events such as Campus Connect and Mission 95: public registration sites with OTP checks, participant IDs, UPI payments, scholarship codes, and Sheets sync."
+  let events = "Separately build and run the software for Coherence-backed events such as Campus Connect and Mission 95: public registration sites with OTP checks, participant IDs, UPI payments, and Sheets sync."
   let events_short = "Separately run the software for Coherence-backed events (Campus Connect, Mission 95): registration, UPI payments, Sheets sync."
   if role == "backend-engineer" {
     common + (
       bullets: (
         fee_desk,
-        "Migrated server workflows, OTP auth, and libSQL persistence to Effect V4 through stacked, independently deployable PRs, covered by 330+ unit/Effect tests and 32 Playwright workflows on isolated databases.",
+        "Migrated server workflows, OTP auth, and libSQL persistence to Effect V4 through stacked, independently deployable PRs, covered by 330+ unit/Effect tests and Playwright browser workflows on isolated databases.",
         events,
       ),
     )
@@ -287,7 +287,7 @@
     (label: "GitHub", url: "https://github.com/AyushJ1001/portfolio"),
   ),
   bullets: (
-    "Built a responsive personal portfolio with animated sections, project showcases, audience-aware resume routing, and polished React/Tailwind UI patterns.",
+    "Built a responsive personal portfolio with animated sections, project showcases, a resume download route, and polished React/Tailwind UI patterns.",
     "Implemented accessible navigation, mobile layouts, and reusable components to present technical work without relying on a generic static resume page.",
   ),
 )
@@ -445,7 +445,7 @@
   if role == "iot-embedded-engineer" or role == "computer-vision-edge-ai" or role == "ml-data-scientist" {
     [
       #section("Publication")
-      A. Juvekar et al., "Carbon Monoxide Concentration Monitoring System," #emph("ESCI 2023"), presented Mar 2023. #link("https://ieeexplore.ieee.org/document/10100144")[IEEE]
+      A. Ghadge, A. Juvekar et al., "Carbon Monoxide Concentration Monitoring System for Automating Air Filters," #emph("ESCI 2023"). #link("https://ieeexplore.ieee.org/document/10100144")[IEEE]
     ]
   } else {
     []

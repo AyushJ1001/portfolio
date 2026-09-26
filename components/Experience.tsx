@@ -42,7 +42,7 @@ const productExperiences = [
     location: "Pune, India",
     period: "Aug 2026 - Present",
     description:
-      "Building Coherence Fee Desk, a Next.js platform replacing the academy's spreadsheet-based admissions, fee collection, and reporting. Shipped MSG91 OTP login, payment-proof upload and verification, and bulk Excel imports, then migrated the backend to Effect V4 under 330+ automated tests. Separately, build and run the software for Coherence-backed events such as Campus Connect and Mission 95: public registration sites with OTP checks, participant IDs, UPI payments, scholarship codes, and Google Sheets sync.",
+      "Building Coherence Fee Desk, a Next.js platform replacing the academy's spreadsheet-based admissions, fee collection, and reporting. Shipped MSG91 OTP login, payment-proof upload and verification, and bulk Excel imports, then migrated the backend to Effect V4 under 330+ automated tests. Separately, build and run the software for Coherence-backed events such as Campus Connect and Mission 95: public registration sites with OTP checks, participant IDs, UPI payments, and Google Sheets sync.",
     skills: ["Next.js", "TypeScript", "Effect", "libSQL", "MSG91", "Playwright"],
     current: true,
   },
