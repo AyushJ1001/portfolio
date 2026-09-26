@@ -41,3 +41,11 @@
 - Env vars: use `.env.local` for secrets; do not commit it. Access via `process.env.NEXT_PUBLIC_*` for browser‑safe values.
 - Assets: place public files under `public/` and reference with absolute paths (`/images/...`).
 - Accessibility: prefer semantic HTML, labeled controls, and keyboard‑navigable components.
+
+## Cursor Cloud specific instructions
+
+- **Single service:** Only a Next.js dev server is needed (`npm run dev` on port 3000). No databases, auth providers, or external APIs required.
+- **Geo-detection defaults:** The `/visitor` API route defaults to `"usa"` audience locally since `x-vercel-ip-country` / `cf-ipcountry` headers are absent outside Vercel/Cloudflare.
+- **Resume PDFs:** Pre-compiled PDFs exist in `public/`. Rebuilding from Typst sources (`npm run build:resumes`) is only needed if `.typ` files in `resumes/` are modified and requires the `typst` CLI (not installed by default).
+- **No env vars required:** The project runs with zero environment variables locally.
+- See "Build, Test, and Development Commands" above for standard commands.
