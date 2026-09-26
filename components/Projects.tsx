@@ -43,7 +43,7 @@ const projects: Project[] = [
     highlight: "Test-first build",
   },
   {
-    title: "Anomaly Detection in Crowd Surveillance",
+    title: "Crowd Anomaly Detection Prototype",
     date: "2023-24",
     description:
       "BE final-year team project for edge crowd-anomaly detection. Led model research and data collection, then optimized a TensorFlow prototype with TensorFlow Lite for Jetson Nano demonstration.",
@@ -70,10 +70,10 @@ const projects: Project[] = [
     highlight: "Academic internship",
   },
   {
-    title: "IoT Air Quality Monitor",
+    title: "IoT Air Quality Monitoring System",
     date: "2022-23",
     description:
-      "IEEE-published CO/gas monitoring prototype using Arduino Uno/C++, MQTT/Zigbee communication, and Node-RED flows to automate air-filter behavior from live sensor readings.",
+      "Co-built an IEEE-published CO/gas monitoring prototype using Arduino Uno/C++, MQTT/Zigbee communication, and Node-RED flows to automate air-filter behavior from live sensor readings. Owned the Node-RED automation and conference presentation.",
     technologies: ["C++", "Arduino Uno", "MQTT", "Zigbee", "Node-RED"],
     link: "https://ieeexplore.ieee.org/document/10100144",
     type: "research",

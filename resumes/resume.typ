@@ -214,7 +214,7 @@
     base + (
       bullets: (
         "Built and deployed a full-stack campground app with auth-protected workflows, Prisma data modeling, PostgreSQL persistence, and server-rendered Next.js routes.",
-        "Structured relational campground data and application flows around searchable listings, saved state, and map-backed discovery without relying on unsupported usage metrics.",
+        "Structured relational campground data and application flows around searchable listings, saved state, and map-backed discovery.",
       ),
     )
   } else if role == "frontend-engineer" {
@@ -288,7 +288,7 @@
   ),
   bullets: (
     "Built a responsive personal portfolio with animated sections, project showcases, a resume download route, and polished React/Tailwind UI patterns.",
-    "Implemented accessible navigation, mobile layouts, and reusable components to present technical work without relying on a generic static resume page.",
+    "Implemented accessible navigation, mobile layouts, and reusable components shared across portfolio sections.",
   ),
 )
 
@@ -298,7 +298,7 @@
   links: (),
   bullets: (
     "Led model research and data collection for a BE final-year team project on edge crowd-anomaly detection, recording training videos and evaluating CNN/TensorFlow approaches on 10K+ frames.",
-    "Optimized the prototype with TensorFlow Lite for Jetson Nano demonstration, reaching about 92% test accuracy in controlled demo runs without claiming production deployment.",
+    "Optimized the prototype with TensorFlow Lite for Jetson Nano demonstration, reaching about 92% test accuracy in controlled demo runs.",
   ),
 )
 
