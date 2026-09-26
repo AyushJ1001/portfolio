@@ -94,6 +94,50 @@
   (school: "Pune Institute of Computer Technology", location: "Pune, India", degree: "B.E. Computer Engineering", metric: "GPA: 8.14/10", date: "Jun 2024"),
 )
 
+#let coherence(role) = {
+  let common = (
+    title: "Freelance Software Developer",
+    org: "Coherence Academy",
+    location: "Pune, India",
+    date: "Aug 2026 - Present",
+  )
+  let fee_desk = "Building Coherence Fee Desk, a Next.js platform replacing the academy's spreadsheet-based admissions, fee collection, and reporting."
+  let events = "Separately build and run the software for Coherence-backed events such as Campus Connect and Mission 95: public registration sites with OTP checks, participant IDs, UPI payments, and Sheets sync."
+  let events_short = "Separately run the software for Coherence-backed events (Campus Connect, Mission 95): registration, UPI payments, Sheets sync."
+  if role == "backend-engineer" {
+    common + (
+      bullets: (
+        fee_desk,
+        "Migrated server workflows, OTP auth, and libSQL persistence to Effect V4 through stacked, independently deployable PRs, covered by 330+ unit/Effect tests and Playwright browser workflows on isolated databases.",
+        events,
+      ),
+    )
+  } else if role == "frontend-engineer" {
+    common + (
+      bullets: (
+        fee_desk,
+        "Built the mobile student fee portal, OTP-verified enquiry flows, and keyboard-accessible admin dialogs with React, Tailwind CSS, and Radix UI.",
+        events_short,
+      ),
+    )
+  } else if role == "full-stack-engineer" {
+    common + (
+      bullets: (
+        fee_desk,
+        "Shipped MSG91 OTP login, payment-proof upload and verification, and bulk Excel imports, then migrated the backend to Effect V4 under 330+ automated tests.",
+        events,
+      ),
+    )
+  } else {
+    common + (
+      bullets: (
+        fee_desk,
+        events_short,
+      ),
+    )
+  }
+}
+
 #let mind_point(role) = {
   let common = (
     title: "Freelance Sole Developer",
@@ -147,13 +191,13 @@
 
 #let experiences(role) = {
   if role == "backend-engineer" {
-    (mind_point(role), teaching_assistant(), encryption_internship())
+    (coherence(role), mind_point(role), teaching_assistant())
   } else if role == "frontend-engineer" or role == "full-stack-engineer" {
-    (mind_point(role), teaching_assistant())
+    (coherence(role), mind_point(role), teaching_assistant())
   } else if role == "ml-data-scientist" {
-    (teaching_assistant(), encryption_internship())
+    (coherence(role), teaching_assistant(), encryption_internship())
   } else {
-    (teaching_assistant(),)
+    (coherence(role), teaching_assistant())
   }
 }
 
@@ -243,7 +287,7 @@
     (label: "GitHub", url: "https://github.com/AyushJ1001/portfolio"),
   ),
   bullets: (
-    "Built a responsive personal portfolio with animated sections, project showcases, audience-aware resume routing, and polished React/Tailwind UI patterns.",
+    "Built a responsive personal portfolio with animated sections, project showcases, a resume download route, and polished React/Tailwind UI patterns.",
     "Implemented accessible navigation, mobile layouts, and reusable components to present technical work without relying on a generic static resume page.",
   ),
 )
@@ -295,7 +339,6 @@
     (
       project_yaycamp(role),
       project_monkey(),
-      project_ranking(role),
     )
   } else if role == "frontend-engineer" {
     (
@@ -307,7 +350,6 @@
     (
       project_anomaly(role),
       project_particle(),
-      project_encryption_study(),
     )
   } else if role == "computer-vision-edge-ai" {
     (
@@ -325,7 +367,6 @@
     (
       project_yaycamp(role),
       project_ranking(role),
-      project_monkey(),
     )
   }
 }
@@ -404,7 +445,7 @@
   if role == "iot-embedded-engineer" or role == "computer-vision-edge-ai" or role == "ml-data-scientist" {
     [
       #section("Publication")
-      A. Juvekar et al., "Carbon Monoxide Concentration Monitoring System," #emph("ESCI 2023"), presented Mar 2023. #link("https://ieeexplore.ieee.org/document/10100144")[IEEE]
+      A. Ghadge, A. Juvekar et al., "Carbon Monoxide Concentration Monitoring System for Automating Air Filters," #emph("ESCI 2023"). #link("https://ieeexplore.ieee.org/document/10100144")[IEEE]
     ]
   } else {
     []

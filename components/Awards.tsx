@@ -149,8 +149,9 @@ export function Awards() {
                   Published Research
                 </h4>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  A. Juvekar et al., &ldquo;Carbon Monoxide Concentration
-                  Monitoring System,&rdquo;{" "}
+                  A. Ghadge, A. Juvekar, M. Wakode, and G. Kale, &ldquo;Carbon
+                  Monoxide Concentration Monitoring System for Automating Air
+                  Filters,&rdquo;{" "}
                   <span className="text-emerald-400">ESCI 2023</span>,{" "}
                   <a
                     href="https://doi.org/10.1109/ESCI56872.2023.10100144"

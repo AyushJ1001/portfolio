@@ -20,7 +20,7 @@ This is my personal portfolio website built with [Next.js](https://nextjs.org), 
 
 ## Resume Templates
 
-Resume sources live in `resumes/` and are generated with Typst:
+Resume sources live in `resumes/` and are generated with Typst (pinned in `mise.toml`; run `mise install` first). This builds every role variant into `public/`:
 
 ```bash
 npm run build:resumes

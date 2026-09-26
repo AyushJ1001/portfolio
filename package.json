@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "build:resumes": "typst compile resumes/india-full-stack-engineer.typ public/ayush_juvekar_resume_india_full_stack_engineer.pdf",
+    "build:resumes": "for f in resumes/india-*.typ; do r=$(basename $f .typ | sed 's/^india-//; s/-/_/g'); typst compile $f public/ayush_juvekar_resume_india_$r.pdf || exit 1; done && cp public/ayush_juvekar_resume_india_full_stack_engineer.pdf public/ayush_juvekar_resume_india.pdf",
     "sandcastle": "npx tsx ./.sandcastle/main.mts"
   },
   "dependencies": {
