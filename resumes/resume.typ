@@ -101,7 +101,7 @@
     location: "Pune, India",
     date: "Aug 2026 - Present",
   )
-  let platform = "Replaced Excel, Classplus, and ZipGrade with one app for fees, tests, attendance, and lectures, used by 8 admins and 105 students."
+  let platform = "Built an app replacing Excel, Classplus, and ZipGrade for fees, tests, attendance, and lectures, used by 8 admins and 105 students."
   let omr = "Built in-app OMR scanning that grades MCQ answer sheets, now used on tests of about 50 students each."
   let events = "Separately built registration and UPI payment sites for Coherence-backed events, each taking 100+ registrations; for COEP Campus Connect (300+ students, Classes 7-10), wrote a Google Sheets script that ranked the top 5 schools by their toppers' average scores."
   let events_short = "Separately built registration and payment sites for Campus Connect and Mission 95, each taking 100+ registrations."
@@ -117,7 +117,7 @@
     common + (
       bullets: (
         platform,
-        "Built the mobile family portal, admin console, and an admin Android app, with positive feedback from staff and students.",
+        "Built the mobile student portal, admin console, and an admin Android app, with positive feedback from staff and students.",
         events_short,
       ),
     )

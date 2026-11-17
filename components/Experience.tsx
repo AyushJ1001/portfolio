@@ -43,10 +43,10 @@ const productExperiences = [
     period: "Aug 2026 - Present",
     description:
       [
-        "The academy kept its records in Excel sheets updated by hand on one laptop, and paid for Classplus (recorded lectures) and ZipGrade (OMR grading), which admins and students found awkward to use.",
+        "The academy kept its records in Excel sheets updated by hand on one laptop, and used Classplus (recorded lectures) and ZipGrade (OMR grading), whose interfaces admins and students found unintuitive.",
         "Built one app to replace them: fees with payment-proof checks, tests with in-app OMR grading, classroom attendance, and recorded lectures, plus an Android app now with admins.",
         "It is live for 8 admins and 105 Class 11 students, has graded MCQ tests of about 50 students each, and is taking over from both paid tools, with positive feedback from staff and students.",
-        "Separately, built registration and UPI payment sites for Campus Connect and Mission 95 (100+ registrations each), and a Google Sheets script that ranked the top 5 schools across COEP Campus Connect's 300+ students.",
+        "Separately, built registration and UPI payment sites for Campus Connect and Mission 95 (100+ registrations each), and a Google Sheets script that ranked the top 5 schools across COEP Campus Connect's 300+ students by their toppers' average scores.",
       ],
     skills: ["Next.js", "TypeScript", "Effect", "Android", "OMR", "Playwright"],
     current: true,
