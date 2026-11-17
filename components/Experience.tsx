@@ -38,12 +38,17 @@ const productExperiences = [
   {
     role: "Freelance Software Developer",
     department: "Coherence Academy",
-    company: "Fee Desk & Event Software",
+    company: "Academy Platform & Event Software",
     location: "Pune, India",
     period: "Aug 2026 - Present",
     description:
-      "Building Coherence Fee Desk, a Next.js platform replacing the academy's spreadsheet-based admissions, fee collection, and reporting. Shipped MSG91 OTP login, payment-proof upload and verification, and bulk Excel imports, then migrated the backend to Effect V4 under 330+ automated tests. Separately, build and run the software for Coherence-backed events such as Campus Connect and Mission 95: public registration sites with OTP checks, participant IDs, UPI payments, and Google Sheets sync.",
-    skills: ["Next.js", "TypeScript", "Effect", "libSQL", "MSG91", "Playwright"],
+      [
+        "The academy kept its records in Excel sheets updated by hand on one laptop, and paid for Classplus (recorded lectures) and ZipGrade (OMR grading), which admins and students found awkward to use.",
+        "Built one app to replace them: fees with payment-proof checks, tests with in-app OMR grading, classroom attendance, and recorded lectures, plus an Android app now with admins.",
+        "It is live for 8 admins and 105 Class 11 students, has graded MCQ tests of about 50 students each, and is taking over from both paid tools, with positive feedback from staff and students.",
+        "Separately, built registration and UPI payment sites for Campus Connect and Mission 95 (100+ registrations each), and a Google Sheets script that ranked the top 5 schools across COEP Campus Connect's 300+ students.",
+      ],
+    skills: ["Next.js", "TypeScript", "Effect", "Android", "OMR", "Playwright"],
     current: true,
   },
   {
@@ -194,9 +199,16 @@ export function Experience() {
                         </div>
                       </div>
 
-                      <p className="text-zinc-400 text-sm leading-relaxed mb-5">
-                        {experience.description}
-                      </p>
+                      <div className="space-y-3 mb-5">
+                        {[experience.description].flat().map((paragraph) => (
+                          <p
+                            key={paragraph}
+                            className="text-zinc-400 text-sm leading-relaxed"
+                          >
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
 
                       <div className="flex flex-wrap gap-2">
                         {experience.skills.map((skill) => (

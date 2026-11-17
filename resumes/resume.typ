@@ -101,37 +101,54 @@
     location: "Pune, India",
     date: "Aug 2026 - Present",
   )
-  let fee_desk = "Building Coherence Fee Desk, a Next.js platform replacing the academy's spreadsheet-based admissions, fee collection, and reporting."
-  let events = "Separately build and run the software for Coherence-backed events such as Campus Connect and Mission 95: public registration sites with OTP checks, participant IDs, UPI payments, and Sheets sync."
-  let events_short = "Separately run the software for Coherence-backed events (Campus Connect, Mission 95): registration, UPI payments, Sheets sync."
+  let platform = "Replaced Excel, Classplus, and ZipGrade with one app for fees, tests, attendance, and lectures, used by 8 admins and 105 students."
+  let omr = "Built in-app OMR scanning that grades MCQ answer sheets, now used on tests of about 50 students each."
+  let events = "Separately built registration and UPI payment sites for Coherence-backed events, each taking 100+ registrations; for COEP Campus Connect (300+ students, Classes 7-10), wrote a Google Sheets script that ranked the top 5 schools by their toppers' average scores."
+  let events_short = "Separately built registration and payment sites for Campus Connect and Mission 95, each taking 100+ registrations."
   if role == "backend-engineer" {
     common + (
       bullets: (
-        fee_desk,
-        "Migrated server workflows, OTP auth, and libSQL persistence to Effect V4 through stacked, independently deployable PRs, covered by 330+ unit/Effect tests and Playwright browser workflows on isolated databases.",
+        platform,
+        "Kept frequent releases safe with 330+ unit/Effect tests and Playwright browser workflows on isolated databases, and moved the backend to Effect V4 through stacked, independently deployable PRs.",
         events,
       ),
     )
   } else if role == "frontend-engineer" {
     common + (
       bullets: (
-        fee_desk,
-        "Built the mobile student fee portal, OTP-verified enquiry flows, and keyboard-accessible admin dialogs with React, Tailwind CSS, and Radix UI.",
+        platform,
+        "Built the mobile family portal, admin console, and an admin Android app, with positive feedback from staff and students.",
         events_short,
       ),
     )
   } else if role == "full-stack-engineer" {
     common + (
       bullets: (
-        fee_desk,
-        "Shipped MSG91 OTP login, payment-proof upload and verification, and bulk Excel imports, then migrated the backend to Effect V4 under 330+ automated tests.",
-        events,
+        platform,
+        omr,
+        "Shipped OTP sign-in, payment-proof checks, and an admin Android app, with 330+ automated tests guarding frequent releases.",
+        events_short,
+      ),
+    )
+  } else if role == "computer-vision-edge-ai" {
+    common + (
+      bullets: (
+        platform,
+        omr,
+      ),
+    )
+  } else if role == "ml-data-scientist" {
+    common + (
+      bullets: (
+        platform,
+        omr,
+        events_short,
       ),
     )
   } else {
     common + (
       bullets: (
-        fee_desk,
+        platform,
         events_short,
       ),
     )
