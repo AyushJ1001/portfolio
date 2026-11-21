@@ -209,9 +209,9 @@ export function Hero() {
               }}
               className="text-xl sm:text-2xl text-zinc-400 mb-6 font-light tracking-wide"
             >
-              Software Engineer{" "}
-              <span className="text-zinc-600 font-display italic">&</span> ML
-              Researcher
+              Full-Stack{" "}
+              <span className="text-zinc-600 font-display italic">&</span>{" "}
+              Mobile Software Engineer
             </motion.p>
 
             {/* Bio */}
@@ -225,11 +225,12 @@ export function Hero() {
               }}
               className="text-zinc-500 text-base sm:text-lg leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0"
             >
-              Computer Science master&apos;s graduate {locationCopy}, building
-              intelligent systems at the intersection of{" "}
-              <span className="text-zinc-300">machine learning</span>,{" "}
-              <span className="text-zinc-300">computer vision</span>, and{" "}
-              <span className="text-zinc-300">full-stack development</span>.
+              Computer Science master&apos;s graduate {locationCopy}, shipping
+              production{" "}
+              <span className="text-zinc-300">web platforms</span>,{" "}
+              <span className="text-zinc-300">native iOS and Android apps</span>
+              , and{" "}
+              <span className="text-zinc-300">applied computer vision</span>.
             </motion.p>
 
             {/* CTAs */}
@@ -429,7 +430,7 @@ export function Hero() {
         }}
       >
         <motion.a
-          href="#skills"
+          href="#experience"
           className="flex flex-col items-center gap-2 text-zinc-500 hover:text-[var(--accent)] transition-colors duration-500"
           animate={
             shouldReduceMotion ? undefined : { y: [0, 6, 0] }

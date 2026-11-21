@@ -36,30 +36,49 @@ const baseExperiences = [
 
 const productExperiences = [
   {
-    role: "Freelance Software Developer",
+    role: "Software Engineer",
     department: "Coherence Academy",
-    company: "Academy Platform & Event Software",
+    company: "Web, iOS & Android Platform",
     location: "Pune, India",
     period: "Aug 2026 - Present",
-    description:
-      [
-        "The academy kept its records in Excel sheets updated by hand on one laptop, and used Classplus (recorded lectures) and ZipGrade (OMR grading), whose interfaces admins and students found unintuitive.",
-        "Built one app to replace them: fees with payment-proof checks, tests with in-app OMR grading, classroom attendance, and recorded lectures, plus an Android app now with admins.",
-        "It is live for 8 admins and 105 Class 11 students, has graded MCQ tests of about 50 students each, and is taking over from both tools, with positive feedback from staff and students.",
-        "Separately, built registration and UPI payment sites for Campus Connect and Mission 95 (100+ registrations each), and a Google Sheets script that ranked the top 5 schools across COEP Campus Connect's 300+ students by their toppers' average scores.",
-      ],
-    skills: ["Next.js", "TypeScript", "Effect", "Android", "OMR", "Playwright"],
+    description: [
+      "The academy tracked operations in Excel sheets on one laptop and relied on Classplus (recorded lectures) and ZipGrade (OMR grading), which admins and students found hard to use.",
+      "Built the unified web, native iOS, and native Android platform replacing those tools across fees, proctored online tests with AI typesetting and rubric marking, in-app OMR grading (~50 students per MCQ test), classroom attendance, assignments, and recorded lectures. Live for 8 admins and 105 Class 11 students.",
+      "Migrated the web app from Next.js to TanStack Start, React 19, Vite+, Effect v4, and libSQL/SQLite across 45 ADRs, guarded by 330+ unit/Effect and Playwright browser tests on isolated databases.",
+      "Shipped native Android (Kotlin, Jetpack Compose, CameraX, ML Kit Document Scanner, LiteRT, MSG91 OTP web-handoff, signed debug/preview/release builds) and native iOS (Swift, SwiftUI, XcodeGen, CoherenceCore Swift package, LiteRT, UITests) clients.",
+      "Separately built registration and UPI payment sites for Campus Connect and Mission 95 (100+ registrations each) and a Google Sheets ranking script for COEP Campus Connect (300+ students).",
+    ],
+    skills: [
+      "TanStack Start",
+      "TypeScript",
+      "Effect v4",
+      "SwiftUI",
+      "Jetpack Compose",
+      "LiteRT",
+      "libSQL",
+      "Playwright",
+    ],
     current: true,
   },
   {
-    role: "Freelance Sole Developer",
+    role: "Freelance Software Developer",
     department: "The Mind Point",
-    company: "Mental Health Education Platform",
+    company: "Course Storefront & LMS",
     location: "Pune, India",
     period: "Aug 2025 - Present",
-    description:
-      "Built a production course-commerce platform from scratch for a mental health education business, supporting paid enrollments with Razorpay, Clerk-authenticated accounts, Resend confirmations, Google Sheets admin tracking, PostHog analytics, and Vercel deployment.",
-    skills: ["Next.js", "React", "Clerk", "Razorpay", "PostHog", "Resend"],
+    description: [
+      "Built the production storefront and Convex LMS from scratch in Next.js, React, and TypeScript for a mental health education business, powering courses, quizzes, feedback, certificates, and promo campaigns.",
+      "Implemented Clerk authentication, server-authoritative Razorpay/UPI checkout reconciliation with pending-state payment guards, Upstash Redis rate limiting, Resend transactional emails, Google Sheets tracking, and automated integration tests.",
+    ],
+    skills: [
+      "Next.js",
+      "TypeScript",
+      "Convex",
+      "Clerk",
+      "Razorpay",
+      "Upstash Redis",
+      "Resend",
+    ],
     current: true,
   },
 ];
@@ -110,7 +129,7 @@ export function Experience() {
             >
               {experiences.map((experience, index) => (
                 <motion.div
-                  key={experience.role}
+                  key={`${experience.department}-${experience.role}`}
                   variants={fadeUp(28)}
                   className={`relative flex flex-col md:flex-row gap-8 ${
                     index % 2 === 0

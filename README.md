@@ -1,21 +1,20 @@
 # Ayush Juvekar - Portfolio
 
-This is my personal portfolio website built with [Next.js](https://nextjs.org), showcasing my projects, skills, and experience as a Computer Science Graduate Student, Full Stack Developer, and Machine Learning Enthusiast.
+Personal portfolio website built with [Next.js](https://nextjs.org), covering production web, native iOS, and native Android engineering work alongside academic projects.
 
 ## Features
 
 - Responsive design for all device sizes
-- Project showcase with detailed descriptions
+- Experience timeline and project cards
 - Skills and technologies section
-- About me and contact information
-- Clean, modern UI with custom branding
-- Country- and role-specific resume PDFs served from `/resume`
+- Background and contact information
+- Role-specific Typst resume templates compiled into `public/`
 
 ## Tech Stack
 
 - **Framework**: Next.js
 - **Styling**: CSS/Tailwind CSS
-- **Fonts**: Inter from Google Fonts
+- **Fonts**: Young Serif and Bricolage Grotesque from Google Fonts
 - **Deployment**: Vercel
 
 ## Resume Templates
@@ -26,11 +25,12 @@ Resume sources live in `resumes/` and are generated with Typst (pinned in `mise.
 npm run build:resumes
 ```
 
-The default `/resume` route serves the full-stack resume for the detected country. Role-specific variants use `?role=` with:
+The `/resume` route serves the generalist full-stack PDF (`public/ayush_juvekar_resume_india_full_stack_engineer.pdf`). Role-specific PDFs built in `public/` cover:
 
 - `backend-engineer`
 - `frontend-engineer`
 - `full-stack-engineer`
+- `mobile-engineer`
 - `ml-data-scientist`
 - `computer-vision-edge-ai`
 - `iot-embedded-engineer`

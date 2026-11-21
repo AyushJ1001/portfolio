@@ -112,29 +112,29 @@ export function Projects() {
           <span className="section-label">Featured Work</span>
           <h2 className="section-heading mb-4">Projects</h2>
           <p className="text-zinc-500 max-w-2xl mx-auto text-lg">
-            A selection of research and personal projects spanning ML, computer
-            vision, and full-stack development.
+            Shipped web apps and developer tools, followed by academic computer
+            vision and IoT prototypes.
           </p>
         </motion.div>
 
-        {/* Research Projects */}
+        {/* Software Projects */}
         <ProjectGroup
-          title="Research Projects"
-          icon={FlaskConical}
-          iconClasses="bg-emerald-500/10 text-emerald-400"
-          projects={researchProjects}
-          variant="research"
-          gridClassName="grid md:grid-cols-2 gap-5"
-        />
-
-        {/* Personal Projects */}
-        <ProjectGroup
-          title="Personal Projects"
+          title="Software Projects"
           icon={Laptop}
           iconClasses="bg-[var(--accent)]/10 text-[var(--accent)]"
           projects={personalProjects}
           variant="personal"
           gridClassName="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
+        />
+
+        {/* Academic & Research Projects */}
+        <ProjectGroup
+          title="Academic & Research Projects"
+          icon={FlaskConical}
+          iconClasses="bg-emerald-500/10 text-emerald-400"
+          projects={researchProjects}
+          variant="research"
+          gridClassName="grid md:grid-cols-2 gap-5"
           className="mt-16"
         />
       </div>

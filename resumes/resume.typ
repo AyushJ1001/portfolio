@@ -3,6 +3,8 @@
     "Backend Engineer"
   } else if role == "frontend-engineer" {
     "Frontend Engineer"
+  } else if role == "mobile-engineer" {
+    "Mobile Engineer (iOS & Android)"
   } else if role == "full-stack-engineer" {
     "Full-Stack Engineer"
   } else if role == "ml-data-scientist" {
@@ -18,73 +20,80 @@
 
 #let profile(role) = {
   if role == "backend-engineer" {
-    "Backend-oriented software engineer focused on database-backed products, API design, auth/payment workflows, and production deployment."
+    "Software engineer building typed backends, relational data models, auth and payment reconciliation workflows, and test-covered deployments with TypeScript, Effect v4, Convex, and SQL."
   } else if role == "frontend-engineer" {
-    "Frontend engineer focused on React/Next.js product interfaces, responsive UI, accessibility, and polished user workflows."
+    "Frontend engineer building responsive React, TanStack Start, and Next.js product interfaces with accessible UI primitives, client-side scanning flows, and automated browser tests."
+  } else if role == "mobile-engineer" {
+    "Mobile software engineer shipping native iOS (Swift, SwiftUI) and Android (Kotlin, Jetpack Compose) apps with camera document scanning, on-device LiteRT inference, and shared TypeScript backends."
   } else if role == "ml-data-scientist" {
-    "Computer science graduate with applied ML and data-analysis experience across model evaluation, computer vision, and privacy/security-focused Python workflows."
+    "Computer science graduate with applied ML and data-analysis experience across model evaluation, computer vision, on-device inference, and Python analysis workflows."
   } else if role == "computer-vision-edge-ai" {
-    "Computer vision engineer focused on video analysis, edge inference, object detection workflows, and camera/sensor-backed research prototypes."
+    "Computer vision engineer shipping in-app OMR and camera document scanning alongside edge inference, video analysis, and object detection workflows."
   } else if role == "iot-embedded-engineer" {
     "IoT and embedded-systems engineer focused on Arduino/C++ sensor prototypes, MQTT/Zigbee communication, Node-RED automation, and edge-device demos."
   } else {
-    "Full-stack engineer building production web products with Next.js, TypeScript, databases, auth, payments, analytics, and deployment ownership."
+    "Software engineer shipping production web, native iOS, and native Android apps with TypeScript, React, TanStack Start, Next.js, Effect v4, SwiftUI, and Jetpack Compose."
   }
 }
 
 #let skill_rows(role) = {
   if role == "backend-engineer" {
     (
-      (category: "Languages", skills: "TypeScript, Python, Java, C#, Go"),
-      (category: "Backend", skills: "Node.js, Express.js, REST APIs, Prisma ORM"),
-      (category: "Databases", skills: "PostgreSQL, Redis, MongoDB"),
-      (category: "Auth & Payments", skills: "Clerk, JWT, Razorpay"),
-      (category: "DevOps", skills: "Docker, Git, Vercel, Linux"),
-      (category: "Testing / Systems", skills: "TDD, interpreter design"),
+      (category: "Languages", skills: "TypeScript, Python, Java, C#, Go, SQL"),
+      (category: "Backend", skills: "Effect v4, TanStack Start, Node.js, Convex, REST APIs, Prisma ORM"),
+      (category: "Databases", skills: "libSQL / SQLite, PostgreSQL, Upstash Redis, MongoDB"),
+      (category: "Auth & Payments", skills: "Clerk, MSG91 OTP, JWT, Razorpay, UPI reconciliation, Resend"),
+      (category: "Testing & Infra", skills: "Vitest, Playwright, Docker, Git, Vercel, Linux"),
     )
   } else if role == "frontend-engineer" {
     (
       (category: "Languages", skills: "TypeScript, JavaScript, HTML, CSS"),
-      (category: "Frontend", skills: "React, Next.js, Tailwind CSS, shadcn/ui"),
-      (category: "UI Engineering", skills: "Responsive design, accessibility, interactive state, component architecture"),
-      (category: "Product Integrations", skills: "Clerk, Razorpay Checkout, PostHog, Resend"),
-      (category: "Tooling", skills: "Git, Vercel, ESLint"),
+      (category: "Frontend", skills: "React 19, TanStack Start, Next.js, Vite+, Tailwind CSS, Radix UI / shadcn"),
+      (category: "UI & Client Tech", skills: "Accessible dialogs, responsive portals, OpenCV.js, MediaPipe, Typst"),
+      (category: "Integrations", skills: "Clerk, MSG91 OTP, Razorpay Checkout, Convex, Resend"),
+      (category: "Testing & Tooling", skills: "Playwright, Vitest, Git, Vercel, ESLint"),
+    )
+  } else if role == "mobile-engineer" {
+    (
+      (category: "Native iOS", skills: "Swift, SwiftUI, XcodeGen, Swift Packages (CoherenceCore), XCUITest, LiteRT"),
+      (category: "Native Android", skills: "Kotlin, Jetpack Compose, Material 3, CameraX, ML Kit Document Scanner, LiteRT"),
+      (category: "Networking & Auth", skills: "OkHttp, kotlinx.serialization, REST APIs, MSG91 OTP web-handoff, Clerk"),
+      (category: "Testing & Builds", skills: "Robolectric, JUnit, XCUITest, Debug/Preview/Release signed builds, Playwright"),
+      (category: "Web & Backend", skills: "TypeScript, React, TanStack Start, Next.js, Effect v4, libSQL, Convex"),
+      (category: "Tooling", skills: "Xcode, Gradle, Git, Docker, Linux"),
     )
   } else if role == "ml-data-scientist" {
     (
-      (category: "Languages", skills: "Python, SQL, C++, TypeScript"),
-      (category: "ML / Data", skills: "TensorFlow, Scikit-learn, NumPy, Pandas"),
-      (category: "Computer Vision", skills: "OpenCV, image/video preprocessing"),
+      (category: "Languages", skills: "Python, SQL, TypeScript, C++"),
+      (category: "ML / Data", skills: "TensorFlow, LiteRT, Scikit-learn, NumPy, Pandas"),
+      (category: "Computer Vision", skills: "OpenCV, MediaPipe, document & OMR scanning, image/video preprocessing"),
       (category: "Experimentation", skills: "Model evaluation, dataset preparation, feature analysis"),
-      (category: "Tools", skills: "Jupyter Notebook, Git, Docker"),
-      (category: "Databases", skills: "PostgreSQL, MongoDB"),
+      (category: "Tools & DBs", skills: "Jupyter Notebook, Git, Docker, PostgreSQL, libSQL, MongoDB"),
     )
   } else if role == "computer-vision-edge-ai" {
     (
-      (category: "Languages", skills: "Python, C++, MATLAB"),
-      (category: "Computer Vision", skills: "OpenCV, MATLAB Computer Vision workflows, image/video processing, object detection"),
-      (category: "ML / Edge AI", skills: "TensorFlow, TensorFlow Lite, CNNs, Jetson Nano"),
-      (category: "Sensors / Cameras", skills: "ZED 2 camera video, Arduino sensor data"),
-      (category: "Data Workflows", skills: "Dataset preparation, model evaluation, experiment documentation"),
-      (category: "Tools", skills: "Jupyter Notebook, Git, Linux"),
+      (category: "Languages", skills: "Python, TypeScript, Swift, Kotlin, C++, MATLAB"),
+      (category: "Computer Vision", skills: "OpenCV, MediaPipe, ML Kit Document Scanner, CameraX, object detection"),
+      (category: "ML / Edge AI", skills: "LiteRT, TensorFlow, TensorFlow Lite, CNNs, Jetson Nano"),
+      (category: "Sensors / Cameras", skills: "Mobile cameras, ZED 2 camera video, Arduino sensor data"),
+      (category: "Tools", skills: "Jupyter Notebook, Git, Linux, Playwright"),
     )
   } else if role == "iot-embedded-engineer" {
     (
-      (category: "Languages", skills: "C++, Python, MATLAB"),
+      (category: "Languages", skills: "C++, Python, TypeScript, MATLAB"),
       (category: "Embedded / IoT", skills: "Arduino Uno, sensor integration, MQTT, Zigbee"),
       (category: "Automation", skills: "Node-RED flows, live sensor-triggered control"),
-      (category: "Edge / Computer Vision", skills: "Jetson Nano, TensorFlow Lite, ZED 2 camera video"),
-      (category: "Data / Analysis", skills: "Jupyter Notebook, NumPy, Pandas"),
-      (category: "Tools", skills: "Git, Linux"),
+      (category: "Edge / Vision", skills: "Jetson Nano, TensorFlow Lite, LiteRT, ZED 2 camera video"),
+      (category: "Data / Tools", skills: "Jupyter Notebook, NumPy, Pandas, Git, Linux"),
     )
   } else {
     (
-      (category: "Languages", skills: "TypeScript, Python, Java, C#"),
-      (category: "Frontend", skills: "React, Next.js, Tailwind CSS, shadcn/ui"),
-      (category: "Backend", skills: "Node.js, Express.js, REST APIs, Prisma ORM"),
-      (category: "Databases", skills: "PostgreSQL, Redis, MongoDB"),
-      (category: "Product Integrations", skills: "Clerk, Razorpay, Resend, PostHog"),
-      (category: "DevOps", skills: "Docker, Git, Vercel, Linux"),
+      (category: "Languages", skills: "TypeScript, Python, Swift, Kotlin, Java, C#"),
+      (category: "Web", skills: "React 19, TanStack Start, Next.js, Vite+, Tailwind CSS, Radix UI / shadcn"),
+      (category: "Mobile", skills: "SwiftUI, XcodeGen, Jetpack Compose, CameraX, ML Kit, LiteRT"),
+      (category: "Backend & Data", skills: "Effect v4, Convex, Node.js, libSQL / SQLite, PostgreSQL, Upstash Redis"),
+      (category: "Auth & Payments", skills: "Clerk, MSG91 OTP, Razorpay, UPI verification, Resend"),
+      (category: "Testing & Ops", skills: "Playwright, Vitest, Robolectric, Docker, Git, Vercel, Linux"),
     )
   }
 }
@@ -96,20 +105,23 @@
 
 #let coherence(role) = {
   let common = (
-    title: "Freelance Software Developer",
+    title: "Software Engineer",
     org: "Coherence Academy",
     location: "Pune, India",
     date: "Aug 2026 - Present",
   )
-  let platform = "Built an app replacing Excel, Classplus, and ZipGrade for fees, tests, attendance, and lectures, used by 8 admins and 105 students."
-  let omr = "Built in-app OMR scanning that grades MCQ answer sheets, now used on tests of about 50 students each."
-  let events = "Separately built registration and UPI payment sites for Coherence-backed events, each taking 100+ registrations; for COEP Campus Connect (300+ students, Classes 7-10), wrote a Google Sheets script that ranked the top 5 schools by their toppers' average scores."
-  let events_short = "Separately built registration and payment sites for Campus Connect and Mission 95, each taking 100+ registrations."
+  let platform = "Built the web, iOS, and Android platform replacing Excel, Classplus, and ZipGrade for fees, tests, attendance, assignments, and lectures, live for 8 admins and 105 students."
+  let web_arch = "Migrated the web app from Next.js to TanStack Start, React 19, Vite+, Effect v4, and libSQL/SQLite across 45 ADRs, guarded by 330+ unit/Effect and Playwright browser tests on isolated databases."
+  let mobile_clients = "Shipped native Android (Kotlin, Jetpack Compose, CameraX, ML Kit Document Scanner, LiteRT, MSG91 OTP web-handoff, signed debug/preview/release builds) and native iOS (Swift, SwiftUI, XcodeGen, CoherenceCore Swift package, LiteRT, UITests) apps."
+  let omr_ai = "Built in-app OMR scanning grading MCQ tests of about 50 students each, plus proctored online tests with AI typesetting and rubric marking."
+  let events = "Separately built registration and UPI payment sites for Coherence-backed events (100+ registrations each) and a Google Sheets ranking script for COEP Campus Connect (300+ students)."
+  let events_short = "Separately built registration and UPI payment sites for Campus Connect and Mission 95 (100+ registrations each)."
   if role == "backend-engineer" {
     common + (
       bullets: (
         platform,
-        "Kept frequent releases safe with 330+ unit/Effect tests and Playwright browser workflows on isolated databases, and moved the backend to Effect V4 through stacked, independently deployable PRs.",
+        web_arch,
+        "Shipped MSG91 OTP authentication, UPI payment-proof verification, proctored online tests with AI typesetting and rubric marking, and shared APIs powering web, iOS, and Android clients.",
         events,
       ),
     )
@@ -117,31 +129,40 @@
     common + (
       bullets: (
         platform,
-        "Built the mobile student portal, admin console, and an admin Android app, with positive feedback from staff and students.",
+        "Migrated the web client from Next.js to TanStack Start, React 19, Vite+, Tailwind CSS, and Radix UI/shadcn, building the student portal, admin console, and proctored test UI under Playwright browser tests.",
+        omr_ai,
         events_short,
+      ),
+    )
+  } else if role == "mobile-engineer" {
+    common + (
+      bullets: (
+        "Built native Android (Kotlin, Jetpack Compose, CameraX, ML Kit Document Scanner, LiteRT, OkHttp, Robolectric/JUnit) and native iOS (Swift, SwiftUI, XcodeGen, CoherenceCore Swift package, LiteRT, UITests) clients for Coherence Academy.",
+        "Implemented MSG91 OTP web-handoff sign-in, camera document and OMR scanning, recorded lecture playback with on-device face checks, and signed Debug/Preview/Release builds across both platforms.",
+        "Backed both mobile apps with a unified TypeScript/Effect v4/libSQL platform replacing Excel, Classplus, and ZipGrade for 8 admins and 105 students, grading MCQ tests of about 50 students each.",
       ),
     )
   } else if role == "full-stack-engineer" {
     common + (
       bullets: (
         platform,
-        omr,
-        "Shipped OTP sign-in, payment-proof checks, and an admin Android app, with 330+ automated tests guarding frequent releases.",
-        events_short,
+        web_arch,
+        mobile_clients,
+        omr_ai + " " + events_short,
       ),
     )
   } else if role == "computer-vision-edge-ai" {
     common + (
       bullets: (
         platform,
-        omr,
+        "Built in-app OMR and curled-paper document scanning plus on-device LiteRT inference on native iOS and Android (CameraX, ML Kit, OpenCV.js, MediaPipe), grading MCQ tests of about 50 students each.",
       ),
     )
   } else if role == "ml-data-scientist" {
     common + (
       bullets: (
         platform,
-        omr,
+        omr_ai,
         events_short,
       ),
     )
@@ -149,6 +170,7 @@
     common + (
       bullets: (
         platform,
+        omr_ai,
         events_short,
       ),
     )
@@ -157,7 +179,7 @@
 
 #let mind_point(role) = {
   let common = (
-    title: "Freelance Sole Developer",
+    title: "Freelance Software Developer",
     org: "The Mind Point - Mental Health Education Platform",
     location: "Pune, India",
     date: "Aug 2025 - Present",
@@ -165,22 +187,22 @@
   if role == "backend-engineer" {
     common + (
       bullets: (
-        "Delivered paid course enrollment for a live business by building checkout, enrollment, admin tracking, and notification workflows with Next.js, Clerk, Razorpay, Resend, PostHog, and Vercel.",
-        "Reduced manual enrollment handling by integrating Razorpay payments, automated confirmations, Google Sheets tracking, and authenticated account flows from scratch.",
+        "Built a production course storefront and Convex LMS from scratch in Next.js and TypeScript, powering courses, quizzes, feedback, certificates, and promo campaigns with Clerk auth.",
+        "Implemented server-authoritative Razorpay/UPI checkout reconciliation and pending-state payment guards, Upstash Redis rate limiting, Resend transactional emails, and automated integration tests.",
       ),
     )
   } else if role == "frontend-engineer" {
     common + (
       bullets: (
-        "Built the production storefront from scratch for a mental health education business, creating responsive course, cart, checkout, and enrollment flows in Next.js and React.",
-        "Improved the buyer workflow by integrating Clerk account flows, Razorpay Checkout, PostHog analytics, Resend confirmations, and accessibility-focused UI updates.",
+        "Built a production storefront and Convex-backed LMS from scratch in Next.js, React, and TypeScript, delivering responsive course pages, cart, Razorpay/UPI checkout, quizzes, feedback, and certificates.",
+        "Integrated Clerk authentication, Upstash Redis rate-limited APIs, Resend email confirmations, and admin campaign management.",
       ),
     )
   } else {
     common + (
       bullets: (
-        "Built a production course-commerce platform from scratch for a mental health education business, supporting real paid enrollments through Razorpay and Clerk-authenticated accounts.",
-        "Owned storefront, cart, checkout, enrollment, admin tracking, analytics, email confirmations, and Vercel deployment across the full product workflow.",
+        "Built a production course storefront and Convex LMS (courses, quizzes, feedback, certificates, promo campaigns) from scratch in Next.js, React, and TypeScript with Clerk auth.",
+        "Implemented server-authoritative Razorpay/UPI checkout reconciliation, Upstash Redis rate limiting, Resend email flows, Google Sheets tracking, and automated integration tests.",
       ),
     )
   }
@@ -207,9 +229,7 @@
 )
 
 #let experiences(role) = {
-  if role == "backend-engineer" {
-    (coherence(role), mind_point(role), teaching_assistant())
-  } else if role == "frontend-engineer" or role == "full-stack-engineer" {
+  if role == "backend-engineer" or role == "frontend-engineer" or role == "full-stack-engineer" or role == "mobile-engineer" {
     (coherence(role), mind_point(role), teaching_assistant())
   } else if role == "ml-data-scientist" {
     (coherence(role), teaching_assistant(), encryption_internship())
@@ -361,7 +381,11 @@
     (
       project_ranking(role),
       project_yaycamp(role),
-      project_portfolio(),
+    )
+  } else if role == "mobile-engineer" {
+    (
+      project_yaycamp(role),
+      project_ranking(role),
     )
   } else if role == "ml-data-scientist" {
     (

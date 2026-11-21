@@ -11,20 +11,20 @@ import {
 
 const focusAreas = [
   {
-    title: "Machine Learning & CV",
-    desc: "Building intelligent systems that interpret visual data",
+    title: "Full-Stack Web Systems",
+    desc: "Production apps built with TypeScript, React 19, TanStack Start, Next.js, Effect v4, and Convex",
   },
   {
-    title: "Full-Stack Development",
-    desc: "Creating comprehensive web apps with modern frameworks",
+    title: "Native iOS & Android",
+    desc: "SwiftUI and Jetpack Compose clients with CameraX, ML Kit Document Scanner, and on-device LiteRT",
   },
   {
-    title: "Edge Computing",
-    desc: "Running optimized models on edge devices like Jetson Nano",
+    title: "Payments, Auth & Reliability",
+    desc: "Razorpay/UPI reconciliation, Clerk and MSG91 OTP flows, and automated unit and browser tests",
   },
   {
-    title: "IoT Solutions",
-    desc: "Interconnected device networks for smart applications",
+    title: "Applied Computer Vision & IoT",
+    desc: "In-app OMR grading, edge inference on Jetson Nano, and sensor-driven automation",
   },
 ];
 
@@ -49,8 +49,8 @@ export function About() {
             <span className="font-display italic text-zinc-500">Me</span>
           </h2>
           <p className="text-zinc-500 max-w-2xl mx-auto text-lg">
-            A passionate engineer dedicated to building intelligent systems and
-            solving complex problems.
+            Computer Science graduate shipping multi-platform web and mobile
+            software from Pune, India.
           </p>
         </motion.div>
 
@@ -201,12 +201,10 @@ export function About() {
               </h3>
             </div>
             <p className="text-zinc-400 leading-relaxed">
-              I combine theoretical knowledge with practical implementation to
-              solve complex problems. My approach involves continuous learning,
-              collaborative development, and a focus on creating solutions that
-              are technically sound and user-centered. I&apos;m dedicated to
-              writing clean, efficient code and shipping products that real
-              people use.
+              I prefer building end-to-end software that replaces manual work
+              and holds up under real users: typed backends, native mobile
+              clients when cameras or offline checks matter, and automated tests
+              so frequent releases stay predictable.
             </p>
           </motion.div>
         </div>
